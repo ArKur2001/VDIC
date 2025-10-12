@@ -2,9 +2,6 @@
 // File created by:  xrun
 // Do not modify this file
 //
--elaborate
--l
-xrun_elaborate.log
 -F
 ../tb/tb.f
 -v93
@@ -25,3 +22,6 @@ all
 -covoverwrite
 -covfile
 xrun_covfile.txt
++UVM_TESTNAME=lab01_example
+-l
+xrun_test_lab01_example.log

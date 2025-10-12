@@ -2,6 +2,8 @@
 // File created by:  xrun
 // Do not modify this file
 //
+-INPUT
+"@source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv/files/tcl/uvm_sim.tcl"
 +nowarnDSEM2009
 +nowarnDSEMEL
 +nowarnCGDEFN
@@ -12,6 +14,10 @@
 +nowarnSAWSTP
 -amsdlibdir
 ./INCA_libs/AMSD
+-uvmhome
+/eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d
+-sv_lib
+/eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv/lib/64bit/libuvmpli.so
 -NOWARN
 DSEM2009
 -NOWARN
@@ -30,11 +36,15 @@ RNDXCELON
 SAWSTP
 -NOCOPYRIGHT
 -COVOVERWRITE
++UVM_TESTNAME=lab01_example
 -MESSAGES
+-RUN
+-SV_LIB
+/eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv/lib/64bit/libuvmdpi.so
 +EMGRLOG
-xrun_compile.log
+xrun_test_lab01_example.log
 -XLSTIME
-1760099195
+1760289354
 -XLKEEP
 -XLMODE
 ./INCA_libs/run.lnx8664.24.09.d

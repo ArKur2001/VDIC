@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 10, 2025 at 14:26:36 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 12, 2025 at 19:24:16 CEST
 xrun
 	-elaborate
 	-l xrun_elaborate.log
@@ -14,7 +14,9 @@ xrun
 	+nowarnXCLGNOPTM
 	+nowarnRNDXCELON
 	+nowarnSAWSTP
-	-xmlibdirname INCA_libs
+	-xmlibdirname INCA_libs_gui
+	+access+r
+	+gui
 	+overwrite
 	-nocopyright
 	-coverage all
@@ -22,9 +24,30 @@ xrun
 	-covfile xrun_covfile.txt
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
-		Caching library 'worklib' ....... Done
-simple_uart_switch DUT (.clk, .reset_n, .mode, .serial_in, .serial_out0, .serial_out1);
-                     |
-xmelab: *E,CUVMUR (../tb/simple_uart_switch_tb.svp,36|21): instance 'test.DUT' of design unit 'simple_uart_switch' is unresolved in 'worklib.test:svp'.
-xrun: *E,ELBERR: Error (*E) or soft error (*SE) occurred during elaboration (status 1), exiting.
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 10, 2025 at 14:26:36 CEST  (total: 00:00:00)
+	Top level design units:
+		test
+
+	Extracting FSMs for coverage:
+		worklib.test
+	Total FSMs extracted = 0
+	Building instance overlay tables: .................... Done
+	Enabling instrumentation for coverage types: block expression FSM toggle functional
+	Generating native compiled code:
+		worklib.simple_switch_uart:svp <0x5aade63a>
+			streams:  13, words: 17311
+		worklib.test:svp <0x5f9fc2ba>
+			streams:   9, words: 23603
+	Building instance specific data structures.
+	Performing constant object marking (COM) analysis.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		              Instances  Unique
+		Modules:              2       2
+		Registers:           40      40
+		Scalar wires:        10       -
+		Always blocks:        3       3
+		Initial blocks:       2       2
+		Cont. assignments:    1       2
+		Pseudo assignments:   3       -
+	Writing initial simulation snapshot: worklib.test:svp
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 12, 2025 at 19:24:16 CEST  (total: 00:00:00)

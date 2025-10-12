@@ -23,17 +23,20 @@ module test;
 //------------------------------------------------------------------------------
 
   logic clk;
-  logic reset_n;
-  logic mode; //(prog) // 1=programming, 0=functional
-  logic serial_in; 
-  logic serial_out0;
-  logic serial_out1;
+  logic rst_n;
+  logic prog; //(prog) // 1=programming, 0=functional
+  logic sin; 
+  logic sout0;
+  logic sout1;
+
+  byte  data;
+  logic parity;
 
 //------------------------------------------------------------------------------
 // DUT instantiation
 //------------------------------------------------------------------------------
 
-simple_uart_switch DUT (.clk, .reset_n, .mode, .serial_in, .serial_out0, .serial_out1);
+simple_switch_uart DUT (.clk, .rst_n, .prog, .sin, .sout0, .sout1);
 
 //------------------------------------------------------------------------------
 // Clock generator
@@ -41,11 +44,105 @@ simple_uart_switch DUT (.clk, .reset_n, .mode, .serial_in, .serial_out0, .serial
 
 initial begin : clk_gen_blk
   clk = 0;
-  forever begin : clk_frv_blk
-      #10;
-      clk = ~clk;
-  end
+  forever #10 clk = ~clk;
 end
+
+//------------------------------------------------------------------------------
+//reset_task
+//------------------------------------------------------------------------------
+task reset_sw();
+  rst_n = 0;
+  prog = 0;
+  sin = 1; // idle = 1
+  @(negedge clk);
+  rst_n = 1;
+endtask
+
+//------------------------------------------------------------------------------
+//Tester
+//------------------------------------------------------------------------------
+
+initial begin : tpgen
+  reset_sw();
+  repeat(1) begin:tpgen_main
+    prog = 1;
+    data = 8'h00;  
+    parity = 0;
+
+    send_uart_frame(data, 0);
+
+    repeat(16)@(negedge clk);
+
+    send_uart_frame(data, 0);
+
+    repeat(16)@(negedge clk);
+
+
+    data = 8'h01;  
+    parity = 1;
+    send_uart_frame(data, 1);
+
+    repeat(16)@(negedge clk);
+
+    send_uart_frame(data, 1);
+
+    repeat(16)@(negedge clk);
+
+    prog = 0;
+    data = 8'h00;  
+    parity = 0;
+    send_uart_frame(data, 0);
+
+    repeat(16)@(negedge clk);
+
+    prog = 0;
+    data = 8'hAA;  
+    parity = 0;
+    send_uart_frame(data, 0);
+
+    repeat(16)@(negedge clk);
+
+    prog = 0;
+    data = 8'h01;  
+    parity = 0;
+    send_uart_frame(data, 1);
+
+    repeat(16)@(negedge clk);
+
+    prog = 0;
+    data = 8'h33;  
+    parity = 0;
+    send_uart_frame(data, 0);
+
+  end
+  repeat(400)@(negedge clk);
+  $finish;
+end : tpgen
+
+
+
+task automatic send_uart_frame(input byte data, input bit parity_bit); begin
+  int bit_time;
+
+  // start bit
+  sin = 0;
+  repeat(16) @(negedge clk);
+
+  // data bits (LSB first)
+  for (int i = 0; i < 8; i++) begin
+    sin = data[i];
+    repeat(16) @(negedge clk);
+  end
+
+  // parity bit
+  sin = parity_bit;
+  repeat(16) @(negedge clk);
+
+  // stop bit
+  sin = 1;
+  repeat(16) @(negedge clk);
+  end
+endtask
 
 //------------------------------------------------------------------------------
 // Other functions

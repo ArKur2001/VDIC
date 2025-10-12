@@ -7,6 +7,8 @@
 -RUNMODE
 -amsdlibdir
 ./INCA_libs/AMSD
+-define
+UVM_PLI
 ../tb/../../common/simple_uart_switch.svp
 ../tb/simple_uart_switch_tb.svp
 -NOWARN
@@ -32,9 +34,16 @@ INCA_libs
 ./INCA_libs/run.lnx8664.24.09.d/cdsrun.lib
 -HDLVAR
 ./INCA_libs/run.lnx8664.24.09.d/hdlrun.var
+-I_INCDIR
+/eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/sv/src
+-DEFINE
+USE_PARAMETERIZED_WRAPPER
+-I_INCDIR
+/eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv
 -no_analogsolver
 -MESSAGES
 -UPDATE
 -XLLIBSTORE
 ./INCA_libs/run.lnx8664.24.09.d/xllibs
 -ALLOWUNBOUND
+-ENABLEOIGW

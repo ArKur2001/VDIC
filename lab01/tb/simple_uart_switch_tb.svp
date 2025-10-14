@@ -57,6 +57,9 @@ module test;
   } frame_data_t;
 
   frame_data_t frame_data [];
+
+  logic[7:0] sout0_frames [];
+  logic[7:0] sout1_frames [];
 //------------------------------------------------------------------------------
 // Local parameters
 //------------------------------------------------------------------------------
@@ -88,33 +91,52 @@ task reset_sw();
   rst_n = 1;
 endtask
 
+byte b0_addr;
+byte b1_addr;
 //------------------------------------------------------------------------------
 //Tester
 //------------------------------------------------------------------------------
 initial begin : tpgen
   reset_sw();
     //repeat(1) begin:tpgen_main
+      b0_addr = get_data();
+      b1_addr = get_data();
+
+      build_uart_msg (1, b0_addr, START_B_OK, PARITY_B_OK, STOP_B_OK);
       build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
-      build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
-      build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (1, b1_addr, START_B_OK, PARITY_B_OK, STOP_B_OK);
       build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
 
-      build_uart_msg (0, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
-      build_uart_msg (0, 8'h0F, START_B_OK, PARITY_B_OK, STOP_B_OK);
-      build_uart_msg (0, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
-      build_uart_msg (0, 8'hF0, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, b0_addr, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, get_data(), START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, b1_addr, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, get_data(), START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, b0_addr, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, get_data(), START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, b1_addr, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, get_data(), START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, b0_addr, START_B_ERR, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, get_data(), START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, b1_addr, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, get_data(), START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, b0_addr, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, get_data(), START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, b1_addr, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, get_data(), START_B_OK, PARITY_B_OK, STOP_B_OK);
 
       status_t = TX_START;
 
       fork
         transceiver();
+        receiver_sout0();
+        receiver_sout1();
       join_none
 
       if(status_t != TX_END) begin
         wait(status_t == TX_END);
       end
 
-      repeat(352)@(negedge clk);
+      repeat(500)@(negedge clk);
       $finish;
     end
 //end : tpgen
@@ -124,7 +146,7 @@ function byte get_data();
   return $random & 8'hFF;
 endfunction : get_data
 
-function build_uart_msg (input logic prog_mode ,input byte data, start_bit_set_t start_set, parity_bit_set_t parity_set, stop_bit_set_t stop_set);
+task build_uart_msg (input logic prog_mode ,input byte data, start_bit_set_t start_set, parity_bit_set_t parity_set, stop_bit_set_t stop_set);
   logic [10:0] buffer;
   bit parity_bit;
   int array_size;
@@ -179,7 +201,7 @@ function build_uart_msg (input logic prog_mode ,input byte data, start_bit_set_t
   frame_data[array_size].prog_mode = prog_mode;
   frame_data[array_size].input_message = buffer;
 
-endfunction
+endtask
 
 task automatic transceiver(); begin
   enum bit {TX_IDLE, TX_RUN} tx_state = TX_IDLE;
@@ -213,6 +235,52 @@ task automatic transceiver(); begin
           tx_state = TX_IDLE;
         end
       endcase
+    end
+  end
+endtask
+
+task automatic receiver_sout0();
+  logic[10:0] buffer = '0;
+  int array_size;
+
+  forever begin
+    @(negedge clk);
+
+    if(sout0 == 0)begin
+      repeat(CLKS_PER_BIT/2)@(negedge clk);
+      //buffer[0] = sout0;
+      for(int i = 0 ; i <= 9 ; i++) begin
+        buffer[i] = sout0;
+        repeat(CLKS_PER_BIT)@(negedge clk);
+      end 
+
+      $display("Buffer = %b", buffer);
+      array_size = sout0_frames.size();
+      sout0_frames = new[array_size + 1](sout0_frames);
+      sout0_frames[array_size] = buffer[8:1];
+    end
+  end
+endtask
+
+task automatic receiver_sout1();
+  logic[10:0] buffer = '0;
+  int array_size;
+
+  forever begin
+    @(negedge clk);
+
+    if(sout1 == 0)begin
+      repeat(CLKS_PER_BIT/2)@(negedge clk);
+      //buffer[0] = sout1;
+      for(int i = 0 ; i <= 9 ; i++) begin
+        buffer[i] = sout1;
+        repeat(CLKS_PER_BIT)@(negedge clk);
+      end 
+
+      $display("Buffer = %b", buffer);
+      array_size = sout1_frames.size();
+      sout1_frames = new[array_size + 1](sout1_frames);
+      sout1_frames[array_size] = buffer[8:1];
     end
   end
 endtask

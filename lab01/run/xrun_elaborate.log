@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 14, 2025 at 18:30:40 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 14, 2025 at 22:01:52 CEST
 xrun
 	-elaborate
 	-l xrun_elaborate.log
@@ -30,20 +30,30 @@ xrun
 	Extracting FSMs for coverage:
 		worklib.test
 	Total FSMs extracted = 0
-	Building instance overlay tables: .................... Done
+	Building instance overlay tables: ..........
+  return $random($random($time)) & 8'hFF;
+               |
+xmelab: *W,WRNOTL (../tb/simple_uart_switch_tb.svp,146|15): Argument to out parameter is not a legal lvalue.
+  return $random($random($time)) & 8'hFF;
+                             |
+xmelab: *W,INTWID (../tb/simple_uart_switch_tb.svp,146|29): Invalid width (64) on argument, (32) expected.
+  return $random($random($time)) & 8'hFF;
+                       |
+xmelab: *W,WRNOTL (../tb/simple_uart_switch_tb.svp,146|23): Argument to out parameter is not a legal lvalue.
+.......... Done
 	Enabling instrumentation for coverage types: block expression FSM toggle functional
 	Generating native compiled code:
 		worklib.simple_switch_uart:svp <0x5aade63a>
 			streams:  13, words: 17311
-		worklib.test:svp <0x53fa13e0>
-			streams:  13, words: 27373
+		worklib.test:svp <0x60be5a29>
+			streams:  17, words: 48107
 	Building instance specific data structures.
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		              Instances  Unique
 		Modules:              2       2
-		Registers:           50      50
+		Registers:           59      59
 		Scalar wires:        10       -
 		Always blocks:        3       3
 		Initial blocks:       3       3
@@ -51,4 +61,4 @@ xrun
 		Cont. assignments:    1       2
 		Pseudo assignments:   3       -
 	Writing initial simulation snapshot: worklib.test:svp
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 14, 2025 at 18:30:41 CEST  (total: 00:00:01)
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 14, 2025 at 22:01:52 CEST  (total: 00:00:00)

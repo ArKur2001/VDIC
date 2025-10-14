@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 14, 2025 at 18:30:32 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 14, 2025 at 21:06:59 CEST
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -21,31 +21,6 @@ xrun
 	+UVM_TESTNAME=lab01_example
 	-l xrun_test_lab01_example.log
 Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d
-file: ../tb/simple_uart_switch_tb.svp
-      build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,97|19): function called as a task without void'().
-      build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,98|19): function called as a task without void'().
-      build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,99|19): function called as a task without void'().
-      build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,100|19): function called as a task without void'().
-      build_uart_msg (0, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,102|19): function called as a task without void'().
-      build_uart_msg (0, 8'h0F, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,103|19): function called as a task without void'().
-      build_uart_msg (0, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,104|19): function called as a task without void'().
-      build_uart_msg (0, 8'hF0, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,105|19): function called as a task without void'().
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
 	Top level design units:
@@ -62,7 +37,7 @@ xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,105|19): function called as a
 	Design hierarchy summary:
 		              Instances  Unique
 		Modules:              2       2
-		Registers:           50      50
+		Registers:           53      53
 		Scalar wires:        10       -
 		Always blocks:        3       3
 		Initial blocks:       3       3
@@ -74,8 +49,22 @@ Loading snapshot worklib.test:svp .................... Done
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/xcelium/files/xmsimrc
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv/files/tcl/uvm_sim.tcl
 xcelium> run
-Simulation complete via $finish(1) at time 31700 NS + 0
-../tb/simple_uart_switch_tb.svp:118       $finish;
+Buffer = 00000100010
+Buffer = 00000100010
+Buffer = 00000100010
+Buffer = 00001000100
+Buffer = 00000100010
+Buffer = 00001100110
+Buffer = 00000100010
+Buffer = 00010001000
+Buffer = 00000100010
+Buffer = 00010101010
+Buffer = 00000100010
+Buffer = 00011001100
+Buffer = 00000100010
+Buffer = 00011101110
+Simulation complete via $finish(1) at time 73380 NS + 0
+../tb/simple_uart_switch_tb.svp:134       $finish;
 xcelium> exit
 See ./cov_work/scope/test/icc.com file for message(s) on coverage constant object marking
 
@@ -86,6 +75,6 @@ coverage setup:
   testname :  test
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_0d5fe197_00000000.ucm
-  data               :  ./cov_work/scope/test/icc_0d5fe197_00000000.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 14, 2025 at 18:30:35 CEST  (total: 00:00:03)
+  model(design data) :  ./cov_work/scope/icc_617d8446_00000000.ucm
+  data               :  ./cov_work/scope/test/icc_617d8446_00000000.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 14, 2025 at 21:07:01 CEST  (total: 00:00:02)

@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 14, 2025 at 18:47:02 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 14, 2025 at 22:03:27 CEST
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -24,36 +24,12 @@ xrun
 	-l xrun_gui.log
 	-s
 Recompiling... reason: file '../tb/simple_uart_switch_tb.svp' is newer than expected.
-	expected: Tue Oct 14 18:30:23 2025
-	actual:   Tue Oct 14 18:46:45 2025
+	expected: Tue Oct 14 22:02:41 2025
+	actual:   Tue Oct 14 22:03:19 2025
 Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d
 file: ../tb/simple_uart_switch_tb.svp
-      build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,97|19): function called as a task without void'().
-      build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,98|19): function called as a task without void'().
-      build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,99|19): function called as a task without void'().
-      build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,100|19): function called as a task without void'().
-      build_uart_msg (0, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,102|19): function called as a task without void'().
-      build_uart_msg (0, 8'h0F, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,103|19): function called as a task without void'().
-      build_uart_msg (0, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,104|19): function called as a task without void'().
-      build_uart_msg (0, 8'hF0, START_B_OK, PARITY_B_OK, STOP_B_OK);
-                   |
-xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,105|19): function called as a task without void'().
 	module worklib.test:svp
-		errors: 0, warnings: 8
+		errors: 0, warnings: 0
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
 	Top level design units:
@@ -65,15 +41,15 @@ xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,105|19): function called as a
 	Building instance overlay tables: .................... Done
 	Enabling instrumentation for coverage types: block expression FSM toggle functional
 	Generating native compiled code:
-		worklib.test:svp <0x53fa13e0>
-			streams:  13, words: 27373
+		worklib.test:svp <0x13240eaf>
+			streams:  17, words: 45448
 	Building instance specific data structures.
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		              Instances  Unique
 		Modules:              2       2
-		Registers:           50      50
+		Registers:           59      59
 		Scalar wires:        10       -
 		Always blocks:        3       3
 		Initial blocks:       3       3
@@ -92,6 +68,14 @@ Relinquished control to SimVision...
 xcelium> input -quiet .reinvoke.sim
 xcelium> file delete .reinvoke.sim
 xcelium> run
-Simulation complete via $finish(1) at time 35220 NS + 0
-../tb/simple_uart_switch_tb.svp:118       $finish;
+Buffer = 00001001000
+Buffer = 00000010010
+Buffer = 00100000010
+Buffer = 00011000110
+Buffer = 00001001000
+Buffer = 01000011010
+Buffer = 00100000010
+Buffer = 00100011010
+Simulation complete via $finish(1) at time 80420 NS + 0
+../tb/simple_uart_switch_tb.svp:140       $finish;
 xcelium> 

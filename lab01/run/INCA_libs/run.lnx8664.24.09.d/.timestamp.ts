@@ -1,2 +1,2 @@
 1760080842 /home/student/akurnik/VDIC/common/simple_uart_switch.svp
-1760289306 /home/student/akurnik/VDIC/lab01/tb/simple_uart_switch_tb.svp
+1760459423 /home/student/akurnik/VDIC/lab01/tb/simple_uart_switch_tb.svp

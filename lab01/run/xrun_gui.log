@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 12, 2025 at 19:24:16 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 14, 2025 at 18:47:02 CEST
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -22,7 +22,38 @@ xrun
 	-covfile xrun_covfile.txt
 	+UVM_TESTNAME=lab01_example
 	-l xrun_gui.log
+	-s
+Recompiling... reason: file '../tb/simple_uart_switch_tb.svp' is newer than expected.
+	expected: Tue Oct 14 18:30:23 2025
+	actual:   Tue Oct 14 18:46:45 2025
 Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d
+file: ../tb/simple_uart_switch_tb.svp
+      build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,97|19): function called as a task without void'().
+      build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,98|19): function called as a task without void'().
+      build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,99|19): function called as a task without void'().
+      build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,100|19): function called as a task without void'().
+      build_uart_msg (0, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,102|19): function called as a task without void'().
+      build_uart_msg (0, 8'h0F, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,103|19): function called as a task without void'().
+      build_uart_msg (0, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,104|19): function called as a task without void'().
+      build_uart_msg (0, 8'hF0, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,105|19): function called as a task without void'().
+	module worklib.test:svp
+		errors: 0, warnings: 8
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
 	Top level design units:
@@ -33,44 +64,34 @@ Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /eda/
 	Total FSMs extracted = 0
 	Building instance overlay tables: .................... Done
 	Enabling instrumentation for coverage types: block expression FSM toggle functional
+	Generating native compiled code:
+		worklib.test:svp <0x53fa13e0>
+			streams:  13, words: 27373
 	Building instance specific data structures.
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		              Instances  Unique
 		Modules:              2       2
-		Registers:           40      40
+		Registers:           50      50
 		Scalar wires:        10       -
 		Always blocks:        3       3
-		Initial blocks:       2       2
+		Initial blocks:       3       3
+		Parallel blocks:      1       1
 		Cont. assignments:    1       2
 		Pseudo assignments:   3       -
 	Writing initial simulation snapshot: worklib.test:svp
 xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
-
--------------------------------------
-Relinquished control to SimVision...
 xcelium> 
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/xcelium/files/xmsimrc
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv/files/tcl/uvm_sim.tcl
-xcelium> database -open waves -into waves.shm -default
-Created default SHM database waves
-xcelium> probe -create -shm test.sin test.sout0 test.sout1
-Created probe 1
+xcelium> 
+-------------------------------------
+Relinquished control to SimVision...
+# Restoring simulation environment...
+xcelium> input -quiet .reinvoke.sim
+xcelium> file delete .reinvoke.sim
 xcelium> run
-Simulation complete via $finish(1) at time 38420 NS + 0
-../tb/simple_uart_switch_tb.svp:119   $finish;
-xcelium> ^C
-xcelium> exit
-See ./cov_work/scope/test/icc.com file for message(s) on coverage constant object marking
-
-coverage setup:
-  workdir  :  ./cov_work
-  dutinst  :  test(test)
-  scope    :  scope
-  testname :  test
-
-coverage files:
-  model(design data) :  ./cov_work/scope/icc_6b44e9a4_00000000.ucm
-  data               :  ./cov_work/scope/test/icc_6b44e9a4_00000000.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 12, 2025 at 19:25:56 CEST  (total: 00:01:40)
+Simulation complete via $finish(1) at time 35220 NS + 0
+../tb/simple_uart_switch_tb.svp:118       $finish;
+xcelium> 

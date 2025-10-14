@@ -1,0 +1,15 @@
+/eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools.lnx86/inca/bin/64bit/xrun
+Obtained 13 stack frames.
+/eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools.lnx86/inca/bin/64bit/../../../lib/64bit/libcbreakpad.so(_Z13use_backtracev+0x9d) [0x7f6a2a2bd1a3]
+/eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools.lnx86/inca/bin/64bit/../../../lib/64bit/libcbreakpad.so(cbpad_generate_dump_on_demand+0x66) [0x7f6a2a2bd630]
+xrun() [0x9a40b8]
+xrun() [0x9a578d]
+xrun() [0x9a3f24]
+xrun() [0x9a578d]
+xrun() [0x919266]
+xrun() [0x919fb7]
+xrun() [0x4cd53d]
+xrun(ncmain+0x368) [0x56a468]
+xrun(main+0x9) [0x4a9f59]
+/lib64/libc.so.6(__libc_start_main+0xf5) [0x7f6a29422555]
+xrun() [0x4a9f89]

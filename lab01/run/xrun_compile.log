@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 12, 2025 at 19:24:15 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 14, 2025 at 18:30:40 CEST
 xrun
 	-compile
 	-l xrun_compile.log
@@ -26,6 +26,30 @@ file: ../tb/../../common/simple_uart_switch.svp
 	module worklib.simple_switch_uart:svp
 		errors: 0, warnings: 0
 file: ../tb/simple_uart_switch_tb.svp
+      build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,97|19): function called as a task without void'().
+      build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,98|19): function called as a task without void'().
+      build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,99|19): function called as a task without void'().
+      build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,100|19): function called as a task without void'().
+      build_uart_msg (0, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,102|19): function called as a task without void'().
+      build_uart_msg (0, 8'h0F, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,103|19): function called as a task without void'().
+      build_uart_msg (0, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,104|19): function called as a task without void'().
+      build_uart_msg (0, 8'hF0, START_B_OK, PARITY_B_OK, STOP_B_OK);
+                   |
+xmvlog: *W,FUNTSK (../tb/simple_uart_switch_tb.svp,105|19): function called as a task without void'().
 	module worklib.test:svp
-		errors: 0, warnings: 0
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 12, 2025 at 19:24:16 CEST  (total: 00:00:01)
+		errors: 0, warnings: 8
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 14, 2025 at 18:30:40 CEST  (total: 00:00:00)

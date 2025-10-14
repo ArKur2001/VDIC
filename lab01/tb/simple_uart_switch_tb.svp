@@ -18,6 +18,28 @@ module test;
     COLOR_DEFAULT
   } print_color_t;
 
+  typedef enum bit {
+    START_B_OK,
+    START_B_ERR
+  }start_bit_set_t;
+
+  typedef enum bit {
+    PARITY_B_OK,
+    PARITY_B_ERR
+  }parity_bit_set_t;
+
+  typedef enum bit {
+    STOP_B_OK,
+    STOP_B_ERR
+  }stop_bit_set_t;
+
+  typedef enum bit {
+    TX_START,
+    TX_END
+  }tx_status_t;
+
+  tx_status_t status_t = TX_END;
+
 //------------------------------------------------------------------------------
 // Local variables
 //------------------------------------------------------------------------------
@@ -29,8 +51,16 @@ module test;
   logic sout0;
   logic sout1;
 
-  byte  data;
-  logic parity;
+  typedef struct{
+    logic prog_mode;
+    logic [10:0] input_message;
+  } frame_data_t;
+
+  frame_data_t frame_data [];
+//------------------------------------------------------------------------------
+// Local parameters
+//------------------------------------------------------------------------------
+  localparam int CLKS_PER_BIT = 16;
 
 //------------------------------------------------------------------------------
 // DUT instantiation
@@ -61,86 +91,129 @@ endtask
 //------------------------------------------------------------------------------
 //Tester
 //------------------------------------------------------------------------------
-
 initial begin : tpgen
   reset_sw();
-  repeat(1) begin:tpgen_main
-    prog = 1;
-    data = 8'h00;  
-    parity = 0;
+    //repeat(1) begin:tpgen_main
+      build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (1, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (1, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
 
-    send_uart_frame(data, 0);
+      build_uart_msg (0, 8'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, 8'h0F, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, 8'h01, START_B_OK, PARITY_B_OK, STOP_B_OK);
+      build_uart_msg (0, 8'hF0, START_B_OK, PARITY_B_OK, STOP_B_OK);
 
-    repeat(16)@(negedge clk);
+      status_t = TX_START;
 
-    send_uart_frame(data, 0);
+      fork
+        transceiver();
+      join_none
 
-    repeat(16)@(negedge clk);
+      if(status_t != TX_END) begin
+        wait(status_t == TX_END);
+      end
 
-
-    data = 8'h01;  
-    parity = 1;
-    send_uart_frame(data, 1);
-
-    repeat(16)@(negedge clk);
-
-    send_uart_frame(data, 1);
-
-    repeat(16)@(negedge clk);
-
-    prog = 0;
-    data = 8'h00;  
-    parity = 0;
-    send_uart_frame(data, 0);
-
-    repeat(16)@(negedge clk);
-
-    prog = 0;
-    data = 8'hAA;  
-    parity = 0;
-    send_uart_frame(data, 0);
-
-    repeat(16)@(negedge clk);
-
-    prog = 0;
-    data = 8'h01;  
-    parity = 0;
-    send_uart_frame(data, 1);
-
-    repeat(16)@(negedge clk);
-
-    prog = 0;
-    data = 8'h33;  
-    parity = 0;
-    send_uart_frame(data, 0);
-
-  end
-  repeat(400)@(negedge clk);
-  $finish;
-end : tpgen
+      repeat(352)@(negedge clk);
+      $finish;
+    end
+//end : tpgen
 
 
+function byte get_data();
+  return $random & 8'hFF;
+endfunction : get_data
 
-task automatic send_uart_frame(input byte data, input bit parity_bit); begin
-  int bit_time;
+function build_uart_msg (input logic prog_mode ,input byte data, start_bit_set_t start_set, parity_bit_set_t parity_set, stop_bit_set_t stop_set);
+  logic [10:0] buffer;
+  bit parity_bit;
+  int array_size;
 
-  // start bit
-  sin = 0;
-  repeat(16) @(negedge clk);
+  case (start_set)
+    START_B_OK: begin
+      buffer[10] = 0;
+    end
+    START_B_ERR: begin
+      buffer[10] = 1;
+    end
+    default: begin
+      buffer[10] = 1;
+    end
+  endcase
 
-  // data bits (LSB first)
-  for (int i = 0; i < 8; i++) begin
-    sin = data[i];
-    repeat(16) @(negedge clk);
+  for (int i = 0 ; i <8 ; i++)begin
+    buffer[9 - i] = data[i];
   end
 
-  // parity bit
-  sin = parity_bit;
-  repeat(16) @(negedge clk);
+  case (parity_set)
+    PARITY_B_OK: begin
+      parity_bit = ^data;
+      buffer[1] = parity_bit;
+    end
+    PARITY_B_ERR: begin
+      parity_bit = ~^data;
+      buffer[1] = parity_bit;
+    end
+    default: begin
+      parity_bit = ^data;
+      buffer[1] = parity_bit;
+    end
+  endcase
 
-  // stop bit
-  sin = 1;
-  repeat(16) @(negedge clk);
+  case (stop_set)
+    STOP_B_OK: begin
+      buffer[0] = 1;
+    end
+    STOP_B_ERR: begin
+      buffer[0] = 0;
+    end
+    default: begin
+      buffer[10] = 1;
+    end
+  endcase
+
+  //$display("Buffer = %b", buffer);
+
+  array_size = frame_data.size();
+  frame_data = new[array_size + 1](frame_data);
+  frame_data[array_size].prog_mode = prog_mode;
+  frame_data[array_size].input_message = buffer;
+
+endfunction
+
+task automatic transceiver(); begin
+  enum bit {TX_IDLE, TX_RUN} tx_state = TX_IDLE;
+  
+    forever begin
+      case (tx_state)
+        TX_IDLE: begin
+          if(status_t == TX_START) begin
+            tx_state = TX_RUN;
+          end
+          else begin
+            tx_state = TX_IDLE;
+          end
+        end
+        TX_RUN: begin
+          foreach(frame_data[i]) begin
+            //$display("Frame %0d", i);
+            for (int j = 10; j >= 0 ; j--) begin
+              prog = frame_data[i].prog_mode;
+              sin = frame_data[i].input_message[j];
+              //$display("Bit %0d = %b", j, input_message[i][j]);
+              repeat(CLKS_PER_BIT)@(negedge clk);
+            end
+          end
+          tx_state = TX_IDLE;
+          status_t = TX_END;
+          return;
+        end
+        default: begin
+          status_t = TX_END;
+          tx_state = TX_IDLE;
+        end
+      endcase
+    end
   end
 endtask
 

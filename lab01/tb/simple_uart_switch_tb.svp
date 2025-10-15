@@ -822,8 +822,8 @@ endtask
 task cleanup_routing_array();
   frame_status_t ret;
 
-  for (int i = 0 ; i<= 'hFF ; i++) begin
-    ret = build_uart_msg (1, 'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
+  for (byte i = 0 ; i<= 'hFF ; i++) begin
+    ret = build_uart_msg (1, i, START_B_OK, PARITY_B_OK, STOP_B_OK);
     ret = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK);
   end
 

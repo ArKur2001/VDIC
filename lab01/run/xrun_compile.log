@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 16, 2025 at 00:37:05 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 16, 2025 at 00:53:30 CEST
 xrun
 	-compile
 	-l xrun_compile.log
@@ -26,4 +26,4 @@ file: ../tb/../../common/simple_uart_switch.svp
 file: ../tb/simple_uart_switch_tb.svp
 	module worklib.test:svp
 		errors: 0, warnings: 0
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 16, 2025 at 00:37:05 CEST  (total: 00:00:00)
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 16, 2025 at 00:53:31 CEST  (total: 00:00:01)

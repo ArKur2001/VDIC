@@ -100,6 +100,7 @@ end
 //reset_tasks
 //------------------------------------------------------------------------------
 task reset_sw();
+  cleanup_routing_array();
   rst_n = 0;
   prog = 0;
   sin = 1; // idle = 1
@@ -817,6 +818,17 @@ endtask
 //------------------------------------------------------------------------------
 // UART switch handling tasks
 //------------------------------------------------------------------------------
+
+task cleanup_routing_array();
+  frame_status_t ret;
+
+  for (int i = 0 ; i<= 'hFF ; i++) begin
+    ret = build_uart_msg (1, 'h00, START_B_OK, PARITY_B_OK, STOP_B_OK);
+    ret = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK);
+  end
+
+  transmit_data();
+endtask
 
 function frame_status_t build_uart_msg (input logic prog_mode, input byte data, start_bit_set_t start_set, parity_bit_set_t parity_set, stop_bit_set_t stop_set);
   logic [10:0] buffer;

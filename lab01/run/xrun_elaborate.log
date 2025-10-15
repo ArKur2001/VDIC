@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 16, 2025 at 00:37:05 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 16, 2025 at 00:53:31 CEST
 xrun
 	-elaborate
 	-l xrun_elaborate.log
@@ -33,15 +33,15 @@ xrun
 	Generating native compiled code:
 		worklib.simple_switch_uart:svp <0x106cd466>
 			streams:  13, words: 15555
-		worklib.test:svp <0x06416225>
-			streams:  25, words: 131221
+		worklib.test:svp <0x6f52ecd0>
+			streams:  26, words: 133006
 	Building instance specific data structures.
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		               Instances  Unique
 		Modules:               2       2
-		Registers:           135     138
+		Registers:           137     140
 		Scalar wires:         10       -
 		Always blocks:         3       3
 		Initial blocks:        3       3
@@ -49,4 +49,4 @@ xrun
 		Cont. assignments:     1       2
 		Pseudo assignments:    3       -
 	Writing initial simulation snapshot: worklib.test:svp
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 16, 2025 at 00:37:06 CEST  (total: 00:00:01)
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 16, 2025 at 00:53:31 CEST  (total: 00:00:00)

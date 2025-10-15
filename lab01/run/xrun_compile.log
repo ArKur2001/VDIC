@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 14, 2025 at 22:01:51 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 16, 2025 at 00:02:03 CEST
 xrun
 	-compile
 	-l xrun_compile.log
@@ -14,9 +14,7 @@ xrun
 	+nowarnXCLGNOPTM
 	+nowarnRNDXCELON
 	+nowarnSAWSTP
-	-xmlibdirname INCA_libs_gui
-	+access+r
-	+gui
+	-xmlibdirname INCA_libs
 	+overwrite
 	-nocopyright
 	-coverage all
@@ -28,4 +26,4 @@ file: ../tb/../../common/simple_uart_switch.svp
 file: ../tb/simple_uart_switch_tb.svp
 	module worklib.test:svp
 		errors: 0, warnings: 0
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 14, 2025 at 22:01:52 CEST  (total: 00:00:01)
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 16, 2025 at 00:02:03 CEST  (total: 00:00:00)

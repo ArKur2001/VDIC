@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 14, 2025 at 22:03:27 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 15, 2025 at 23:12:55 CEST
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -22,14 +22,7 @@ xrun
 	-covfile xrun_covfile.txt
 	+UVM_TESTNAME=lab01_example
 	-l xrun_gui.log
-	-s
-Recompiling... reason: file '../tb/simple_uart_switch_tb.svp' is newer than expected.
-	expected: Tue Oct 14 22:02:41 2025
-	actual:   Tue Oct 14 22:03:19 2025
 Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d
-file: ../tb/simple_uart_switch_tb.svp
-	module worklib.test:svp
-		errors: 0, warnings: 0
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
 	Top level design units:
@@ -40,42 +33,51 @@ file: ../tb/simple_uart_switch_tb.svp
 	Total FSMs extracted = 0
 	Building instance overlay tables: .................... Done
 	Enabling instrumentation for coverage types: block expression FSM toggle functional
-	Generating native compiled code:
-		worklib.test:svp <0x13240eaf>
-			streams:  17, words: 45448
 	Building instance specific data structures.
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
-		              Instances  Unique
-		Modules:              2       2
-		Registers:           59      59
-		Scalar wires:        10       -
-		Always blocks:        3       3
-		Initial blocks:       3       3
-		Parallel blocks:      1       1
-		Cont. assignments:    1       2
-		Pseudo assignments:   3       -
+		               Instances  Unique
+		Modules:               2       2
+		Registers:           137     137
+		Scalar wires:         10       -
+		Always blocks:         3       3
+		Initial blocks:        2       2
+		Parallel blocks:       1       1
+		Cont. assignments:     1       2
+		Pseudo assignments:    3       -
 	Writing initial simulation snapshot: worklib.test:svp
 xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
+
+-------------------------------------
+Relinquished control to SimVision...
 xcelium> 
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/xcelium/files/xmsimrc
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv/files/tcl/uvm_sim.tcl
-xcelium> 
--------------------------------------
-Relinquished control to SimVision...
-# Restoring simulation environment...
-xcelium> input -quiet .reinvoke.sim
-xcelium> file delete .reinvoke.sim
+xcelium> database -open waves -into waves.shm -default
+Created default SHM database waves
+xcelium> probe -create -shm test.sin test.sout0 test.sout0_frames test.sout1 test.sout1_frames test.exp_sout0_frames test.exp_sout1_frames
+Created probe 1
 xcelium> run
-Buffer = 00001001000
-Buffer = 00000010010
-Buffer = 00100000010
-Buffer = 00011000110
-Buffer = 00001001000
-Buffer = 01000011010
-Buffer = 00100000010
-Buffer = 00100011010
-Simulation complete via $finish(1) at time 80420 NS + 0
-../tb/simple_uart_switch_tb.svp:140       $finish;
-xcelium> 
+[1;30m[101m-----------------------------------
+----------- Test FAILED -----------
+-----------------------------------[0m
+
+Simulation complete via $finish(1) at time 3611540 NS + 0
+../tb/simple_uart_switch_tb.svp:139       $finish;
+xcelium> ^C
+xcelium> exit
+...Regained control from SimVision
+-------------------------------------
+See ./cov_work/scope/test/icc.com file for message(s) on coverage constant object marking
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  test(test)
+  scope    :  scope
+  testname :  test
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_52da1924_00000000.ucm
+  data               :  ./cov_work/scope/test/icc_52da1924_00000000.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 15, 2025 at 23:15:45 CEST  (total: 00:02:50)

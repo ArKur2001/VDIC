@@ -1,0 +1,201 @@
+Operating system: Linux
+                  0.0.0 Linux 3.10.0-1160.119.1.el7.x86_64 #1 SMP Tue Jun 4 14:43:51 UTC 2024 x86_64
+CPU: amd64
+     family 6 model 60 stepping 3
+     1 CPU
+
+GPU: UNKNOWN
+
+Crash reason:  DUMP_REQUESTED
+Crash address: 0x7fec916b3406
+Process uptime: not available
+
+Thread 0 (crashed)
+ 0  libcbreakpad.so + 0x36406
+    rax = 0x00007ffe2b099728   rdx = 0x0000000000000000
+    rcx = 0x00007fec916b1cb2   rbx = 0x00007ffe2b099b90
+    rsi = 0x0000000000000001   rdi = 0x00007ffe2b099518
+    rbp = 0x00007ffe2b099ad0   rsp = 0x00007ffe2b099480
+     r8 = 0x0000000000000000    r9 = 0x0000000000000000
+    r10 = 0x0000000000000009   r11 = 0x00007fec9151909f
+    r12 = 0x0000000000000000   r13 = 0x00007ffe2b09ad98
+    r14 = 0x00007ffe2b099b10   r15 = 0x0000000000000000
+    rip = 0x00007fec916b3406
+    Found by: given as instruction pointer in context
+ 1  libcbreakpad.so + 0x34672
+    rbp = 0x00007ffe2b099c20   rsp = 0x00007ffe2b099ae0
+    rip = 0x00007fec916b1672
+    Found by: previous frame's frame pointer
+ 2  xrun + 0x5a40b8
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099c30
+    rip = 0x00000000009a40b8
+    Found by: previous frame's frame pointer
+ 3  xrun + 0x5804f7
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099c60
+    rip = 0x00000000009804f7
+    Found by: stack scanning
+ 4  xrun + 0x57f64d
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099c90
+    rip = 0x000000000097f64d
+    Found by: stack scanning
+ 5  xrun + 0x583367
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099cf0
+    rip = 0x0000000000983367
+    Found by: stack scanning
+ 6  xrun + 0x74c90d
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099d00
+    rip = 0x0000000000b4c90d
+    Found by: stack scanning
+ 7  xrun + 0x74d212
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099d10
+    rip = 0x0000000000b4d212
+    Found by: stack scanning
+ 8  xrun + 0x5804f7
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099d50
+    rip = 0x00000000009804f7
+    Found by: stack scanning
+ 9  xrun + 0x57f64d
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099d80
+    rip = 0x000000000097f64d
+    Found by: stack scanning
+10  xrun + 0x583367
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099e00
+    rip = 0x0000000000983367
+    Found by: stack scanning
+11  xrun + 0x58c7d1
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099e40
+    rip = 0x000000000098c7d1
+    Found by: stack scanning
+12  xrun + 0x583367
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099f20
+    rip = 0x0000000000983367
+    Found by: stack scanning
+13  xrun + 0x58c7d1
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b099f60
+    rip = 0x000000000098c7d1
+    Found by: stack scanning
+14  ld-2.17.so + 0x9684
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a070
+    rip = 0x00007fec91518684
+    Found by: stack scanning
+15  libstdc++.so.6.0.28 + 0x8e50
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a080
+    rip = 0x00007fec90ecce50
+    Found by: stack scanning
+16  ld-2.17.so + 0x9dbb
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a0a0
+    rip = 0x00007fec91518dbb
+    Found by: stack scanning
+17  ld-2.17.so + 0x9684
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a0b0
+    rip = 0x00007fec91518684
+    Found by: stack scanning
+18  libstdc++.so.6.0.28 + 0x7754
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a0b8
+    rip = 0x00007fec910a5754
+    Found by: stack scanning
+19  libc-2.17.so + 0x3d88
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a0c0
+    rip = 0x00007fec907f7d88
+    Found by: stack scanning
+20  ld-2.17.so + 0x9dbb
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a0e0
+    rip = 0x00007fec91518dbb
+    Found by: stack scanning
+21  libc-2.17.so + 0x10e98
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a100
+    rip = 0x00007fec90804e98
+    Found by: stack scanning
+22  libstdc++.so.6.0.28 + 0xa603
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a140
+    rip = 0x00007fec910a8603
+    Found by: stack scanning
+23  libc-2.17.so + 0x10fd0
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a148
+    rip = 0x00007fec90804fd0
+    Found by: stack scanning
+24  libstdc++.so.6.0.28 + 0x9408
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a150
+    rip = 0x00007fec90ecd408
+    Found by: stack scanning
+25  ld-2.17.so + 0xa09f
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a1a0
+    rip = 0x00007fec9151909f
+    Found by: stack scanning
+26  xrun + 0xdee9b2
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a210
+    rip = 0x00000000011ee9b2
+    Found by: stack scanning
+27  libc-2.17.so + 0x435f9
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a220
+    rip = 0x00007fec908375f9
+    Found by: stack scanning
+28  libstdc++.so.6.0.28 + 0x1d4428
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a260
+    rip = 0x00007fec91098428
+    Found by: stack scanning
+29  xrun + 0xdba3ae
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a288
+    rip = 0x00000000011ba3ae
+    Found by: stack scanning
+30  ld-2.17.so + 0xedee
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a290
+    rip = 0x00007fec9151ddee
+    Found by: stack scanning
+31  libstdc++.so.6.0.28 + 0x1d4be0
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a2a0
+    rip = 0x00007fec91098be0
+    Found by: stack scanning
+32  xrun + 0x768
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a2a8
+    rip = 0x0000000001597768
+    Found by: stack scanning
+33  ld-2.17.so + 0xedee
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a2d0
+    rip = 0x00007fec9151ddee
+    Found by: stack scanning
+34  xrun + 0xdee9b2
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a2f8
+    rip = 0x00000000011ee9b2
+    Found by: stack scanning
+35  xrun + 0x524a34
+    rbp = 0x00007ffe2b09ad80   rsp = 0x00007ffe2b09a320
+    rip = 0x0000000000924a34
+    Found by: stack scanning
+
+Loaded modules:
+0x00400000 - 0x01595fff  xrun  ???  (main)  (WARNING: No symbols, xrun, 5AF44564ACA50EC01F1161AE87FA4C810)
+0x01597000 - 0x01879fff  xrun  ???  (WARNING: No symbols, xrun, 000000000000000000000000000000000)
+0x7fec907f4000 - 0x7fec909b7fff  libc-2.17.so  ???  (WARNING: No symbols, libc-2.17.so, 1BB68F1A61B4484A3833D5334202AB500)
+0x7fec909b8000 - 0x7fec90bbcfff  libc-2.17.so  ???
+0x7fec90bc2000 - 0x7fec90cc2fff  libm-2.17.so  ???
+0x7fec90cc3000 - 0x7fec90ec3fff  libm-2.17.so  ???
+0x7fec90ec4000 - 0x7fec9109afff  libstdc++.so.6.0.28  ???  (WARNING: No symbols, libstdc++.so.6.0.28, BEA0E32EA2C1AC5E1D4AE105F89544BE0)
+0x7fec9109e000 - 0x7fec910eefff  libstdc++.so.6.0.28  ???  (WARNING: No symbols, libstdc++.so.6.0.28, 000000000000000000000000000000000)
+0x7fec910ef000 - 0x7fec910f0fff  libdl-2.17.so  ???
+0x7fec910f1000 - 0x7fec912f2fff  libdl-2.17.so  ???
+0x7fec912f3000 - 0x7fec91309fff  libpthread-2.17.so  ???
+0x7fec9130a000 - 0x7fec9150afff  libpthread-2.17.so  ???
+0x7fec9150f000 - 0x7fec91530fff  ld-2.17.so  ???  (WARNING: No symbols, ld-2.17.so, 9749C46231431B34B08DCCE3859560A20)
+0x7fec915e4000 - 0x7fec9167cfff  libxmjudy.so.1.0.3  ???
+0x7fec9167d000 - 0x7fec916e1fff  libcbreakpad.so  ???  (WARNING: No symbols, libcbreakpad.so, 1A0F7F62185D2C02CF86A6E6B7CC82920)
+0x7fec916e2000 - 0x7fec916e6fff  libcbreakpad.so  ???
+0x7fec916f3000 - 0x7fec9170cfff  libgcc_s.so.1  ???
+0x7fec91730000 - 0x7fec91731fff  ld-2.17.so  ???
+0x7ffe2b0a9000 - 0x7ffe2b0aafff  linux-gate.so  ???
+
+******BACKTRACE*****
+use_backtrace() (libcbreakpad.so) [0x7fec916b11a3]
+cbpad_generate_dump_on_demand (libcbreakpad.so) [0x7fec916b1630]
+<unknown> (xrun) [0x9a40b8]
+<unknown> (xrun) [0x9a578d]
+<unknown> (xrun) [0x9a3f24]
+<unknown> (xrun) [0x9a578d]
+<unknown> (xrun) [0x919266]
+<unknown> (xrun) [0x919fb7]
+<unknown> (xrun) [0x4cd53d]
+<unknown> (xrun) [0x56a468]
+<unknown> (xrun) [0x4a9f59]
+<unknown> (libc.so.6) [0x7fec90816555]
+<unknown> (xrun) [0x4a9f89]
+******BACKTRACE END*****

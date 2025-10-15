@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 16, 2025 at 00:02:03 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 16, 2025 at 00:37:05 CEST
 xrun
 	-elaborate
 	-l xrun_elaborate.log
@@ -49,4 +49,4 @@ xrun
 		Cont. assignments:     1       2
 		Pseudo assignments:    3       -
 	Writing initial simulation snapshot: worklib.test:svp
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 16, 2025 at 00:02:04 CEST  (total: 00:00:01)
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 16, 2025 at 00:37:06 CEST  (total: 00:00:01)

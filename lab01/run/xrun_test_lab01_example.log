@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 16, 2025 at 01:00:08 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 17, 2025 at 12:49:54 CEST
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -37,7 +37,7 @@ Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /eda/
 	Design hierarchy summary:
 		               Instances  Unique
 		Modules:               2       2
-		Registers:           137     140
+		Registers:           135     138
 		Scalar wires:         10       -
 		Always blocks:         3       3
 		Initial blocks:        3       3
@@ -91,8 +91,8 @@ TEST_WRONG_START_PARITY_STOP_BIT ERROR: UNEXPECTED FRAMES APPERAED (This error i
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-Simulation complete via $finish(1) at time 37896480 NS + 0
-../tb/simple_uart_switch_tb.svp:170             $finish;
+Simulation complete via $finish(1) at time 23478560 NS + 0
+../tb/simple_uart_switch_tb.svp:169               $finish;
 xcelium> exit
 See ./cov_work/scope/test/icc.com file for message(s) on coverage constant object marking
 
@@ -103,6 +103,6 @@ coverage setup:
   testname :  test
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_76638c9c_00000000.ucm
-  data               :  ./cov_work/scope/test/icc_76638c9c_00000000.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 16, 2025 at 01:00:11 CEST  (total: 00:00:03)
+  model(design data) :  ./cov_work/scope/icc_5b79e1e2_00000000.ucm
+  data               :  ./cov_work/scope/test/icc_5b79e1e2_00000000.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 17, 2025 at 12:49:56 CEST  (total: 00:00:02)

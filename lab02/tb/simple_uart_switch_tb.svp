@@ -1,0 +1,1045 @@
+module test2;
+
+  //------------------------------------------------------------------------------
+  // Type definitions
+  //------------------------------------------------------------------------------
+  
+    typedef enum bit {
+      TEST_PASSED,
+      TEST_FAILED
+    } test_result_t;
+  
+    typedef enum {
+      COLOR_BOLD_BLACK_ON_GREEN,
+      COLOR_BOLD_BLACK_ON_RED,
+      COLOR_BOLD_BLACK_ON_YELLOW,
+      COLOR_BOLD_BLUE_ON_WHITE,
+      COLOR_BLUE_ON_WHITE,
+      COLOR_DEFAULT
+    } print_color_t;
+  
+    typedef enum bit {
+      START_B_OK,
+      START_B_ERR
+    }start_bit_set_t;
+  
+    typedef enum bit {
+      PARITY_B_OK,
+      PARITY_B_ERR
+    }parity_bit_set_t;
+  
+    typedef enum bit {
+      STOP_B_OK,
+      STOP_B_ERR
+    }stop_bit_set_t;
+
+    typedef enum bit {
+      NO_RST,
+      RST
+    }reset_set_t;
+  
+    typedef enum bit {
+      OK,
+      ERR
+    }frame_status_t;
+  
+    typedef enum logic[3:0] {
+      PROPER_FRAME,
+      WRONG_START_BIT,
+      WRONG_PARITY_BIT,
+      WRONG_STOP_BIT,
+      WRONG_START_PARITY_STOP,
+      RESET
+    }test_t;
+  
+    typedef struct{
+      logic reset;
+      logic prog_mode;
+      logic [10:0] input_message;
+    } frame_data_t;
+  
+  //------------------------------------------------------------------------------
+  // Local variables
+  //------------------------------------------------------------------------------
+  
+    logic clk;
+    logic rst_n;
+    logic prog; //(prog) // 1=programming, 0=functional
+    logic sin; 
+    logic sout0;
+    logic sout1;
+  
+    frame_data_t frame_data [];
+    test_t test;
+  
+    logic[7:0] sout0_frames [];
+    logic[7:0] sout1_frames [];
+    logic[7:0] exp_sout0_frames [];
+    logic[7:0] exp_sout1_frames [];
+
+    int proper_frame_ok = 0;
+    int proper_frame_err = 0;
+
+    int wrong_start_bit_ok = 0;
+    int wrong_start_bit_err = 0;
+
+    int wrong_parity_bit_ok = 0;
+    int wrong_parity_bit_err = 0;
+
+    int wrong_stop_bit_ok = 0;
+    int wrong_stop_bit_err = 0;
+
+    int wrong_start_parity_stop_ok = 0;
+    int wrong_start_parity_stop_err = 0;
+
+    int reset_ok = 0;
+    int reset_err = 0;
+    
+  
+  //------------------------------------------------------------------------------
+  // Local parameters
+  //------------------------------------------------------------------------------
+    localparam int CLKS_PER_BIT = 16;
+    localparam int FRAME_LENGTH = 11;
+    localparam byte PORT_SOUT0 = 8'h00;
+    localparam byte PORT_SOUT1 = 8'h01;
+  //------------------------------------------------------------------------------
+  // DUT instantiation
+  //------------------------------------------------------------------------------
+  
+  simple_switch_uart DUT (.clk, .rst_n, .prog, .sin, .sout0, .sout1);
+  
+  //------------------------------------------------------------------------------
+  // Clock generator
+  //------------------------------------------------------------------------------
+  
+  initial begin : clk_gen_blk
+    clk = 0;
+    forever #10 clk = ~clk;
+  end
+  
+  //------------------------------------------------------------------------------
+  //reset_tasks
+  //------------------------------------------------------------------------------
+  task reset_sw();
+    rst_n = 0;
+    prog = 0;
+    sin = 1; // idle = 1
+    @(negedge clk);
+    rst_n = 1;
+  endtask
+  
+  task reset_arrays();
+    sout0_frames.delete;
+    sout1_frames.delete;
+    exp_sout0_frames.delete;
+    exp_sout1_frames.delete;
+  endtask
+  
+  //------------------------------------------------------------------------------
+  //Tester
+  //------------------------------------------------------------------------------
+  initial begin : tpgen
+    reset_sw();
+
+    fork
+      monitor_sout0();
+      monitor_sout1();
+    join_none
+
+      repeat(1000) begin:tpgen_main_blk
+        @(negedge clk);
+        test = get_test();
+  
+          case(test)
+            PROPER_FRAME: begin
+              proper_frame_test();
+              get_test_result();
+            end
+            WRONG_START_BIT: begin
+              wrong_start_bit_test();
+              get_test_result();
+            end
+            WRONG_PARITY_BIT: begin
+              wrong_parity_bit_test();
+              get_test_result();   
+            end
+            WRONG_STOP_BIT: begin
+              wrong_stop_bit_test();
+              get_test_result();
+            end
+            WRONG_START_PARITY_STOP: begin
+              wrong_start_parity_stop_bit_test();
+              get_test_result();
+              test = RESET;
+            end
+            RESET: begin
+              reset_test();
+              get_test_result();
+            end
+            default: begin
+              test = PROPER_FRAME;
+            end
+          endcase
+        end : tpgen_main_blk
+        print_test_summary();
+        $finish;
+  end : tpgen
+  
+  
+  function byte get_random();
+    return $random & 8'hFF;
+  endfunction : get_random
+  
+  //------------------------------------------------------------------------------
+  // Test procedures tasks
+  //------------------------------------------------------------------------------
+  
+  task reset_routing_array();
+    frame_status_t ret0;
+    frame_status_t ret1;
+
+    for(int i = 0 ; i <= 'hFF ; i++) begin
+      ret0 = build_uart_msg (1, i, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+    end
+
+    transmit_data();
+  
+    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge clk);
+  endtask
+
+  task proper_frame_test();
+    int array_size;
+    bit addr_arr [0:'hFF];
+    byte addr_val_arr [0:'hFF];
+    byte addr;
+    byte data;
+    int index;
+    frame_status_t ret0;
+    frame_status_t ret1;
+
+    //reset_sw();
+    reset_arrays();
+    reset_routing_array();
+  
+    for(int i = 0 ; i <= 'hFF ; i++) begin
+      addr_arr[i] = get_random() & 'b1;
+      addr_val_arr[i] = get_random();
+    end
+  
+    for(int j = 0 ; j <= 'hFF ; j++) begin
+      if(addr_arr[j] == 0) begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+      else begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+    end
+  
+    for(int k = 0 ; k <= 'h0F ; k++) begin
+      addr = get_random();
+  
+      for(int l = 'hFF ; l >= 0 ; l--) begin
+        if(addr_val_arr[l] == addr)begin
+          index = l;
+          break;
+        end
+        else begin
+          index = -1;
+        end
+      end
+      
+      data = get_random();
+      ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+  
+      case(ret0 && ret1)
+        OK: begin
+          if(index >= 0)begin
+            if(addr_arr[index] == 0) begin
+              array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+            end
+            else if(addr_arr[index] == 1) begin
+              array_size = exp_sout1_frames.size();
+              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+              exp_sout1_frames[array_size] = addr;
+              exp_sout1_frames[array_size + 1] = data;
+            end
+            else begin
+            end
+          end
+          else begin 
+            array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+          end
+        end
+        ERR: begin
+        end
+        default: begin
+        end
+      endcase
+    end
+  
+    transmit_data();
+  
+    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge clk);
+  endtask
+  
+  task wrong_start_bit_test();
+    int array_size;
+    bit addr_arr [0:'hFF];
+    byte addr_val_arr [0:'hFF];
+    byte addr;
+    byte data;
+    int index;
+    frame_status_t ret0;
+    frame_status_t ret1;
+
+    //reset_sw();
+    reset_arrays();
+    reset_routing_array();
+  
+    for(int i = 0 ; i <= 'hFF ; i++) begin
+      addr_arr[i] = get_random() & 'b1;
+      addr_val_arr[i] = get_random();
+    end
+  
+    for(int j = 0 ; j <= 'hFF ; j++) begin
+      if(addr_arr[j] == 0) begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+      else begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+    end
+  
+    for(int k = 0 ; k <= 'h0F ; k++) begin
+      addr = get_random();
+  
+      for(int l = 'hFF ; l >= 0 ; l--) begin
+        if(addr_val_arr[l] == addr)begin
+          index = l;
+          break;
+        end
+        else begin
+          index = -1;
+        end
+      end
+      
+      data = get_random();
+      ret0 = build_uart_msg (0, addr, START_B_ERR, PARITY_B_OK, STOP_B_OK, NO_RST);
+      ret1 = build_uart_msg (0, data, START_B_ERR, PARITY_B_OK, STOP_B_OK, NO_RST);
+  
+      case(ret0 && ret1)
+        OK: begin
+          if(index >= 0)begin
+            if(addr_arr[index] == 0) begin
+              array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+            end
+            else if(addr_arr[index] == 1) begin
+              array_size = exp_sout1_frames.size();
+              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+              exp_sout1_frames[array_size] = addr;
+              exp_sout1_frames[array_size + 1] = data;
+            end
+            else begin
+            end
+          end
+          else begin 
+            array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+          end
+        end
+        ERR: begin
+        end
+        default: begin
+        end
+      endcase
+    end
+  
+    transmit_data();
+  
+    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge clk);
+  endtask
+  
+  task wrong_parity_bit_test();
+    int array_size;
+    bit addr_arr [0:'hFF];
+    byte addr_val_arr [0:'hFF];
+    byte addr;
+    byte data;
+    int index;
+    frame_status_t ret0;
+    frame_status_t ret1;
+
+    //reset_sw();
+    reset_arrays();
+    reset_routing_array();
+  
+    for(int i = 0 ; i <= 'hFF ; i++) begin
+      addr_arr[i] = get_random() & 'b1;
+      addr_val_arr[i] = get_random();
+    end
+  
+    for(int j = 0 ; j <= 'hFF ; j++) begin
+      if(addr_arr[j] == 0) begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+      else begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+    end
+  
+    for(int k = 0 ; k <= 'h0F ; k++) begin
+      addr = get_random();
+  
+      for(int l = 'hFF ; l >= 0 ; l--) begin
+        if(addr_val_arr[l] == addr)begin
+          index = l;
+          break;
+        end
+        else begin
+          index = -1;
+        end
+      end
+      
+      data = get_random();
+      ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_ERR, STOP_B_OK, NO_RST);
+      ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_ERR, STOP_B_OK, NO_RST);
+  
+      case(ret0 && ret1)
+        OK: begin
+          if(index >= 0)begin
+            if(addr_arr[index] == 0) begin
+              array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+            end
+            else if(addr_arr[index] == 1) begin
+              array_size = exp_sout1_frames.size();
+              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+              exp_sout1_frames[array_size] = addr;
+              exp_sout1_frames[array_size + 1] = data;
+            end
+            else begin
+            end
+          end
+          else begin 
+            array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+          end
+        end
+        ERR: begin
+        end
+        default: begin
+        end
+      endcase
+    end
+  
+    transmit_data();
+  
+    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge clk);
+  endtask
+  
+  task wrong_stop_bit_test();
+    int array_size;
+    bit addr_arr [0:'hFF];
+    byte addr_val_arr [0:'hFF];
+    byte addr;
+    byte data;
+    int index;
+    frame_status_t ret0;
+    frame_status_t ret1;
+
+    //reset_sw();
+    reset_arrays();
+    reset_routing_array();
+  
+    for(int i = 0 ; i <= 'hFF ; i++) begin
+      addr_arr[i] = get_random() & 'b1;
+      addr_val_arr[i] = get_random();
+    end
+  
+    for(int j = 0 ; j <= 'hFF ; j++) begin
+      if(addr_arr[j] == 0) begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+      else begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+    end
+  
+    for(int k = 0 ; k <= 'h0F ; k++) begin
+      addr = get_random();
+  
+      for(int l = 'hFF ; l >= 0 ; l--) begin
+        if(addr_val_arr[l] == addr)begin
+          index = l;
+          break;
+        end
+        else begin
+          index = -1;
+        end
+      end
+      
+      data = get_random();
+      ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_OK, STOP_B_ERR, NO_RST);
+      ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_OK, STOP_B_ERR, NO_RST);
+  
+      case(ret0 && ret1)
+        OK: begin
+          if(index >= 0)begin
+            if(addr_arr[index] == 0) begin
+              array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+            end
+            else if(addr_arr[index] == 1) begin
+              array_size = exp_sout1_frames.size();
+              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+              exp_sout1_frames[array_size] = addr;
+              exp_sout1_frames[array_size + 1] = data;
+            end
+            else begin
+            end
+          end
+          else begin 
+            array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+          end
+        end
+        ERR: begin
+        end
+        default: begin
+        end
+      endcase
+    end
+  
+    transmit_data();
+  
+    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge clk);
+  endtask
+  
+  task wrong_start_parity_stop_bit_test();
+    int array_size;
+    bit addr_arr [0:'hFF];
+    byte addr_val_arr [0:'hFF];
+    byte addr;
+    byte data;
+    int index;
+    frame_status_t ret0;
+    frame_status_t ret1;
+
+    //reset_sw();
+    reset_arrays();
+    reset_routing_array();
+  
+    for(int i = 0 ; i <= 'hFF ; i++) begin
+      addr_arr[i] = get_random() & 'b1;
+      addr_val_arr[i] = get_random();
+    end
+  
+    for(int j = 0 ; j <= 'hFF ; j++) begin
+      if(addr_arr[j] == 0) begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+      else begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+    end
+  
+    for(int k = 0 ; k <= 'h0F ; k++) begin
+      addr = get_random();
+  
+      for(int l = 'hFF ; l >= 0 ; l--) begin
+        if(addr_val_arr[l] == addr)begin
+          index = l;
+          break;
+        end
+        else begin
+          index = -1;
+        end
+      end
+      
+      data = get_random();
+      ret0 = build_uart_msg (0, addr, START_B_ERR, PARITY_B_ERR, STOP_B_ERR, NO_RST);
+      ret1 = build_uart_msg (0, data, START_B_ERR, PARITY_B_ERR, STOP_B_ERR, NO_RST);
+  
+      case(ret0 && ret1)
+        OK: begin
+          if(index >= 0)begin
+            if(addr_arr[index] == 0) begin
+              array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+            end
+            else if(addr_arr[index] == 1) begin
+              array_size = exp_sout1_frames.size();
+              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+              exp_sout1_frames[array_size] = addr;
+              exp_sout1_frames[array_size + 1] = data;
+            end
+            else begin
+            end
+          end
+          else begin 
+            array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+          end
+        end
+        ERR: begin
+        end
+        default: begin
+        end
+      endcase
+    end
+  
+    transmit_data();
+  
+    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge clk);
+  endtask
+  
+  task reset_test();
+    int array_size;
+    bit addr_arr [0:'hFF];
+    byte addr_val_arr [0:'hFF];
+    byte addr;
+    byte data;
+    int index;
+    frame_status_t ret0;
+    frame_status_t ret1;
+
+    //reset_sw();
+    reset_arrays();
+    reset_routing_array();
+  
+    for(int i = 0 ; i <= 'hFF ; i++) begin
+      addr_arr[i] = get_random() & 'b1;
+      addr_val_arr[i] = get_random();
+    end
+  
+    for(int j = 0 ; j <= 'hFF ; j++) begin
+      if(addr_arr[j] == 0) begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+      else begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+    end
+  
+    for(int k = 0 ; k <= 'h0F ; k++) begin
+      addr = get_random();
+  
+      for(int l = 'hFF ; l >= 0 ; l--) begin
+        if(addr_val_arr[l] == addr)begin
+          index = l;
+          break;
+        end
+        else begin
+          index = -1;
+        end
+      end
+      
+      data = get_random();
+      ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_OK, STOP_B_OK, RST);
+      ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_OK, STOP_B_OK, RST);
+  
+      case(ret0 && ret1)
+        OK: begin
+          if(index >= 0)begin
+            if(addr_arr[index] == 0) begin
+              array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+            end
+            else if(addr_arr[index] == 1) begin
+              array_size = exp_sout1_frames.size();
+              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+              exp_sout1_frames[array_size] = addr;
+              exp_sout1_frames[array_size + 1] = data;
+            end
+            else begin
+            end
+          end
+          else begin 
+            array_size = exp_sout0_frames.size();
+              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+              exp_sout0_frames[array_size] = addr;
+              exp_sout0_frames[array_size + 1] = data;
+          end
+        end
+        ERR: begin
+        end
+        default: begin
+        end
+      endcase
+    end
+  
+    transmit_data();
+
+    rst_n = '0;
+    @(negedge clk);
+    rst_n = '1;
+  
+    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge clk);
+  endtask
+
+  task print_test_summary();
+    $display("TEST_PROPER_FRAME: %0d passed, %0d errors.\n", proper_frame_ok, proper_frame_err);
+    if(proper_frame_err > 0)begin
+      $display("UNEXPECTED FRAMES APPERAED \n");
+      print_test_result(TEST_FAILED);
+    end
+    else begin
+      print_test_result(TEST_PASSED);
+    end
+
+    $display("TEST_WRONG_START_BIT: %0d passed, %0d errors.\n", wrong_start_bit_ok, wrong_start_bit_err);
+    if(wrong_start_bit_err > 0)begin
+      $display("UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) \n");
+      print_test_result(TEST_FAILED);
+    end
+    else begin
+      print_test_result(TEST_PASSED);
+    end
+
+    $display("TEST_WRONG_PARITY_BIT: %0d passed, %0d errors.\n", wrong_parity_bit_ok, wrong_parity_bit_err);
+    if(wrong_parity_bit_err > 0)begin
+      $display("UNEXPECTED FRAMES APPERAED \n");
+      print_test_result(TEST_FAILED);
+    end
+    else begin
+      print_test_result(TEST_PASSED);
+    end
+
+    $display("TEST_WRONG_STOP_BIT: %0d passed, %0d errors.\n", wrong_stop_bit_ok, wrong_stop_bit_err);
+    if(wrong_stop_bit_err > 0)begin
+      $display("UNEXPECTED FRAMES APPERAED \n");
+      print_test_result(TEST_FAILED);
+    end
+    else begin
+      print_test_result(TEST_PASSED);
+    end
+
+    $display("TEST_WRONG_START_PARITY_STOP_BIT: %0d passed, %0d errors.\n", wrong_start_parity_stop_ok, wrong_start_parity_stop_err);
+    if(wrong_start_parity_stop_err > 0)begin
+      $display("UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) \n");
+      print_test_result(TEST_FAILED);
+    end
+    else begin
+      print_test_result(TEST_PASSED);
+    end
+
+    $display("TEST_RESET: %0d passed, %0d errors.\n", reset_ok, reset_err);
+    if(reset_err > 0)begin
+      $display("UNEXPECTED FRAMES APPERAED \n");
+      print_test_result(TEST_FAILED);
+    end
+    else begin
+      print_test_result(TEST_PASSED);
+    end
+  endtask
+
+  task get_test_result();
+    automatic bit match = 1;
+    if (sout0_frames.size() != exp_sout0_frames.size()) match = 0;
+    else begin
+      for (int i = 0; i < sout0_frames.size(); i++) begin
+        if (sout0_frames[i] !== exp_sout0_frames[i]) match = 0;
+      end
+    end
+  
+    if (sout1_frames.size() != exp_sout1_frames.size()) match = 0;
+    else begin
+      for (int i = 0; i < sout1_frames.size(); i++) begin
+        if (sout1_frames[i] !== exp_sout1_frames[i]) match = 0;
+      end
+    end
+  
+    case(test)
+      PROPER_FRAME: begin
+        if(!match) begin
+          proper_frame_err++;
+        end
+        else begin
+          proper_frame_ok++;
+        end
+      end
+      WRONG_START_BIT: begin
+        if(!match) begin
+          wrong_start_bit_err++;
+        end
+        else begin
+          wrong_start_bit_ok++;
+        end
+      end
+      WRONG_PARITY_BIT: begin
+        if(!match) begin
+          wrong_parity_bit_err++;
+        end
+        else begin
+          wrong_parity_bit_ok++;
+        end
+      end
+      WRONG_STOP_BIT: begin
+        if(!match) begin
+          wrong_stop_bit_err++;
+        end
+        else begin
+          wrong_stop_bit_ok++;
+        end
+      end
+      WRONG_START_PARITY_STOP: begin
+        if(!match) begin
+          wrong_start_parity_stop_err++;
+        end
+        else begin
+          wrong_start_parity_stop_ok++;
+        end
+      end
+      RESET: begin
+        if(!match) begin
+          reset_err++;
+        end
+        else begin
+          reset_ok++;
+        end
+      end
+      default: begin
+      end
+    endcase
+  endtask
+  
+  function test_t get_test();
+    bit [2:0] op_choice;
+    op_choice = 3'($random);
+    case (op_choice)
+        3'b000 : return PROPER_FRAME;
+        3'b001 : return WRONG_START_BIT;
+        3'b010 : return WRONG_PARITY_BIT;
+        3'b011 : return WRONG_STOP_BIT;
+        3'b100 : return WRONG_START_PARITY_STOP;
+        3'b101 : return RESET;
+        3'b110 : return PROPER_FRAME;
+        3'b111 : return WRONG_START_BIT;
+    endcase // case (op_choice)
+  endfunction : get_test
+
+  //------------------------------------------------------------------------------
+  // UART switch handling tasks
+  //------------------------------------------------------------------------------
+  
+  function frame_status_t build_uart_msg (input logic prog_mode, input byte data, start_bit_set_t start_set, parity_bit_set_t parity_set, stop_bit_set_t stop_set, reset_set_t reset_set);
+    logic [10:0] buffer;
+    logic reset_val;
+    bit parity_bit;
+    int array_size;
+  
+    case (start_set)
+      START_B_OK: begin
+        buffer[10] = 0;
+      end
+      START_B_ERR: begin
+        buffer[10] = 1;
+      end
+      default: begin
+        buffer[10] = 1;
+      end
+    endcase
+  
+    for (int i = 0 ; i <8 ; i++)begin
+      buffer[9 - i] = data[i];
+    end
+  
+    case (parity_set)
+      PARITY_B_OK: begin
+        parity_bit = ^data;
+        buffer[1] = parity_bit;
+      end
+      PARITY_B_ERR: begin
+        parity_bit = ~^data;
+        buffer[1] = parity_bit;
+      end
+      default: begin
+        parity_bit = ^data;
+        buffer[1] = parity_bit;
+      end
+    endcase
+  
+    case (stop_set)
+      STOP_B_OK: begin
+        buffer[0] = 1;
+      end
+      STOP_B_ERR: begin
+        buffer[0] = 0;
+      end
+      default: begin
+        buffer[10] = 1;
+      end
+    endcase
+  
+    case (reset_set)
+      RST: begin
+        reset_val = 1;
+      end
+      NO_RST: begin
+        reset_val = 0;
+      end
+      default: begin
+        reset_val = 0;
+      end
+    endcase
+
+    array_size = frame_data.size();
+    frame_data = new[array_size + 1](frame_data);
+    frame_data[array_size].reset = reset_val;
+    frame_data[array_size].prog_mode = prog_mode;
+    frame_data[array_size].input_message = buffer;
+  
+    if (start_set == START_B_ERR || parity_set == PARITY_B_ERR || stop_set == STOP_B_ERR || reset_set == RST) begin
+      return ERR;
+    end
+    else begin
+      return OK;
+    end
+  endfunction
+  
+  task transmit_data();
+    foreach(frame_data[i]) begin
+      for (int j = 10; j >= 0 ; j--) begin
+        if(frame_data[i].reset == 1)begin
+          prog = frame_data[i].prog_mode;
+          sin = frame_data[i].input_message[j];
+          rst_n = '0;
+          @(negedge clk);
+          rst_n = '1;
+          repeat(CLKS_PER_BIT-1)@(negedge clk);
+          end
+        else begin
+          prog = frame_data[i].prog_mode;
+          sin = frame_data[i].input_message[j];
+          repeat(CLKS_PER_BIT)@(negedge clk);
+        end
+      end
+    end
+    frame_data.delete;
+  endtask
+
+  task automatic monitor_sout0();
+    logic[10:0] buffer = '0;
+    int array_size;
+  
+    forever begin
+      @(negedge clk);
+  
+      if(sout0 == 0)begin
+        repeat(CLKS_PER_BIT/2)@(negedge clk);
+        for(int i = 0 ; i <= 9 ; i++) begin
+          buffer[i] = sout0;
+          repeat(CLKS_PER_BIT)@(negedge clk);
+        end 
+  
+        array_size = sout0_frames.size();
+        sout0_frames = new[array_size + 1](sout0_frames);
+        sout0_frames[array_size] = buffer[8:1];
+      end
+    end
+  endtask
+  
+  task automatic monitor_sout1();
+    logic[10:0] buffer = '0;
+    int array_size;
+    int frame_index = 0;
+  
+    forever begin
+      @(negedge clk);
+  
+      if(sout1 == 0)begin
+        repeat(CLKS_PER_BIT/2)@(negedge clk);
+        for(int i = 0 ; i <= 9 ; i++) begin
+          buffer[i] = sout1;
+          repeat(CLKS_PER_BIT)@(negedge clk);
+        end 
+  
+        array_size = sout1_frames.size();
+        sout1_frames = new[array_size + 1](sout1_frames);
+        sout1_frames[array_size] = buffer[8:1];
+      end
+    end
+  endtask
+  
+  //------------------------------------------------------------------------------
+  // Other functions
+  //------------------------------------------------------------------------------
+  
+  // used to modify the color of the text printed on the terminal
+  function void set_print_color ( print_color_t c );
+    string ctl;
+    case(c)
+        COLOR_BOLD_BLACK_ON_GREEN : ctl  = "\033\[1;30m\033\[102m";
+        COLOR_BOLD_BLACK_ON_RED : ctl    = "\033\[1;30m\033\[101m";
+        COLOR_BOLD_BLACK_ON_YELLOW : ctl = "\033\[1;30m\033\[103m";
+        COLOR_BOLD_BLUE_ON_WHITE : ctl   = "\033\[1;34m\033\[107m";
+        COLOR_BLUE_ON_WHITE : ctl        = "\033\[0;34m\033\[107m";
+        COLOR_DEFAULT : ctl              = "\033\[0m\n";
+        default : begin
+            $error("set_print_color: bad argument");
+            ctl                          = "";
+        end
+    endcase
+    $write(ctl);
+  endfunction
+  
+    function void print_test_result (test_result_t r);
+      if(r == TEST_PASSED) begin
+          set_print_color(COLOR_BOLD_BLACK_ON_GREEN);
+          $write ("-----------------------------------\n");
+          $write ("----------- Test PASSED -----------\n");
+          $write ("-----------------------------------");
+          set_print_color(COLOR_DEFAULT);
+          $write ("\n");
+      end
+      else begin
+          set_print_color(COLOR_BOLD_BLACK_ON_RED);
+          $write ("-----------------------------------\n");
+          $write ("----------- Test FAILED -----------\n");
+          $write ("-----------------------------------");
+          set_print_color(COLOR_DEFAULT);
+          $write ("\n");
+      end
+  endfunction
+  
+  endmodule : test2

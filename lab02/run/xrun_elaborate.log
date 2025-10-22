@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 22, 2025 at 10:39:51 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 22, 2025 at 17:45:18 CEST
 xrun
 	-elaborate
 	-l xrun_elaborate.log
@@ -36,7 +36,7 @@ xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions con
 		worklib.simple_switch_uart:svp <0x106cd466>
 			streams:  13, words: 15555
 		worklib.test2:svp <0x1b185d96>
-			streams:  41, words: 148661
+			streams:  41, words: 145853
 	Building instance specific data structures.
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
@@ -52,4 +52,4 @@ xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions con
 		Pseudo assignments:      3       -
 		Covergroup Instances:    0       1
 	Writing initial simulation snapshot: worklib.test2:svp
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 22, 2025 at 10:39:52 CEST  (total: 00:00:01)
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 22, 2025 at 17:45:19 CEST  (total: 00:00:01)

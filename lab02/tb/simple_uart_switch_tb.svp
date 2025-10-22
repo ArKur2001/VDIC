@@ -139,13 +139,11 @@ module test2;
 // Coverage block
 //------------------------------------------------------------------------------
 
-// Covergroup checking the op codes and theri sequences
   covergroup op_cov;
 
     option.name = "cg_op_cov";
 
     coverpoint test {
-        // #A1 test all test sequences
         bins A1_all_test_sequences[] = {[PROPER_FRAME : RESET]};
     }
   endgroup
@@ -156,15 +154,9 @@ module test2;
       oc = new();
       forever begin : sample_cov
           @(posedge clk);
-          //if(!rst_n) begin
               oc.sample();
-              
               #1step;
-              if($get_coverage() == 100) break; //disable, if needed
-
-              // you can print the coverage after each sample
-//            $strobe("%0t coverage: %.4g\%",$time, $get_coverage());
-          //end
+              if($get_coverage() == 100) break; 
       end
   end : coverage
 
@@ -214,13 +206,13 @@ module test2;
             end
           endcase
         end : tpgen_main_blk
-        print_test_summary();
+        print_scoreboard();
         $finish;
   end : tpgen
   
   
   function byte get_random();
-    return $random & 8'hFF;
+    return $random & 'hFF;
   endfunction : get_random
   
   //------------------------------------------------------------------------------
@@ -251,13 +243,12 @@ module test2;
     frame_status_t ret0;
     frame_status_t ret1;
 
-    //reset_sw();
     reset_arrays();
     reset_routing_array();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = get_random();
+      addr_val_arr[i] = i & 'hFF;
     end
   
     for(int j = 0 ; j <= 'hFF ; j++) begin
@@ -274,13 +265,11 @@ module test2;
     for(int k = 0 ; k <= 'h0F ; k++) begin
       addr = get_random();
   
+      index = -1;
       for(int l = 'hFF ; l >= 0 ; l--) begin
         if(addr_val_arr[l] == addr)begin
           index = l;
           break;
-        end
-        else begin
-          index = -1;
         end
       end
       
@@ -288,36 +277,28 @@ module test2;
       ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
       ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
   
-      case(ret0 && ret1)
-        OK: begin
-          if(index >= 0)begin
-            if(addr_arr[index] == 0) begin
-              array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
-            end
-            else if(addr_arr[index] == 1) begin
-              array_size = exp_sout1_frames.size();
-              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
-              exp_sout1_frames[array_size] = addr;
-              exp_sout1_frames[array_size + 1] = data;
-            end
-            else begin
-            end
-          end
-          else begin 
+      if (ret0 == OK && ret1 == OK) begin
+        if (index >= 0) begin
+          if (addr_arr[index] == 0) begin
             array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
+            exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+            exp_sout0_frames[array_size] = addr;
+            exp_sout0_frames[array_size + 1] = data;
+          end
+          else begin
+            array_size = exp_sout1_frames.size();
+            exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+            exp_sout1_frames[array_size] = addr;
+            exp_sout1_frames[array_size + 1] = data;
           end
         end
-        ERR: begin
+        else begin
+          array_size = exp_sout0_frames.size();
+          exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+          exp_sout0_frames[array_size] = addr;
+          exp_sout0_frames[array_size + 1] = data;
         end
-        default: begin
-        end
-      endcase
+      end
     end
   
     transmit_data();
@@ -335,13 +316,12 @@ module test2;
     frame_status_t ret0;
     frame_status_t ret1;
 
-    //reset_sw();
     reset_arrays();
     reset_routing_array();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = get_random();
+      addr_val_arr[i] = i & 'hFF;
     end
   
     for(int j = 0 ; j <= 'hFF ; j++) begin
@@ -358,13 +338,11 @@ module test2;
     for(int k = 0 ; k <= 'h0F ; k++) begin
       addr = get_random();
   
+      index = -1;
       for(int l = 'hFF ; l >= 0 ; l--) begin
         if(addr_val_arr[l] == addr)begin
           index = l;
           break;
-        end
-        else begin
-          index = -1;
         end
       end
       
@@ -372,36 +350,28 @@ module test2;
       ret0 = build_uart_msg (0, addr, START_B_ERR, PARITY_B_OK, STOP_B_OK, NO_RST);
       ret1 = build_uart_msg (0, data, START_B_ERR, PARITY_B_OK, STOP_B_OK, NO_RST);
   
-      case(ret0 && ret1)
-        OK: begin
-          if(index >= 0)begin
-            if(addr_arr[index] == 0) begin
-              array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
-            end
-            else if(addr_arr[index] == 1) begin
-              array_size = exp_sout1_frames.size();
-              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
-              exp_sout1_frames[array_size] = addr;
-              exp_sout1_frames[array_size + 1] = data;
-            end
-            else begin
-            end
-          end
-          else begin 
+      if (ret0 == OK && ret1 == OK) begin
+        if (index >= 0) begin
+          if (addr_arr[index] == 0) begin
             array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
+            exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+            exp_sout0_frames[array_size] = addr;
+            exp_sout0_frames[array_size + 1] = data;
+          end
+          else begin
+            array_size = exp_sout1_frames.size();
+            exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+            exp_sout1_frames[array_size] = addr;
+            exp_sout1_frames[array_size + 1] = data;
           end
         end
-        ERR: begin
+        else begin
+          array_size = exp_sout0_frames.size();
+          exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+          exp_sout0_frames[array_size] = addr;
+          exp_sout0_frames[array_size + 1] = data;
         end
-        default: begin
-        end
-      endcase
+      end
     end
   
     transmit_data();
@@ -419,13 +389,12 @@ module test2;
     frame_status_t ret0;
     frame_status_t ret1;
 
-    //reset_sw();
     reset_arrays();
     reset_routing_array();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = get_random();
+      addr_val_arr[i] = i & 'hFF;
     end
   
     for(int j = 0 ; j <= 'hFF ; j++) begin
@@ -442,13 +411,11 @@ module test2;
     for(int k = 0 ; k <= 'h0F ; k++) begin
       addr = get_random();
   
+      index = -1;
       for(int l = 'hFF ; l >= 0 ; l--) begin
         if(addr_val_arr[l] == addr)begin
           index = l;
           break;
-        end
-        else begin
-          index = -1;
         end
       end
       
@@ -456,36 +423,28 @@ module test2;
       ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_ERR, STOP_B_OK, NO_RST);
       ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_ERR, STOP_B_OK, NO_RST);
   
-      case(ret0 && ret1)
-        OK: begin
-          if(index >= 0)begin
-            if(addr_arr[index] == 0) begin
-              array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
-            end
-            else if(addr_arr[index] == 1) begin
-              array_size = exp_sout1_frames.size();
-              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
-              exp_sout1_frames[array_size] = addr;
-              exp_sout1_frames[array_size + 1] = data;
-            end
-            else begin
-            end
-          end
-          else begin 
+      if (ret0 == OK && ret1 == OK) begin
+        if (index >= 0) begin
+          if (addr_arr[index] == 0) begin
             array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
+            exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+            exp_sout0_frames[array_size] = addr;
+            exp_sout0_frames[array_size + 1] = data;
+          end
+          else begin
+            array_size = exp_sout1_frames.size();
+            exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+            exp_sout1_frames[array_size] = addr;
+            exp_sout1_frames[array_size + 1] = data;
           end
         end
-        ERR: begin
+        else begin
+          array_size = exp_sout0_frames.size();
+          exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+          exp_sout0_frames[array_size] = addr;
+          exp_sout0_frames[array_size + 1] = data;
         end
-        default: begin
-        end
-      endcase
+      end
     end
   
     transmit_data();
@@ -503,13 +462,12 @@ module test2;
     frame_status_t ret0;
     frame_status_t ret1;
 
-    //reset_sw();
     reset_arrays();
     reset_routing_array();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = get_random();
+      addr_val_arr[i] = i & 'hFF;
     end
   
     for(int j = 0 ; j <= 'hFF ; j++) begin
@@ -526,13 +484,11 @@ module test2;
     for(int k = 0 ; k <= 'h0F ; k++) begin
       addr = get_random();
   
+      index = -1;
       for(int l = 'hFF ; l >= 0 ; l--) begin
         if(addr_val_arr[l] == addr)begin
           index = l;
           break;
-        end
-        else begin
-          index = -1;
         end
       end
       
@@ -540,36 +496,28 @@ module test2;
       ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_OK, STOP_B_ERR, NO_RST);
       ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_OK, STOP_B_ERR, NO_RST);
   
-      case(ret0 && ret1)
-        OK: begin
-          if(index >= 0)begin
-            if(addr_arr[index] == 0) begin
-              array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
-            end
-            else if(addr_arr[index] == 1) begin
-              array_size = exp_sout1_frames.size();
-              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
-              exp_sout1_frames[array_size] = addr;
-              exp_sout1_frames[array_size + 1] = data;
-            end
-            else begin
-            end
-          end
-          else begin 
+      if (ret0 == OK && ret1 == OK) begin
+        if (index >= 0) begin
+          if (addr_arr[index] == 0) begin
             array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
+            exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+            exp_sout0_frames[array_size] = addr;
+            exp_sout0_frames[array_size + 1] = data;
+          end
+          else begin
+            array_size = exp_sout1_frames.size();
+            exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+            exp_sout1_frames[array_size] = addr;
+            exp_sout1_frames[array_size + 1] = data;
           end
         end
-        ERR: begin
+        else begin
+          array_size = exp_sout0_frames.size();
+          exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+          exp_sout0_frames[array_size] = addr;
+          exp_sout0_frames[array_size + 1] = data;
         end
-        default: begin
-        end
-      endcase
+      end
     end
   
     transmit_data();
@@ -587,13 +535,12 @@ module test2;
     frame_status_t ret0;
     frame_status_t ret1;
 
-    //reset_sw();
     reset_arrays();
     reset_routing_array();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = get_random();
+      addr_val_arr[i] = i & 'hFF;
     end
   
     for(int j = 0 ; j <= 'hFF ; j++) begin
@@ -610,13 +557,11 @@ module test2;
     for(int k = 0 ; k <= 'h0F ; k++) begin
       addr = get_random();
   
+      index = -1;
       for(int l = 'hFF ; l >= 0 ; l--) begin
         if(addr_val_arr[l] == addr)begin
           index = l;
           break;
-        end
-        else begin
-          index = -1;
         end
       end
       
@@ -624,36 +569,28 @@ module test2;
       ret0 = build_uart_msg (0, addr, START_B_ERR, PARITY_B_ERR, STOP_B_ERR, NO_RST);
       ret1 = build_uart_msg (0, data, START_B_ERR, PARITY_B_ERR, STOP_B_ERR, NO_RST);
   
-      case(ret0 && ret1)
-        OK: begin
-          if(index >= 0)begin
-            if(addr_arr[index] == 0) begin
-              array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
-            end
-            else if(addr_arr[index] == 1) begin
-              array_size = exp_sout1_frames.size();
-              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
-              exp_sout1_frames[array_size] = addr;
-              exp_sout1_frames[array_size + 1] = data;
-            end
-            else begin
-            end
-          end
-          else begin 
+      if (ret0 == OK && ret1 == OK) begin
+        if (index >= 0) begin
+          if (addr_arr[index] == 0) begin
             array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
+            exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+            exp_sout0_frames[array_size] = addr;
+            exp_sout0_frames[array_size + 1] = data;
+          end
+          else begin
+            array_size = exp_sout1_frames.size();
+            exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+            exp_sout1_frames[array_size] = addr;
+            exp_sout1_frames[array_size + 1] = data;
           end
         end
-        ERR: begin
+        else begin
+          array_size = exp_sout0_frames.size();
+          exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+          exp_sout0_frames[array_size] = addr;
+          exp_sout0_frames[array_size + 1] = data;
         end
-        default: begin
-        end
-      endcase
+      end
     end
   
     transmit_data();
@@ -671,13 +608,12 @@ module test2;
     frame_status_t ret0;
     frame_status_t ret1;
 
-    //reset_sw();
     reset_arrays();
     reset_routing_array();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = get_random();
+      addr_val_arr[i] = i & 'hFF;
     end
   
     for(int j = 0 ; j <= 'hFF ; j++) begin
@@ -694,13 +630,11 @@ module test2;
     for(int k = 0 ; k <= 'h0F ; k++) begin
       addr = get_random();
   
+      index = -1;
       for(int l = 'hFF ; l >= 0 ; l--) begin
         if(addr_val_arr[l] == addr)begin
           index = l;
           break;
-        end
-        else begin
-          index = -1;
         end
       end
       
@@ -708,36 +642,28 @@ module test2;
       ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_OK, STOP_B_OK, RST);
       ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_OK, STOP_B_OK, RST);
   
-      case(ret0 && ret1)
-        OK: begin
-          if(index >= 0)begin
-            if(addr_arr[index] == 0) begin
-              array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
-            end
-            else if(addr_arr[index] == 1) begin
-              array_size = exp_sout1_frames.size();
-              exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
-              exp_sout1_frames[array_size] = addr;
-              exp_sout1_frames[array_size + 1] = data;
-            end
-            else begin
-            end
-          end
-          else begin 
+      if (ret0 == OK && ret1 == OK) begin
+        if (index >= 0) begin
+          if (addr_arr[index] == 0) begin
             array_size = exp_sout0_frames.size();
-              exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
-              exp_sout0_frames[array_size] = addr;
-              exp_sout0_frames[array_size + 1] = data;
+            exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+            exp_sout0_frames[array_size] = addr;
+            exp_sout0_frames[array_size + 1] = data;
+          end
+          else begin
+            array_size = exp_sout1_frames.size();
+            exp_sout1_frames = new[array_size + 2](exp_sout1_frames);
+            exp_sout1_frames[array_size] = addr;
+            exp_sout1_frames[array_size + 1] = data;
           end
         end
-        ERR: begin
+        else begin
+          array_size = exp_sout0_frames.size();
+          exp_sout0_frames = new[array_size + 2](exp_sout0_frames);
+          exp_sout0_frames[array_size] = addr;
+          exp_sout0_frames[array_size + 1] = data;
         end
-        default: begin
-        end
-      endcase
+      end
     end
   
     transmit_data();
@@ -749,7 +675,7 @@ module test2;
     repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge clk);
   endtask
 
-  task print_test_summary();
+  task print_scoreboard();
     $display("TEST_PROPER_FRAME: %0d passed, %0d errors.\n", proper_frame_ok, proper_frame_err);
     if(proper_frame_err > 0)begin
       $display("UNEXPECTED FRAMES APPERAED \n");

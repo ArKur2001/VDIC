@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 22, 2025 at 10:39:52 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 22, 2025 at 17:45:19 CEST
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -53,7 +53,7 @@ Loading snapshot worklib.test2:svp .................... Done
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/xcelium/files/xmsimrc
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv/files/tcl/uvm_sim.tcl
 xcelium> run
-TEST_PROPER_FRAME: 130 passed, 95 errors.
+TEST_PROPER_FRAME: 133 passed, 109 errors.
 
 UNEXPECTED FRAMES APPERAED 
 
@@ -61,7 +61,7 @@ UNEXPECTED FRAMES APPERAED
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_BIT: 119 passed, 146 errors.
+TEST_WRONG_START_BIT: 113 passed, 142 errors.
 
 UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
 
@@ -69,7 +69,7 @@ UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works 
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_WRONG_PARITY_BIT: 113 passed, 20 errors.
+TEST_WRONG_PARITY_BIT: 120 passed, 26 errors.
 
 UNEXPECTED FRAMES APPERAED 
 
@@ -77,7 +77,7 @@ UNEXPECTED FRAMES APPERAED
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_WRONG_STOP_BIT: 98 passed, 17 errors.
+TEST_WRONG_STOP_BIT: 102 passed, 14 errors.
 
 UNEXPECTED FRAMES APPERAED 
 
@@ -85,7 +85,7 @@ UNEXPECTED FRAMES APPERAED
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_PARITY_STOP_BIT: 96 passed, 29 errors.
+TEST_WRONG_START_PARITY_STOP_BIT: 94 passed, 31 errors.
 
 UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
 
@@ -93,7 +93,7 @@ UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works 
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_RESET: 113 passed, 24 errors.
+TEST_RESET: 100 passed, 16 errors.
 
 UNEXPECTED FRAMES APPERAED 
 
@@ -101,8 +101,8 @@ UNEXPECTED FRAMES APPERAED
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-Simulation complete via $finish(1) at time 3731222760 NS + 0
-../tb/simple_uart_switch_tb.svp:218         $finish;
+Simulation complete via $finish(1) at time 3731222340 NS + 0
+../tb/simple_uart_switch_tb.svp:210         $finish;
 xcelium> exit
 See ./cov_work/scope/lab02_example/icc.com file for message(s) on coverage constant object marking
 
@@ -113,6 +113,6 @@ coverage setup:
   testname :  lab02_example
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_794b0417_43fd1beb.ucm
-  data               :  ./cov_work/scope/lab02_example/icc_794b0417_43fd1beb.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 22, 2025 at 10:40:35 CEST  (total: 00:00:43)
+  model(design data) :  ./cov_work/scope/icc_63a64b25_43fd1beb.ucm
+  data               :  ./cov_work/scope/lab02_example/icc_63a64b25_43fd1beb.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 22, 2025 at 17:45:52 CEST  (total: 00:00:33)

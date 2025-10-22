@@ -95,7 +95,6 @@ module test2;
     int reset_ok = 0;
     int reset_err = 0;
     
-  
   //------------------------------------------------------------------------------
   // Local parameters
   //------------------------------------------------------------------------------
@@ -136,6 +135,39 @@ module test2;
     exp_sout1_frames.delete;
   endtask
   
+//------------------------------------------------------------------------------
+// Coverage block
+//------------------------------------------------------------------------------
+
+// Covergroup checking the op codes and theri sequences
+  covergroup op_cov;
+
+    option.name = "cg_op_cov";
+
+    coverpoint test {
+        // #A1 test all test sequences
+        bins A1_all_test_sequences[] = {[PROPER_FRAME : RESET]};
+    }
+  endgroup
+
+  op_cov  oc;
+
+  initial begin : coverage
+      oc = new();
+      forever begin : sample_cov
+          @(posedge clk);
+          //if(!rst_n) begin
+              oc.sample();
+              
+              #1step;
+              if($get_coverage() == 100) break; //disable, if needed
+
+              // you can print the coverage after each sample
+//            $strobe("%0t coverage: %.4g\%",$time, $get_coverage());
+          //end
+      end
+  end : coverage
+
   //------------------------------------------------------------------------------
   //Tester
   //------------------------------------------------------------------------------

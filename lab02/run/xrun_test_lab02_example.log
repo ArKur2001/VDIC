@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 20, 2025 at 23:45:16 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 22, 2025 at 10:39:52 CEST
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -18,6 +18,7 @@ xrun
 	-coverage all
 	-covoverwrite
 	-covfile xrun_covfile.txt
+	-covtest lab02_example
 	+UVM_TESTNAME=lab02_example
 	-l xrun_test_lab02_example.log
 Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d
@@ -37,15 +38,16 @@ xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions con
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
-		               Instances  Unique
-		Modules:               2       2
-		Registers:           153     154
-		Scalar wires:         10       -
-		Always blocks:         3       3
-		Initial blocks:       14      14
-		Parallel blocks:       1       1
-		Cont. assignments:     1       2
-		Pseudo assignments:    3       -
+		                 Instances  Unique
+		Modules:                 2       2
+		Registers:             153     154
+		Scalar wires:           10       -
+		Always blocks:           3       3
+		Initial blocks:         15      15
+		Parallel blocks:         1       1
+		Cont. assignments:       1       2
+		Pseudo assignments:      3       -
+		Covergroup Instances:    0       1
 	Writing initial simulation snapshot: worklib.test2:svp
 Loading snapshot worklib.test2:svp .................... Done
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/xcelium/files/xmsimrc
@@ -100,17 +102,17 @@ UNEXPECTED FRAMES APPERAED
 -----------------------------------[0m
 
 Simulation complete via $finish(1) at time 3731222760 NS + 0
-../tb/simple_uart_switch_tb.svp:186         $finish;
+../tb/simple_uart_switch_tb.svp:218         $finish;
 xcelium> exit
-See ./cov_work/scope/test/icc.com file for message(s) on coverage constant object marking
+See ./cov_work/scope/lab02_example/icc.com file for message(s) on coverage constant object marking
 
 coverage setup:
   workdir  :  ./cov_work
   dutinst  :  test2(test2)
   scope    :  scope
-  testname :  test
+  testname :  lab02_example
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_0b6cdaf4_00000000.ucm
-  data               :  ./cov_work/scope/test/icc_0b6cdaf4_00000000.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 20, 2025 at 23:45:45 CEST  (total: 00:00:29)
+  model(design data) :  ./cov_work/scope/icc_794b0417_43fd1beb.ucm
+  data               :  ./cov_work/scope/lab02_example/icc_794b0417_43fd1beb.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 22, 2025 at 10:40:35 CEST  (total: 00:00:43)

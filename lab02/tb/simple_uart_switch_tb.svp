@@ -224,7 +224,7 @@ module test2;
     frame_status_t ret1;
 
     for(int i = 0 ; i <= 'hFF ; i++) begin
-      ret0 = build_uart_msg (1, i, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      ret0 = build_uart_msg (1, i & 'hFF, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
       ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
     end
 

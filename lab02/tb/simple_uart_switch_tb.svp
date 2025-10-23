@@ -244,7 +244,9 @@ module test2;
     frame_status_t ret1;
 
     reset_arrays();
+    reset_sw();
     reset_routing_array();
+    reset_sw();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;
@@ -317,7 +319,9 @@ module test2;
     frame_status_t ret1;
 
     reset_arrays();
+    reset_sw();
     reset_routing_array();
+    reset_sw();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;
@@ -390,7 +394,9 @@ module test2;
     frame_status_t ret1;
 
     reset_arrays();
+    reset_sw();
     reset_routing_array();
+    reset_sw();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;
@@ -463,7 +469,9 @@ module test2;
     frame_status_t ret1;
 
     reset_arrays();
+    reset_sw();
     reset_routing_array();
+    reset_sw();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;
@@ -536,7 +544,9 @@ module test2;
     frame_status_t ret1;
 
     reset_arrays();
+    reset_sw();
     reset_routing_array();
+    reset_sw();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;
@@ -609,7 +619,9 @@ module test2;
     frame_status_t ret1;
 
     reset_arrays();
+    reset_sw();
     reset_routing_array();
+    reset_sw();
   
     for(int i = 0 ; i <= 'hFF ; i++) begin
       addr_arr[i] = get_random() & 'b1;

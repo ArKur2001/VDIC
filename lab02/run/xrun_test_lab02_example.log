@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 23, 2025 at 22:19:27 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 24, 2025 at 14:28:38 CEST
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -40,28 +40,126 @@ xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions con
 	Design hierarchy summary:
 		                 Instances  Unique
 		Modules:                 2       2
-		Registers:             153     154
+		Registers:             154     155
 		Scalar wires:           10       -
 		Always blocks:           3       3
 		Initial blocks:         15      15
 		Parallel blocks:         1       1
 		Cont. assignments:       1       2
 		Pseudo assignments:      3       -
-		Covergroup Instances:    0       1
+		Covergroup Instances:    0       2
 	Writing initial simulation snapshot: worklib.test2:svp
 Loading snapshot worklib.test2:svp .................... Done
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/xcelium/files/xmsimrc
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv/files/tcl/uvm_sim.tcl
 xcelium> run
-TEST_PROPER_FRAME: 2429 passed, 20 errors.
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+robi
+TEST_PROPER_FRAME: 24 passed, 0 errors.
 
-UNEXPECTED FRAMES APPERAED 
-
-[1;30m[101m-----------------------------------
------------ Test FAILED -----------
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_BIT: 1311 passed, 1206 errors.
+TEST_WRONG_START_BIT: 11 passed, 19 errors.
 
 UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
 
@@ -69,40 +167,32 @@ UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works 
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_WRONG_PARITY_BIT: 1278 passed, 14 errors.
+TEST_WRONG_PARITY_BIT: 16 passed, 0 errors.
 
-UNEXPECTED FRAMES APPERAED 
-
-[1;30m[101m-----------------------------------
------------ Test FAILED -----------
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_STOP_BIT: 1196 passed, 20 errors.
+TEST_WRONG_STOP_BIT: 10 passed, 0 errors.
 
-UNEXPECTED FRAMES APPERAED 
-
-[1;30m[101m-----------------------------------
------------ Test FAILED -----------
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_PARITY_STOP_BIT: 1048 passed, 210 errors.
+TEST_WRONG_START_PARITY_STOP_BIT: 8 passed, 0 errors.
 
-UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
-
-[1;30m[101m-----------------------------------
------------ Test FAILED -----------
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_RESET: 1259 passed, 9 errors.
+TEST_RESET: 12 passed, 0 errors.
 
-UNEXPECTED FRAMES APPERAED 
-
-[1;30m[101m-----------------------------------
------------ Test FAILED -----------
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
 -----------------------------------[0m
 
-Simulation complete via $finish(1) at time 37312625380 NS + 0
-../tb/simple_uart_switch_tb.svp:210         $finish;
+Simulation complete via $finish(1) at time 373126260 NS + 0
+../tb/simple_uart_switch_tb.svp:233         $finish;
 xcelium> exit
 See ./cov_work/scope/lab02_example/icc.com file for message(s) on coverage constant object marking
 
@@ -113,6 +203,6 @@ coverage setup:
   testname :  lab02_example
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_7648ef5a_43fd1beb.ucm
-  data               :  ./cov_work/scope/lab02_example/icc_7648ef5a_43fd1beb.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 23, 2025 at 22:24:18 CEST  (total: 00:04:51)
+  model(design data) :  ./cov_work/scope/icc_0d608b64_5004bdc1.ucm
+  data               :  ./cov_work/scope/lab02_example/icc_0d608b64_5004bdc1.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 24, 2025 at 14:34:41 CEST  (total: 00:06:03)

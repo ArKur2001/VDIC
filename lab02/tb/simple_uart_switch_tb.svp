@@ -69,6 +69,7 @@ module test2;
     logic sout0;
     logic sout1;
   
+    frame_data_t frame;
     frame_data_t frame_data [];
     test_t test;
   
@@ -148,13 +149,34 @@ module test2;
     }
   endgroup
 
+  covergroup input_frames_cov;
+
+    option.name = "cg_input_frames_cov";
+
+    coverpoint frame.input_message {
+        bins A1_all_input_frame_sequences[] = {[11'b0 : 11'b11111111111]};
+    }
+
+    coverpoint frame.reset {
+        bins A2_all_reset_sequences[] = {[0 : 1]};
+    }
+
+    coverpoint frame.prog_mode {
+        bins A3_all_prog_mode_sequences[] = {[0 : 1]};
+    }
+  endgroup
+
   op_cov  oc;
+  input_frames_cov input_data_frames;
 
   initial begin : coverage
-      oc = new();
-      forever begin : sample_cov
+    oc = new();
+    input_data_frames = new();
+    forever begin : sample_cov
           @(posedge clk);
               oc.sample();
+              #1step;
+              input_data_frames.sample();
               #1step;
               if($get_coverage() == 100) break; 
       end
@@ -892,6 +914,10 @@ module test2;
         reset_val = 0;
       end
     endcase
+
+    frame.reset = reset_val;
+    frame.prog_mode = prog_mode;
+    frame.input_message = buffer;
 
     array_size = frame_data.size();
     frame_data = new[array_size + 1](frame_data);

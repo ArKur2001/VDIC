@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Oct 20, 2025 at 22:52:50 CEST
+TOOL:	xrun(64)	24.09-s005: Started on Oct 24, 2025 at 14:20:40 CEST
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -22,14 +22,7 @@ xrun
 	-covfile xrun_covfile.txt
 	+UVM_TESTNAME=lab02_example
 	-l xrun_gui.log
-	-s
-Recompiling... reason: file '../tb/simple_uart_switch_tb.svp' is newer than expected.
-	expected: Mon Oct 20 22:50:33 2025
-	actual:   Mon Oct 20 22:52:44 2025
 Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d
-file: ../tb/simple_uart_switch_tb.svp
-	module worklib.test2:svp
-		errors: 0, warnings: 0
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
 	Top level design units:
@@ -42,72 +35,42 @@ file: ../tb/simple_uart_switch_tb.svp
 xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions containing struct datatypes. For backward compatibility, use " set_backward_compat -no_struct " coverage configuration file command..
 .......... Done
 	Enabling instrumentation for coverage types: block expression FSM toggle functional
-	Generating native compiled code:
-		worklib.test2:svp <0x0b8665a0>
-			streams:  25, words: 154739
 	Building instance specific data structures.
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
-		               Instances  Unique
-		Modules:               2       2
-		Registers:           141     141
-		Scalar wires:         10       -
-		Always blocks:         3       3
-		Initial blocks:        3       3
-		Parallel blocks:       1       1
-		Cont. assignments:     1       2
-		Pseudo assignments:    3       -
+		                 Instances  Unique
+		Modules:                 2       2
+		Registers:             155     155
+		Scalar wires:           10       -
+		Always blocks:           3       3
+		Initial blocks:         15      15
+		Parallel blocks:         1       1
+		Cont. assignments:       1       2
+		Pseudo assignments:      3       -
+		Covergroup Instances:    0       2
 	Writing initial simulation snapshot: worklib.test2:svp
 xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
+
+-------------------------------------
+Relinquished control to SimVision...
 xcelium> 
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/xcelium/files/xmsimrc
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv/files/tcl/uvm_sim.tcl
-xcelium> 
--------------------------------------
-Relinquished control to SimVision...
-# Restoring simulation environment...
-xcelium> input -quiet .reinvoke.sim
-xcelium> file delete .reinvoke.sim
+xcelium> database -open waves -into waves.shm -default
+Created default SHM database waves
+xcelium> probe -create -shm test2.sout0 test2.sout0_frames test2.sout1 test2.sout1_frames
+Created probe 1
 xcelium> run
-TEST_PROPER_FRAME: 
+xmsim: *E,TRNULLID: NULL pointer dereference.
+          File: ../tb/simple_uart_switch_tb.svp, line = 152, pos = 28
+         Scope: test2.input_frames_cov.sample
+          Time: 11 NS + 0
+Verilog Stack Trace:
+0: function test2.input_frames_cov.sample at ../tb/simple_uart_switch_tb.svp:152
+1: initial block in test2 at ../tb/simple_uart_switch_tb.svp:178
 
-[1;30m[102m-----------------------------------
------------ Test PASSED -----------
------------------------------------[0m
 
-TEST_WRONG_START_BIT ERROR: UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
-
-[1;30m[101m-----------------------------------
------------ Test FAILED -----------
------------------------------------[0m
-
-TEST_WRONG_PARITY_BIT: 
-
-[1;30m[102m-----------------------------------
------------ Test PASSED -----------
------------------------------------[0m
-
-TEST_WRONG_STOP_BIT: 
-
-[1;30m[102m-----------------------------------
------------ Test PASSED -----------
------------------------------------[0m
-
-TEST_WRONG_START_PARITY_STOP_BIT: 
-
-[1;30m[102m-----------------------------------
------------ Test PASSED -----------
------------------------------------[0m
-
-TEST_RESET: 
-
-[1;30m[102m-----------------------------------
------------ Test PASSED -----------
------------------------------------[0m
-
-Simulation complete via $finish(1) at time 30800140 NS + 0
-../tb/simple_uart_switch_tb.svp:169               $finish;
 xcelium> ^C
 xcelium> exit
 See ./cov_work/scope/test/icc.com file for message(s) on coverage constant object marking
@@ -119,6 +82,6 @@ coverage setup:
   testname :  test
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_0df593dd_00000000.ucm
-  data               :  ./cov_work/scope/test/icc_0df593dd_00000000.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Oct 20, 2025 at 22:53:19 CEST  (total: 00:00:29)
+  model(design data) :  ./cov_work/scope/icc_0d608b64_43fd1beb.ucm
+  data               :  ./cov_work/scope/test/icc_0d608b64_43fd1beb.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Oct 24, 2025 at 14:21:36 CEST  (total: 00:00:56)

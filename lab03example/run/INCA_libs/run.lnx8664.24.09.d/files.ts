@@ -1,0 +1,10 @@
+1729592579 /home/student/akurnik/VDIC/common/tinyalu/tinyalu_pkg.sv
+1728048979 /home/student/akurnik/VDIC/common/tinyalu/single_cycle.sv
+1696515437 /home/student/akurnik/VDIC/common/tinyalu/three_cycle.sv
+1728048935 /home/student/akurnik/VDIC/common/tinyalu/tinyalu.sv
+1729592893 /home/student/akurnik/VDIC/lab03example/tb/tinyalu_tb_pkg.svh
+1729592847 /home/student/akurnik/VDIC/lab03example/tb/tinyalu_bfm.sv
+1729592767 /home/student/akurnik/VDIC/lab03example/tb/tpgen.sv
+1729592803 /home/student/akurnik/VDIC/lab03example/tb/coverage.sv
+1729592825 /home/student/akurnik/VDIC/lab03example/tb/scoreboard.sv
+1697728416 /home/student/akurnik/VDIC/lab03example/tb/top.sv

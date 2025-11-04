@@ -566,9 +566,9 @@ module tpgen(simple_uart_switch_bfm bfm);
       end
     endcase
 
-    //frame.reset = reset_val;
-    //frame.prog_mode = prog_mode;
-    //frame.input_message = buffer;
+    bfm.frame.reset = reset_val;
+    bfm.frame.prog_mode = prog_mode;
+    bfm.frame.input_message = buffer;
 
     array_size = frame_data.size();
     frame_data = new[array_size + 1](frame_data);
@@ -609,7 +609,7 @@ module tpgen(simple_uart_switch_bfm bfm);
   initial begin : tpgen
     bfm.reset_sw();
 
-      repeat(1000) begin:tpgen_main_blk
+      repeat(100000) begin:tpgen_main_blk
         @(negedge bfm.clk);
 
         bfm.test = bfm.get_test();

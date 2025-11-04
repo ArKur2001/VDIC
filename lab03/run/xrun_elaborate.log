@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 03, 2025 at 21:21:29 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 04, 2025 at 18:43:41 CET
 xrun
 	-elaborate
 	-l xrun_elaborate.log
@@ -34,41 +34,45 @@ xmelab: *W,COVSOR: xrun_covfile.txt:5: The command 'set_expr_scoring -struct' is
 
 	Extracting FSMs for coverage:
 		worklib.tpgen
+		worklib.coverage
 		worklib.scoreboard
 		worklib.top
 	Total FSMs extracted = 0
-	Building instance overlay tables: .............
+	Building instance overlay tables: ...........
 xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions containing struct datatypes. For backward compatibility, use " set_backward_compat -no_struct " coverage configuration file command..
-....... Done
+......... Done
 	Enabling instrumentation for coverage types: block expression FSM toggle functional
 	Generating native compiled code:
 		worklib.simple_switch_uart:svp <0x6d6c10c4>
 			streams:  13, words: 15555
-		worklib.scoreboard:sv <0x47c6a680>
-			streams:  23, words: 36881
-		worklib.tpgen:sv <0x28cdb9ff>
-			streams:  12, words: 107635
-		worklib.top:sv <0x2f2d4605>
+		worklib.scoreboard:sv <0x43e77c02>
+			streams:  23, words: 36884
+		worklib.coverage:sv <0x4f3413d2>
+			streams:   5, words:  7312
+		worklib.tpgen:sv <0x6a2bedee>
+			streams:  12, words: 108360
+		worklib.top:sv <0x37ae43bf>
 			streams:   6, words:  1467
-		worklib.simple_uart_switch_bfm:sv <0x258afddc>
-			streams:   3, words:  5312
+		worklib.simple_uart_switch_bfm:sv <0x28bd9ab5>
+			streams:   3, words:  5336
 		worklib.simple_uart_switch_tb_pkg:svh <0x4c84ab33>
 			streams:   4, words:   385
 	Building instance specific data structures.
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
-		               Instances  Unique
-		Modules:               4       4
-		Interfaces:            1       1
-		Verilog packages:      1       1
-		Registers:           158     159
-		Scalar wires:         10       -
-		Always blocks:         3       3
-		Initial blocks:       19      19
-		Final blocks:          1       1
-		Parallel blocks:       1       1
-		Cont. assignments:     1       2
-		Pseudo assignments:    6       -
+		                 Instances  Unique
+		Modules:                 5       5
+		Interfaces:              1       1
+		Verilog packages:        1       1
+		Registers:             160     161
+		Scalar wires:           10       -
+		Always blocks:           3       3
+		Initial blocks:         20      20
+		Final blocks:            1       1
+		Parallel blocks:         1       1
+		Cont. assignments:       1       2
+		Pseudo assignments:      6       -
+		Covergroup Instances:    0       2
 	Writing initial simulation snapshot: worklib.top:sv
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 03, 2025 at 21:21:30 CET  (total: 00:00:01)
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 04, 2025 at 18:43:42 CET  (total: 00:00:01)

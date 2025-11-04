@@ -1,0 +1,11 @@
+imc: *I,imc.tool.cov.version.diff: "There is a difference between the IMC tool version 24.03 and the coverage version 24.09-s005"
+imc: *I,RUNLD: Successfully loaded run /home/student/akurnik/VDIC/lab03/run/cov_work/scope/merged_results.
+imc: *W,REPDEP: This is a legacy report and no future enhancement is planned for this report. It is recommended that you use the 'report_metrics' command and generate a dynamic report.
+name                                     Overall Average      Overall Covered      Code Average         Code Covered         Fsm Average          Fsm Covered          Functional Average   Functional Covered   
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+top                                      n/a                  n/a                  n/a                  n/a                  n/a                  n/a                  n/a                  n/a                  
+|--bfm                                   97.73%               97.96% (48/49)       97.73%               97.96% (48/49)       n/a                  n/a                  n/a                  n/a                  
+|--tpgen_i                               74.64%               75.37% (306/406/12)  74.64%               75.37% (306/406/12)  n/a                  n/a                  n/a                  n/a                  
+|--coverage_i                            91.01%               62.69% (1307/2085)   88.33%               92.59% (25/27)       n/a                  n/a                  93.68%               62.29% (1282/2058)   
+|--scoreboard_i                          80.30%               81.48% (110/135)     80.30%               81.48% (110/135)     n/a                  n/a                  n/a                  n/a                  
+|--DUT                                   100.00%              100.00% (6/6)        100.00%              100.00% (6/6)        n/a                  n/a                  n/a                  n/a                  

@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 03, 2025 at 21:21:30 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 04, 2025 at 18:43:42 CET
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -23,6 +23,7 @@ xrun
 	-coverage all
 	-covoverwrite
 	-covfile xrun_covfile.txt
+	-covtest lab03example
 	+UVM_TESTNAME=lab03example
 	-l xrun_test_lab03example.log
 Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d
@@ -35,41 +36,43 @@ xmelab: *W,COVSOR: xrun_covfile.txt:5: The command 'set_expr_scoring -struct' is
 
 	Extracting FSMs for coverage:
 		worklib.tpgen
+		worklib.coverage
 		worklib.scoreboard
 		worklib.top
 	Total FSMs extracted = 0
-	Building instance overlay tables: .............
+	Building instance overlay tables: ...........
 xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions containing struct datatypes. For backward compatibility, use " set_backward_compat -no_struct " coverage configuration file command..
-....... Done
+......... Done
 	Enabling instrumentation for coverage types: block expression FSM toggle functional
 	Building instance specific data structures.
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
-		               Instances  Unique
-		Modules:               4       4
-		Interfaces:            1       1
-		Verilog packages:      1       1
-		Registers:           158     159
-		Scalar wires:         10       -
-		Always blocks:         3       3
-		Initial blocks:       19      19
-		Final blocks:          1       1
-		Parallel blocks:       1       1
-		Cont. assignments:     1       2
-		Pseudo assignments:    6       -
+		                 Instances  Unique
+		Modules:                 5       5
+		Interfaces:              1       1
+		Verilog packages:        1       1
+		Registers:             160     161
+		Scalar wires:           10       -
+		Always blocks:           3       3
+		Initial blocks:         20      20
+		Final blocks:            1       1
+		Parallel blocks:         1       1
+		Cont. assignments:       1       2
+		Pseudo assignments:      6       -
+		Covergroup Instances:    0       2
 	Writing initial simulation snapshot: worklib.top:sv
 Loading snapshot worklib.top:sv .................... Done
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/xcelium/files/xmsimrc
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv/files/tcl/uvm_sim.tcl
 xcelium> run
-TEST_PROPER_FRAME: 242 passed, 0 errors.
+TEST_PROPER_FRAME: 2449 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_BIT: 141 passed, 113 errors.
+TEST_WRONG_START_BIT: 1324 passed, 1192 errors.
 
 UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
 
@@ -77,19 +80,19 @@ UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works 
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_WRONG_PARITY_BIT: 146 passed, 0 errors.
+TEST_WRONG_PARITY_BIT: 1292 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_STOP_BIT: 116 passed, 0 errors.
+TEST_WRONG_STOP_BIT: 1216 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_PARITY_STOP_BIT: 106 passed, 19 errors.
+TEST_WRONG_START_PARITY_STOP_BIT: 1059 passed, 199 errors.
 
 UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
 
@@ -97,24 +100,24 @@ UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works 
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_RESET: 116 passed, 0 errors.
+TEST_RESET: 1268 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-Simulation complete via $finish(1) at time 3733057540 NS + 0
+Simulation complete via $finish(1) at time 37330345060 NS + 0
 ../tb/tpgen.sv:648         $finish;
 xcelium> exit
-See ./cov_work/scope/test/icc.com file for message(s) on coverage constant object marking
+See ./cov_work/scope/lab03example/icc.com file for message(s) on coverage constant object marking
 
 coverage setup:
   workdir  :  ./cov_work
   dutinst  :  top(top)
   scope    :  scope
-  testname :  test
+  testname :  lab03example
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_242e8948_00000000.ucm
-  data               :  ./cov_work/scope/test/icc_242e8948_00000000.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 03, 2025 at 21:22:00 CET  (total: 00:00:30)
+  model(design data) :  ./cov_work/scope/icc_5550ca33_4af798e2.ucm
+  data               :  ./cov_work/scope/lab03example/icc_5550ca33_4af798e2.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 04, 2025 at 18:49:49 CET  (total: 00:06:07)

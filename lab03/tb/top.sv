@@ -3,7 +3,7 @@ module top;
 
   simple_uart_switch_bfm bfm();
   tpgen tpgen_i (bfm);
-  //coverage coverage_i (bfm);
+  coverage coverage_i (bfm);
   scoreboard scoreboard_i(bfm);
 
   simple_switch_uart DUT (

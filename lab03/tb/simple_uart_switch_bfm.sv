@@ -13,6 +13,7 @@ interface simple_uart_switch_bfm;
 
   test_t test;
   test_end_t test_end;
+  frame_data_t frame;
 
   initial begin : clk_gen_blk
     clk = 0;

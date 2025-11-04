@@ -16,16 +16,28 @@ module coverage(simple_uart_switch_bfm bfm);
 
     option.name = "cg_input_frames_cov";
 
-    coverpoint bfm.frame.input_message {
-        bins A1_all_input_frame_sequences[] = {[11'b0 : 11'b11111111111]};
+    coverpoint bfm.frame.input_message[9:2] {
+        bins A1_all_input_frame_data_sequences[] = {[8'b0 : 8'b11111111]};
     }
 
+    coverpoint bfm.frame.input_message[10] {
+      bins A2_all_input_frame_start_bit_sequences[] = {[0 : 1]};
+    } 
+
+    coverpoint bfm.frame.input_message[1] {
+      bins A3_all_input_frame_parity_bit_sequences[] = {[0 : 1]};
+    } 
+
+    coverpoint bfm.frame.input_message[0] {
+      bins A4_all_input_frame_stop_bit_sequences[] = {[0 : 1]};
+    } 
+
     coverpoint bfm.frame.reset {
-        bins A2_all_reset_sequences[] = {[0 : 1]};
+        bins A5_all_reset_sequences[] = {[0 : 1]};
     }
 
     coverpoint bfm.frame.prog_mode {
-        bins A3_all_prog_mode_sequences[] = {[0 : 1]};
+        bins A6_all_prog_mode_sequences[] = {[0 : 1]};
     }
   endgroup
 
@@ -45,7 +57,7 @@ module coverage(simple_uart_switch_bfm bfm);
 
               if($get_coverage() == 100) break; 
           end
-          
+
           frame_prev = bfm.frame;    
       end
   end : coverage

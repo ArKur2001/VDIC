@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 04, 2025 at 18:43:42 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 04, 2025 at 19:39:39 CET
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -66,13 +66,13 @@ Loading snapshot worklib.top:sv .................... Done
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/xcelium/files/xmsimrc
 xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.1d/additions/sv/files/tcl/uvm_sim.tcl
 xcelium> run
-TEST_PROPER_FRAME: 2449 passed, 0 errors.
+TEST_PROPER_FRAME: 242 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_BIT: 1324 passed, 1192 errors.
+TEST_WRONG_START_BIT: 141 passed, 113 errors.
 
 UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
 
@@ -80,19 +80,19 @@ UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works 
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_WRONG_PARITY_BIT: 1292 passed, 0 errors.
+TEST_WRONG_PARITY_BIT: 146 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_STOP_BIT: 1216 passed, 0 errors.
+TEST_WRONG_STOP_BIT: 116 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_PARITY_STOP_BIT: 1059 passed, 199 errors.
+TEST_WRONG_START_PARITY_STOP_BIT: 106 passed, 19 errors.
 
 UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
 
@@ -100,14 +100,14 @@ UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works 
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_RESET: 1268 passed, 0 errors.
+TEST_RESET: 116 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-Simulation complete via $finish(1) at time 37330345060 NS + 0
-../tb/tpgen.sv:648         $finish;
+Simulation complete via $finish(1) at time 3733057540 NS + 0
+../tb/tpgen.sv:647         $finish;
 xcelium> exit
 See ./cov_work/scope/lab03example/icc.com file for message(s) on coverage constant object marking
 
@@ -118,6 +118,6 @@ coverage setup:
   testname :  lab03example
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_5550ca33_4af798e2.ucm
-  data               :  ./cov_work/scope/lab03example/icc_5550ca33_4af798e2.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 04, 2025 at 18:49:49 CET  (total: 00:06:07)
+  model(design data) :  ./cov_work/scope/icc_5550ca33_0782d8fa.ucm
+  data               :  ./cov_work/scope/lab03example/icc_5550ca33_0782d8fa.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 04, 2025 at 19:40:11 CET  (total: 00:00:32)

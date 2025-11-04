@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 04, 2025 at 18:43:41 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 04, 2025 at 19:39:38 CET
 xrun
 	-elaborate
 	-l xrun_elaborate.log
@@ -47,10 +47,10 @@ xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions con
 			streams:  13, words: 15555
 		worklib.scoreboard:sv <0x43e77c02>
 			streams:  23, words: 36884
-		worklib.coverage:sv <0x4f3413d2>
-			streams:   5, words:  7312
-		worklib.tpgen:sv <0x6a2bedee>
-			streams:  12, words: 108360
+		worklib.coverage:sv <0x4151c842>
+			streams:   5, words:  8200
+		worklib.tpgen:sv <0x040b0530>
+			streams:  12, words: 108653
 		worklib.top:sv <0x37ae43bf>
 			streams:   6, words:  1467
 		worklib.simple_uart_switch_bfm:sv <0x28bd9ab5>
@@ -75,4 +75,4 @@ xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions con
 		Pseudo assignments:      6       -
 		Covergroup Instances:    0       2
 	Writing initial simulation snapshot: worklib.top:sv
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 04, 2025 at 18:43:42 CET  (total: 00:00:01)
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 04, 2025 at 19:39:39 CET  (total: 00:00:01)

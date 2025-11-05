@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 04, 2025 at 19:39:39 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 05, 2025 at 19:57:52 CET
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -40,9 +40,9 @@ xmelab: *W,COVSOR: xrun_covfile.txt:5: The command 'set_expr_scoring -struct' is
 		worklib.scoreboard
 		worklib.top
 	Total FSMs extracted = 0
-	Building instance overlay tables: ...........
+	Building instance overlay tables: .....
 xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions containing struct datatypes. For backward compatibility, use " set_backward_compat -no_struct " coverage configuration file command..
-......... Done
+............... Done
 	Enabling instrumentation for coverage types: block expression FSM toggle functional
 	Building instance specific data structures.
 	Performing constant object marking (COM) analysis.
@@ -52,12 +52,11 @@ xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions con
 		Modules:                 5       5
 		Interfaces:              1       1
 		Verilog packages:        1       1
-		Registers:             160     161
+		Registers:             106     106
 		Scalar wires:           10       -
-		Always blocks:           3       3
-		Initial blocks:         20      20
+		Always blocks:           4       4
+		Initial blocks:         21      21
 		Final blocks:            1       1
-		Parallel blocks:         1       1
 		Cont. assignments:       1       2
 		Pseudo assignments:      6       -
 		Covergroup Instances:    0       2
@@ -106,8 +105,8 @@ TEST_RESET: 116 passed, 0 errors.
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-Simulation complete via $finish(1) at time 3733057540 NS + 0
-../tb/tpgen.sv:647         $finish;
+Simulation complete via $finish(1) at time 3746973300 NS + 0
+../tb/tpgen.sv:267       $finish;
 xcelium> exit
 See ./cov_work/scope/lab03example/icc.com file for message(s) on coverage constant object marking
 
@@ -118,6 +117,6 @@ coverage setup:
   testname :  lab03example
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_5550ca33_0782d8fa.ucm
-  data               :  ./cov_work/scope/lab03example/icc_5550ca33_0782d8fa.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 04, 2025 at 19:40:11 CET  (total: 00:00:32)
+  model(design data) :  ./cov_work/scope/icc_0d8fd925_0782d8fa.ucm
+  data               :  ./cov_work/scope/lab03example/icc_0d8fd925_0782d8fa.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 05, 2025 at 19:58:24 CET  (total: 00:00:32)

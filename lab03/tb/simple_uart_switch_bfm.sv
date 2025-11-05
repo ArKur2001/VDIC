@@ -28,7 +28,7 @@ interface simple_uart_switch_bfm;
     rst_n = 1;
   endtask
 
-   function test_t get_test();
+  function test_t get_test();
     bit [2:0] op_choice;
     op_choice = 3'($random);
     case (op_choice)
@@ -42,5 +42,36 @@ interface simple_uart_switch_bfm;
         3'b111 : return WRONG_START_BIT;
     endcase // case (op_choice)
   endfunction : get_test
+
+  task transmit_data(frame_data_t frame_data []);
+
+    foreach(frame_data[i]) begin
+
+      frame = frame_data[i];
+      
+      for (int j = 10; j >= 0 ; j--) begin
+        if(frame_data[i].reset == 1)begin
+          prog = frame_data[i].prog_mode;
+          sin = frame_data[i].input_message[j];
+          rst_n = '0;
+          @(negedge clk);
+          rst_n = '1;
+          repeat(CLKS_PER_BIT-1)@(negedge clk);
+          @(negedge clk);
+          rst_n = '0;
+          @(negedge clk);
+          rst_n = '1;
+        end
+        else begin
+          prog = frame_data[i].prog_mode;
+          sin = frame_data[i].input_message[j];
+          repeat(CLKS_PER_BIT)@(negedge clk);
+        end
+      end
+    end
+
+    repeat(4 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge clk);
+
+  endtask
 
 endinterface

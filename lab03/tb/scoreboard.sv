@@ -36,53 +36,10 @@ module scoreboard(simple_uart_switch_bfm bfm);
   int reset_ok = 0;
   int reset_err = 0;
 
-  task reset_arrays();
+  function void reset_arrays();
     sout0_frames.delete;
     sout1_frames.delete;
-  endtask
-
-  task automatic monitor_sout0();
-    logic[10:0] buffer = '0;
-    int array_size;
-  
-    forever begin
-      @(negedge bfm.clk);
-  
-      if(bfm.sout0 == 0)begin
-        repeat(CLKS_PER_BIT/2)@(negedge bfm.clk);
-        for(int i = 0 ; i <= 9 ; i++) begin
-          buffer[i] = bfm.sout0;
-          repeat(CLKS_PER_BIT)@(negedge bfm.clk);
-        end 
-  
-        array_size = sout0_frames.size();
-        sout0_frames = new[array_size + 1](sout0_frames);
-        sout0_frames[array_size] = buffer[8:1];
-      end
-    end
-  endtask
-  
-  task automatic monitor_sout1();
-    logic[10:0] buffer = '0;
-    int array_size;
-    int frame_index = 0;
-  
-    forever begin
-      @(negedge bfm.clk);
-  
-      if(bfm.sout1 == 0)begin
-        repeat(CLKS_PER_BIT/2)@(negedge bfm.clk);
-        for(int i = 0 ; i <= 9 ; i++) begin
-          buffer[i] = bfm.sout1;
-          repeat(CLKS_PER_BIT)@(negedge bfm.clk);
-        end 
-  
-        array_size = sout1_frames.size();
-        sout1_frames = new[array_size + 1](sout1_frames);
-        sout1_frames[array_size] = buffer[8:1];
-      end
-    end
-  endtask
+  endfunction
 
   function void print_scoreboard();
     $display("TEST_PROPER_FRAME: %0d passed, %0d errors.\n", proper_frame_ok, proper_frame_err);
@@ -232,7 +189,7 @@ module scoreboard(simple_uart_switch_bfm bfm);
     $write(ctl);
   endfunction
   
-    function void print_test_result (test_result_t r);
+  function void print_test_result (test_result_t r);
       if(r == TEST_PASSED) begin
           set_print_color(COLOR_BOLD_BLACK_ON_GREEN);
           $write ("-----------------------------------\n");
@@ -251,25 +208,60 @@ module scoreboard(simple_uart_switch_bfm bfm);
       end
   endfunction
 
-  initial begin : scoreboard
+  always @(posedge bfm.clk) begin : scoreboard
     
-    fork
-      monitor_sout0();
-      monitor_sout1();
-    join_none
-
-    reset_arrays();
-
-    forever begin
-      @(posedge bfm.clk);
-
       if(bfm.test_end == TEST_END) begin
         get_test_result();
         reset_arrays();
       end
-    end 
-        
+      
   end : scoreboard
+
+  initial begin : monitor_sout0
+    
+    logic[10:0] buffer;
+    int array_size;
+  
+    forever begin
+      @(negedge bfm.clk);
+  
+      if(bfm.sout0 == 0)begin
+        repeat(CLKS_PER_BIT/2)@(negedge bfm.clk);
+        for(int i = 0 ; i <= 9 ; i++) begin
+          buffer[i] = bfm.sout0;
+          repeat(CLKS_PER_BIT)@(negedge bfm.clk);
+        end 
+  
+        array_size = sout0_frames.size();
+        sout0_frames = new[array_size + 1](sout0_frames);
+        sout0_frames[array_size] = buffer[8:1];
+      end
+    end
+        
+  end : monitor_sout0
+
+  initial begin : monitor_sout1
+    
+    logic[10:0] buffer;
+    int array_size;
+  
+    forever begin
+      @(negedge bfm.clk);
+  
+      if(bfm.sout1 == 0)begin
+        repeat(CLKS_PER_BIT/2)@(negedge bfm.clk);
+        for(int i = 0 ; i <= 9 ; i++) begin
+          buffer[i] = bfm.sout1;
+          repeat(CLKS_PER_BIT)@(negedge bfm.clk);
+        end 
+  
+        array_size = sout1_frames.size();
+        sout1_frames = new[array_size + 1](sout1_frames);
+        sout1_frames[array_size] = buffer[8:1];
+      end
+    end
+        
+  end : monitor_sout1
 
   final begin : finish_of_the_test
     print_scoreboard();

@@ -32,12 +32,12 @@ module tpgen(simple_uart_switch_bfm bfm);
     return $random & 'hFF;
   endfunction : get_random
 
-  task reset_arrays();
+  function void reset_arrays();
     bfm.exp_sout0_frames.delete;
     bfm.exp_sout1_frames.delete;
-  endtask
+  endfunction
 
-  task reset_routing_array();
+  function void reset_routing_array();
     frame_status_t ret0;
     frame_status_t ret1;
 
@@ -46,464 +46,7 @@ module tpgen(simple_uart_switch_bfm bfm);
       ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
     end
 
-    transmit_data();
-  
-    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge bfm.clk);
-  endtask
-
-  task proper_frame_test();
-    int array_size;
-    bit addr_arr [0:'hFF];
-    byte addr_val_arr [0:'hFF];
-    byte addr;
-    byte data;
-    int index;
-    frame_status_t ret0;
-    frame_status_t ret1;
-
-    reset_arrays();
-    bfm.reset_sw();
-    reset_routing_array();
-    bfm.reset_sw();
-  
-    for(int i = 0 ; i <= 'hFF ; i++) begin
-      addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = i & 'hFF;
-    end
-  
-    for(int j = 0 ; j <= 'hFF ; j++) begin
-      if(addr_arr[j] == 0) begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-      else begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-    end
-  
-    for(int k = 0 ; k <= 'h0F ; k++) begin
-      addr = get_random();
-  
-      index = -1;
-      for(int l = 'hFF ; l >= 0 ; l--) begin
-        if(addr_val_arr[l] == addr)begin
-          index = l;
-          break;
-        end
-      end
-      
-      data = get_random();
-      ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-  
-      if (ret0 == OK && ret1 == OK) begin
-        if (index >= 0) begin
-          if (addr_arr[index] == 0) begin
-            array_size = bfm.exp_sout0_frames.size();
-            bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-            bfm.exp_sout0_frames[array_size] = addr;
-            bfm.exp_sout0_frames[array_size + 1] = data;
-          end
-          else begin
-            array_size = bfm.exp_sout1_frames.size();
-            bfm.exp_sout1_frames = new[array_size + 2](bfm.exp_sout1_frames);
-            bfm.exp_sout1_frames[array_size] = addr;
-            bfm.exp_sout1_frames[array_size + 1] = data;
-          end
-        end
-        else begin
-          array_size = bfm.exp_sout0_frames.size();
-          bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-          bfm.exp_sout0_frames[array_size] = addr;
-          bfm.exp_sout0_frames[array_size + 1] = data;
-        end
-      end
-    end
-  
-    transmit_data();
-  
-    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge bfm.clk);
-  endtask
-  
-  task wrong_start_bit_test();
-    int array_size;
-    bit addr_arr [0:'hFF];
-    byte addr_val_arr [0:'hFF];
-    byte addr;
-    byte data;
-    int index;
-    frame_status_t ret0;
-    frame_status_t ret1;
-
-    reset_arrays();
-    bfm.reset_sw();
-    reset_routing_array();
-    bfm.reset_sw();
-  
-    for(int i = 0 ; i <= 'hFF ; i++) begin
-      addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = i & 'hFF;
-    end
-  
-    for(int j = 0 ; j <= 'hFF ; j++) begin
-      if(addr_arr[j] == 0) begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-      else begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-    end
-  
-    for(int k = 0 ; k <= 'h0F ; k++) begin
-      addr = get_random();
-  
-      index = -1;
-      for(int l = 'hFF ; l >= 0 ; l--) begin
-        if(addr_val_arr[l] == addr)begin
-          index = l;
-          break;
-        end
-      end
-      
-      data = get_random();
-      ret0 = build_uart_msg (0, addr, START_B_ERR, PARITY_B_OK, STOP_B_OK, NO_RST);
-      ret1 = build_uart_msg (0, data, START_B_ERR, PARITY_B_OK, STOP_B_OK, NO_RST);
-  
-      if (ret0 == OK && ret1 == OK) begin
-        if (index >= 0) begin
-          if (addr_arr[index] == 0) begin
-            array_size = bfm.exp_sout0_frames.size();
-            bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-            bfm.exp_sout0_frames[array_size] = addr;
-            bfm.exp_sout0_frames[array_size + 1] = data;
-          end
-          else begin
-            array_size = bfm.exp_sout1_frames.size();
-            bfm.exp_sout1_frames = new[array_size + 2](bfm.exp_sout1_frames);
-            bfm.exp_sout1_frames[array_size] = addr;
-            bfm.exp_sout1_frames[array_size + 1] = data;
-          end
-        end
-        else begin
-          array_size = bfm.exp_sout0_frames.size();
-          bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-          bfm.exp_sout0_frames[array_size] = addr;
-          bfm.exp_sout0_frames[array_size + 1] = data;
-        end
-      end
-    end
-  
-    transmit_data();
-  
-    repeat(4 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge bfm.clk);
-  endtask
-  
-  task wrong_parity_bit_test();
-    int array_size;
-    bit addr_arr [0:'hFF];
-    byte addr_val_arr [0:'hFF];
-    byte addr;
-    byte data;
-    int index;
-    frame_status_t ret0;
-    frame_status_t ret1;
-
-    reset_arrays();
-    bfm.reset_sw();
-    reset_routing_array();
-    bfm.reset_sw();
-  
-    for(int i = 0 ; i <= 'hFF ; i++) begin
-      addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = i & 'hFF;
-    end
-  
-    for(int j = 0 ; j <= 'hFF ; j++) begin
-      if(addr_arr[j] == 0) begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-      else begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-    end
-  
-    for(int k = 0 ; k <= 'h0F ; k++) begin
-      addr = get_random();
-  
-      index = -1;
-      for(int l = 'hFF ; l >= 0 ; l--) begin
-        if(addr_val_arr[l] == addr)begin
-          index = l;
-          break;
-        end
-      end
-      
-      data = get_random();
-      ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_ERR, STOP_B_OK, NO_RST);
-      ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_ERR, STOP_B_OK, NO_RST);
-  
-      if (ret0 == OK && ret1 == OK) begin
-        if (index >= 0) begin
-          if (addr_arr[index] == 0) begin
-            array_size = bfm.exp_sout0_frames.size();
-            bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-            bfm.exp_sout0_frames[array_size] = addr;
-            bfm.exp_sout0_frames[array_size + 1] = data;
-          end
-          else begin
-            array_size = bfm.exp_sout1_frames.size();
-            bfm.exp_sout1_frames = new[array_size + 2](bfm.exp_sout1_frames);
-            bfm.exp_sout1_frames[array_size] = addr;
-            bfm.exp_sout1_frames[array_size + 1] = data;
-          end
-        end
-        else begin
-          array_size = bfm.exp_sout0_frames.size();
-          bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-          bfm.exp_sout0_frames[array_size] = addr;
-          bfm.exp_sout0_frames[array_size + 1] = data;
-        end
-      end
-    end
-  
-    transmit_data();
-  
-    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge bfm.clk);
-  endtask
-  
-  task wrong_stop_bit_test();
-    int array_size;
-    bit addr_arr [0:'hFF];
-    byte addr_val_arr [0:'hFF];
-    byte addr;
-    byte data;
-    int index;
-    frame_status_t ret0;
-    frame_status_t ret1;
-
-    reset_arrays();
-    bfm.reset_sw();
-    reset_routing_array();
-    bfm.reset_sw();
-  
-    for(int i = 0 ; i <= 'hFF ; i++) begin
-      addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = i & 'hFF;
-    end
-  
-    for(int j = 0 ; j <= 'hFF ; j++) begin
-      if(addr_arr[j] == 0) begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-      else begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-    end
-  
-    for(int k = 0 ; k <= 'h0F ; k++) begin
-      addr = get_random();
-  
-      index = -1;
-      for(int l = 'hFF ; l >= 0 ; l--) begin
-        if(addr_val_arr[l] == addr)begin
-          index = l;
-          break;
-        end
-      end
-      
-      data = get_random();
-      ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_OK, STOP_B_ERR, NO_RST);
-      ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_OK, STOP_B_ERR, NO_RST);
-  
-      if (ret0 == OK && ret1 == OK) begin
-        if (index >= 0) begin
-          if (addr_arr[index] == 0) begin
-            array_size = bfm.exp_sout0_frames.size();
-            bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-            bfm.exp_sout0_frames[array_size] = addr;
-            bfm.exp_sout0_frames[array_size + 1] = data;
-          end
-          else begin
-            array_size = bfm.exp_sout1_frames.size();
-            bfm.exp_sout1_frames = new[array_size + 2](bfm.exp_sout1_frames);
-            bfm.exp_sout1_frames[array_size] = addr;
-            bfm.exp_sout1_frames[array_size + 1] = data;
-          end
-        end
-        else begin
-          array_size = bfm.exp_sout0_frames.size();
-          bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-          bfm.exp_sout0_frames[array_size] = addr;
-          bfm.exp_sout0_frames[array_size + 1] = data;
-        end
-      end
-    end
-  
-    transmit_data();
-  
-    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge bfm.clk);
-  endtask
-  
-  task wrong_start_parity_stop_bit_test();
-    int array_size;
-    bit addr_arr [0:'hFF];
-    byte addr_val_arr [0:'hFF];
-    byte addr;
-    byte data;
-    int index;
-    frame_status_t ret0;
-    frame_status_t ret1;
-
-    reset_arrays();
-    bfm.reset_sw();
-    reset_routing_array();
-    bfm.reset_sw();
-  
-    for(int i = 0 ; i <= 'hFF ; i++) begin
-      addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = i & 'hFF;
-    end
-  
-    for(int j = 0 ; j <= 'hFF ; j++) begin
-      if(addr_arr[j] == 0) begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-      else begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-    end
-  
-    for(int k = 0 ; k <= 'h0F ; k++) begin
-      addr = get_random();
-  
-      index = -1;
-      for(int l = 'hFF ; l >= 0 ; l--) begin
-        if(addr_val_arr[l] == addr)begin
-          index = l;
-          break;
-        end
-      end
-      
-      data = get_random();
-      ret0 = build_uart_msg (0, addr, START_B_ERR, PARITY_B_ERR, STOP_B_ERR, NO_RST);
-      ret1 = build_uart_msg (0, data, START_B_ERR, PARITY_B_ERR, STOP_B_ERR, NO_RST);
-  
-      if (ret0 == OK && ret1 == OK) begin
-        if (index >= 0) begin
-          if (addr_arr[index] == 0) begin
-            array_size = bfm.exp_sout0_frames.size();
-            bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-            bfm.exp_sout0_frames[array_size] = addr;
-            bfm.exp_sout0_frames[array_size + 1] = data;
-          end
-          else begin
-            array_size = bfm.exp_sout1_frames.size();
-            bfm.exp_sout1_frames = new[array_size + 2](bfm.exp_sout1_frames);
-            bfm.exp_sout1_frames[array_size] = addr;
-            bfm.exp_sout1_frames[array_size + 1] = data;
-          end
-        end
-        else begin
-          array_size = bfm.exp_sout0_frames.size();
-          bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-          bfm.exp_sout0_frames[array_size] = addr;
-          bfm.exp_sout0_frames[array_size + 1] = data;
-        end
-      end
-    end
-  
-    transmit_data();
-  
-    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge bfm.clk);
-  endtask
-  
-  task reset_test();
-    int array_size;
-    bit addr_arr [0:'hFF];
-    byte addr_val_arr [0:'hFF];
-    byte addr;
-    byte data;
-    int index;
-    frame_status_t ret0;
-    frame_status_t ret1;
-
-    reset_arrays();
-    bfm.reset_sw();
-    reset_routing_array();
-    bfm.reset_sw();
-  
-    for(int i = 0 ; i <= 'hFF ; i++) begin
-      addr_arr[i] = get_random() & 'b1;
-      addr_val_arr[i] = i & 'hFF;
-    end
-  
-    for(int j = 0 ; j <= 'hFF ; j++) begin
-      if(addr_arr[j] == 0) begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-      else begin
-        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-      end
-    end
-  
-    for(int k = 0 ; k <= 'h0F ; k++) begin
-      addr = get_random();
-  
-      index = -1;
-      for(int l = 'hFF ; l >= 0 ; l--) begin
-        if(addr_val_arr[l] == addr)begin
-          index = l;
-          break;
-        end
-      end
-      
-      data = get_random();
-      ret0 = build_uart_msg (0, addr, START_B_OK, PARITY_B_OK, STOP_B_OK, RST);
-      ret1 = build_uart_msg (0, data, START_B_OK, PARITY_B_OK, STOP_B_OK, RST);
-  
-      if (ret0 == OK && ret1 == OK) begin
-        if (index >= 0) begin
-          if (addr_arr[index] == 0) begin
-            array_size = bfm.exp_sout0_frames.size();
-            bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-            bfm.exp_sout0_frames[array_size] = addr;
-            bfm.exp_sout0_frames[array_size + 1] = data;
-          end
-          else begin
-            array_size = bfm.exp_sout1_frames.size();
-            bfm.exp_sout1_frames = new[array_size + 2](bfm.exp_sout1_frames);
-            bfm.exp_sout1_frames[array_size] = addr;
-            bfm.exp_sout1_frames[array_size + 1] = data;
-          end
-        end
-        else begin
-          array_size = bfm.exp_sout0_frames.size();
-          bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
-          bfm.exp_sout0_frames[array_size] = addr;
-          bfm.exp_sout0_frames[array_size + 1] = data;
-        end
-      end
-    end
-  
-    transmit_data();
-
-    bfm.rst_n = '0;
-    @(negedge bfm.clk);
-    bfm.rst_n = '1;
-  
-    repeat(2 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge bfm.clk);
-  endtask
+  endfunction
 
   function frame_status_t build_uart_msg (input logic prog_mode, input byte data, start_bit_set_t start_set, parity_bit_set_t parity_set, stop_bit_set_t stop_set, reset_set_t reset_set);
     logic [10:0] buffer;
@@ -580,30 +123,122 @@ module tpgen(simple_uart_switch_bfm bfm);
     end
   endfunction
   
-  task transmit_data();
-    foreach(frame_data[i]) begin
+  function void build_test_sequence(test_t test);
+    start_bit_set_t start_set; 
+    parity_bit_set_t parity_set; 
+    stop_bit_set_t stop_set; 
+    reset_set_t reset_set;
 
-      bfm.frame = frame_data[i];
+    int array_size;
+    bit addr_arr [0:'hFF];
+    byte addr_val_arr [0:'hFF];
+    byte addr;
+    byte data;
+    int index;
+    frame_status_t ret0;
+    frame_status_t ret1;
+
+    case(test)
+      PROPER_FRAME: begin
+        start_set = START_B_OK; 
+        parity_set = PARITY_B_OK; 
+        stop_set = STOP_B_OK; 
+        reset_set = NO_RST;
+      end
+      WRONG_START_BIT: begin
+        start_set = START_B_ERR;
+        parity_set = PARITY_B_OK; 
+        stop_set = STOP_B_OK; 
+        reset_set = NO_RST;
+      end
+      WRONG_PARITY_BIT: begin
+        start_set = START_B_OK; 
+        parity_set = PARITY_B_ERR; 
+        stop_set = STOP_B_OK; 
+        reset_set = NO_RST;
+      end
+      WRONG_STOP_BIT: begin
+        start_set = START_B_OK; 
+        parity_set = PARITY_B_OK; 
+        stop_set = STOP_B_ERR; 
+        reset_set = NO_RST;
+      end
+      WRONG_START_PARITY_STOP: begin
+        start_set = START_B_ERR; 
+        parity_set = PARITY_B_ERR; 
+        stop_set = STOP_B_ERR; 
+        reset_set = NO_RST;
+      end
+      RESET: begin
+        start_set = START_B_OK; 
+        parity_set = PARITY_B_OK; 
+        stop_set = STOP_B_OK; 
+        reset_set = RST;
+      end
+      default: begin
+        start_set = START_B_OK; 
+        parity_set = PARITY_B_OK; 
+        stop_set = STOP_B_OK; 
+        reset_set = NO_RST;
+      end
+    endcase
+
+    for(int i = 0 ; i <= 'hFF ; i++) begin
+      addr_arr[i] = get_random() & 'b1;
+      addr_val_arr[i] = i & 'hFF;
+    end
+  
+    for(int j = 0 ; j <= 'hFF ; j++) begin
+      if(addr_arr[j] == 0) begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+      else begin
+        ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+      end
+    end
+  
+    for(int k = 0 ; k <= 'h0F ; k++) begin
+      addr = get_random();
+  
+      index = -1;
+      for(int l = 'hFF ; l >= 0 ; l--) begin
+        if(addr_val_arr[l] == addr)begin
+          index = l;
+          break;
+        end
+      end
       
-      for (int j = 10; j >= 0 ; j--) begin
-        if(frame_data[i].reset == 1)begin
-          bfm.prog = frame_data[i].prog_mode;
-          bfm.sin = frame_data[i].input_message[j];
-          bfm.rst_n = '0;
-          @(negedge bfm.clk);
-          bfm.rst_n = '1;
-          repeat(CLKS_PER_BIT-1)@(negedge bfm.clk);
+      data = get_random();
+      ret0 = build_uart_msg (0, addr, start_set, parity_set, stop_set, reset_set);
+      ret1 = build_uart_msg (0, data, start_set, parity_set, stop_set, reset_set);
+  
+      if (ret0 == OK && ret1 == OK) begin
+        if (index >= 0) begin
+          if (addr_arr[index] == 0) begin
+            array_size = bfm.exp_sout0_frames.size();
+            bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
+            bfm.exp_sout0_frames[array_size] = addr;
+            bfm.exp_sout0_frames[array_size + 1] = data;
           end
+          else begin
+            array_size = bfm.exp_sout1_frames.size();
+            bfm.exp_sout1_frames = new[array_size + 2](bfm.exp_sout1_frames);
+            bfm.exp_sout1_frames[array_size] = addr;
+            bfm.exp_sout1_frames[array_size + 1] = data;
+          end
+        end
         else begin
-          bfm.prog = frame_data[i].prog_mode;
-          bfm.sin = frame_data[i].input_message[j];
-          repeat(CLKS_PER_BIT)@(negedge bfm.clk);
+          array_size = bfm.exp_sout0_frames.size();
+          bfm.exp_sout0_frames = new[array_size + 2](bfm.exp_sout0_frames);
+          bfm.exp_sout0_frames[array_size] = addr;
+          bfm.exp_sout0_frames[array_size + 1] = data;
         end
       end
     end
-    frame_data.delete;
-  endtask
 
+  endfunction
 
   initial begin : tpgen
     bfm.reset_sw();
@@ -614,37 +249,23 @@ module tpgen(simple_uart_switch_bfm bfm);
         bfm.test = bfm.get_test();
         bfm.test_end = TEST_IN_PROGRESS;
 
-          case(bfm.test)
-            PROPER_FRAME: begin
-              proper_frame_test();
-              bfm.test_end = TEST_END;
-            end
-            WRONG_START_BIT: begin
-              wrong_start_bit_test();
-              bfm.test_end = TEST_END;
-            end
-            WRONG_PARITY_BIT: begin
-              wrong_parity_bit_test();
-              bfm.test_end = TEST_END;
-            end
-            WRONG_STOP_BIT: begin
-              wrong_stop_bit_test();
-              bfm.test_end = TEST_END;
-            end
-            WRONG_START_PARITY_STOP: begin
-              wrong_start_parity_stop_bit_test();
-              bfm.test_end = TEST_END;
-            end
-            RESET: begin
-              reset_test();
-              bfm.test_end = TEST_END;
-            end
-            default: begin
-              bfm.test = PROPER_FRAME;
-            end
-          endcase
-        end : tpgen_main_blk
-        $finish;
+        reset_arrays();
+        bfm.reset_sw();
+        reset_routing_array();
+        bfm.transmit_data(frame_data);
+        frame_data.delete;
+        bfm.reset_sw();
+
+        build_test_sequence(bfm.test);
+
+        bfm.transmit_data(frame_data);
+        frame_data.delete;
+        bfm.test_end = TEST_END;
+
+      end : tpgen_main_blk
+
+      $finish;
+
   end : tpgen
 
 endmodule

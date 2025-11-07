@@ -240,13 +240,28 @@ module tpgen(simple_uart_switch_bfm bfm);
 
   endfunction
 
+  function test_t get_test();
+    bit [2:0] op_choice;
+    op_choice = 3'($random);
+    case (op_choice)
+        3'b000 : return PROPER_FRAME;
+        3'b001 : return WRONG_START_BIT;
+        3'b010 : return WRONG_PARITY_BIT;
+        3'b011 : return WRONG_STOP_BIT;
+        3'b100 : return WRONG_START_PARITY_STOP;
+        3'b101 : return RESET;
+        3'b110 : return PROPER_FRAME;
+        3'b111 : return WRONG_START_BIT;
+    endcase // case (op_choice)
+  endfunction : get_test
+
   initial begin : tpgen
     bfm.reset_sw();
 
       repeat(1000) begin:tpgen_main_blk
         @(negedge bfm.clk);
 
-        bfm.test = bfm.get_test();
+        bfm.test = get_test();
         bfm.test_end = TEST_IN_PROGRESS;
 
         reset_arrays();

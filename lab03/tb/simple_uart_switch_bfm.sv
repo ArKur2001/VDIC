@@ -28,21 +28,6 @@ interface simple_uart_switch_bfm;
     rst_n = 1;
   endtask
 
-  function test_t get_test();
-    bit [2:0] op_choice;
-    op_choice = 3'($random);
-    case (op_choice)
-        3'b000 : return PROPER_FRAME;
-        3'b001 : return WRONG_START_BIT;
-        3'b010 : return WRONG_PARITY_BIT;
-        3'b011 : return WRONG_STOP_BIT;
-        3'b100 : return WRONG_START_PARITY_STOP;
-        3'b101 : return RESET;
-        3'b110 : return PROPER_FRAME;
-        3'b111 : return WRONG_START_BIT;
-    endcase // case (op_choice)
-  endfunction : get_test
-
   task transmit_data(frame_data_t frame_data []);
 
     foreach(frame_data[i]) begin

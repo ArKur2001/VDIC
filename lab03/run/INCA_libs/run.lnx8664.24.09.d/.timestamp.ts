@@ -1,5 +1,5 @@
 1760080842 /home/student/akurnik/VDIC/common/simple_uart_switch.svp
-1762369065 /home/student/akurnik/VDIC/lab03/tb/tpgen.sv
+1762518562 /home/student/akurnik/VDIC/lab03/tb/tpgen.sv
 1762365423 /home/student/akurnik/VDIC/lab03/tb/simple_uart_switch_bfm.sv
 1762277587 /home/student/akurnik/VDIC/lab03/tb/top.sv
 1762199785 /home/student/akurnik/VDIC/lab03/tb/simple_uart_switch_tb_pkg.svh

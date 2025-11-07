@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 05, 2025 at 19:57:52 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 07, 2025 at 13:29:38 CET
 xrun
 	-elaborate
 	-l xrun_elaborate.log
@@ -45,15 +45,15 @@ xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions con
 	Generating native compiled code:
 		worklib.simple_switch_uart:svp <0x6d6c10c4>
 			streams:  13, words: 15555
-		worklib.scoreboard:sv <0x18850d40>
+		worklib.scoreboard:sv <0x4d49960b>
 			streams:  21, words: 34799
-		worklib.coverage:sv <0x42a40db9>
+		worklib.coverage:sv <0x749dd5b1>
 			streams:   5, words:  8200
-		worklib.tpgen:sv <0x53461b46>
-			streams:   6, words: 27866
-		worklib.top:sv <0x584df756>
+		worklib.tpgen:sv <0x36b70415>
+			streams:   7, words: 29367
+		worklib.top:sv <0x7dec6e87>
 			streams:   6, words:  1467
-		worklib.simple_uart_switch_bfm:sv <0x41e93e89>
+		worklib.simple_uart_switch_bfm:sv <0x468e94fc>
 			streams:   4, words: 15182
 		worklib.simple_uart_switch_tb_pkg:svh <0x4c84ab33>
 			streams:   4, words:   385
@@ -65,7 +65,7 @@ xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions con
 		Modules:                 5       5
 		Interfaces:              1       1
 		Verilog packages:        1       1
-		Registers:             106     106
+		Registers:             108     108
 		Scalar wires:           10       -
 		Always blocks:           4       4
 		Initial blocks:         21      21
@@ -74,4 +74,4 @@ xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions con
 		Pseudo assignments:      6       -
 		Covergroup Instances:    0       2
 	Writing initial simulation snapshot: worklib.top:sv
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 05, 2025 at 19:57:52 CET  (total: 00:00:00)
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 07, 2025 at 13:29:39 CET  (total: 00:00:01)

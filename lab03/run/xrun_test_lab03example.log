@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 05, 2025 at 19:57:52 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 07, 2025 at 13:29:39 CET
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
@@ -52,7 +52,7 @@ xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions con
 		Modules:                 5       5
 		Interfaces:              1       1
 		Verilog packages:        1       1
-		Registers:             106     106
+		Registers:             108     108
 		Scalar wires:           10       -
 		Always blocks:           4       4
 		Initial blocks:         21      21
@@ -106,7 +106,7 @@ TEST_RESET: 116 passed, 0 errors.
 -----------------------------------[0m
 
 Simulation complete via $finish(1) at time 3746973300 NS + 0
-../tb/tpgen.sv:267       $finish;
+../tb/tpgen.sv:282       $finish;
 xcelium> exit
 See ./cov_work/scope/lab03example/icc.com file for message(s) on coverage constant object marking
 
@@ -117,6 +117,6 @@ coverage setup:
   testname :  lab03example
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_0d8fd925_0782d8fa.ucm
-  data               :  ./cov_work/scope/lab03example/icc_0d8fd925_0782d8fa.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 05, 2025 at 19:58:24 CET  (total: 00:00:32)
+  model(design data) :  ./cov_work/scope/icc_44c86649_0782d8fa.ucm
+  data               :  ./cov_work/scope/lab03example/icc_44c86649_0782d8fa.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 07, 2025 at 13:30:14 CET  (total: 00:00:35)

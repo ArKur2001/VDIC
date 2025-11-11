@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 11, 2025 at 21:12:52 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 11, 2025 at 22:02:09 CET
 xrun
 	-compile
 	-l xrun_compile.log
@@ -33,4 +33,4 @@ xmvlog: *W,NOSYST (../tb/top.sv,25|13): System function '$fgets' invoked as a ta
 xmvlog: *W,NOSYST (../tb/top.sv,31|18): System function '$sscanf' invoked as a task. Return value will be ignored.
 	module worklib.top:sv
 		errors: 0, warnings: 2
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 11, 2025 at 21:12:52 CET  (total: 00:00:00)
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 11, 2025 at 22:02:09 CET  (total: 00:00:00)

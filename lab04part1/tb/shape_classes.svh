@@ -1,4 +1,3 @@
-
 typedef struct {
   real x;
   real y;
@@ -70,7 +69,7 @@ class rectangle_c extends shape_c;
 
   function real get_area();
     real a = $sqrt((points[1].x - points[0].x)**2 + (points[1].y - points[0].y)**2);
-    real b = $sqrt((points[3].x - points[2].x)**2 + (points[3].y - points[2].y)**2);
+    real b = $sqrt((points[2].x - points[1].x)**2 + (points[2].y - points[1].y)**2);
                 
     return a*b;
 

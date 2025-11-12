@@ -1,10 +1,7 @@
 ../../common/simple_uart_switch.svp
 simple_uart_switch_tb_pkg.svh
 simple_uart_switch_bfm.sv
-
 coverage.sv
-scoreboard.sv
-
 top.sv
 +incdir+tb_classes
 +incdir+.

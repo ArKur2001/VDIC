@@ -26,6 +26,7 @@ class tpgen;
   }frame_status_t;
 
   protected virtual simple_uart_switch_bfm bfm;
+  
   function new (virtual simple_uart_switch_bfm b);
     bfm = b;
   endfunction : new

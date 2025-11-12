@@ -1,0 +1,11 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+/home/student/akurnik/VDIC/common/tinyalu/tinyalu_pkg.sv
+/home/student/akurnik/VDIC/common/tinyalu/single_cycle.sv
+/home/student/akurnik/VDIC/common/tinyalu/three_cycle.sv
+/home/student/akurnik/VDIC/common/tinyalu/tinyalu.sv
+/home/student/akurnik/VDIC/lab04example/tb/tinyalu_tb_pkg.svh
+/home/student/akurnik/VDIC/lab04example/tb/tinyalu_bfm.sv
+/home/student/akurnik/VDIC/lab04example/tb/top.sv

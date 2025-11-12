@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 12, 2025 at 10:43:22 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 12, 2025 at 13:24:11 CET
 xrun
 	-elaborate
 	-l xrun_elaborate.log
@@ -52,4 +52,4 @@ xmelab: *W,COVSOR: xrun_covfile.txt:5: The command 'set_expr_scoring -struct' is
 		SV Class declarations:       7       7
 		SV Class specializations:   10      10
 	Writing initial simulation snapshot: worklib.top:sv
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 12, 2025 at 10:43:23 CET  (total: 00:00:01)
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 12, 2025 at 13:24:12 CET  (total: 00:00:01)

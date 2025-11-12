@@ -12,8 +12,6 @@ module top;
 
     simple_uart_switch_bfm bfm();
 
-    coverage coverage_i (bfm);
-
 testbench testbench_h;
 
 initial begin

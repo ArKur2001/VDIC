@@ -25,7 +25,7 @@ package simple_uart_switch_tb_pkg;
     TEST_END
   } test_end_t;
 
-  //`include "coverage.svh"
+  `include "coverage.svh"
   `include "tpgen.svh"
   `include "scoreboard.svh"
   `include "testbench.svh"

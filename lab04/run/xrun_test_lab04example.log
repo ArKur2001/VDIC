@@ -1,10 +1,9 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 12, 2025 at 12:44:15 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 12, 2025 at 13:34:58 CET
 xrun
 	-F ../tb/tb.f
 		../../common/simple_uart_switch.svp
 		simple_uart_switch_tb_pkg.svh
 		simple_uart_switch_bfm.sv
-		coverage.sv
 		top.sv
 		+incdir+tb_classes
 		+incdir+.
@@ -40,31 +39,30 @@ xmvlog: *W,SPDUSD: Include directory ../tb/. given but not used.
 		top
 
 	Extracting FSMs for coverage:
-		worklib.coverage
 		worklib.top
 	Total FSMs extracted = 0
-	Building instance overlay tables: ........
+	Building instance overlay tables: ..........
 xmelab: *W,COVEOS: Currently, by default, coverage is scored for expressions containing struct datatypes. For backward compatibility, use " set_backward_compat -no_struct " coverage configuration file command..
-............ Done
+.......... Done
 	Enabling instrumentation for coverage types: block expression FSM toggle functional
 	Building instance specific data structures.
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
 		                     Instances  Unique
-		Modules:                     3       3
+		Modules:                     2       2
 		Interfaces:                  1       1
 		Verilog packages:            1       1
-		Registers:                 105     127
+		Registers:                 109     134
 		Scalar wires:               10       -
 		Always blocks:               3       3
-		Initial blocks:              7       7
+		Initial blocks:              6       6
 		Parallel blocks:             2       2
 		Cont. assignments:           1       2
 		Pseudo assignments:          6       -
 		Covergroup Instances:        0       2
-		SV Class declarations:       3       3
-		SV Class specializations:    3       3
+		SV Class declarations:       4       4
+		SV Class specializations:    4       4
 		Simulation timescale:      1ps
 	Writing initial simulation snapshot: worklib.top:sv
 Loading snapshot worklib.top:sv .................... Done
@@ -112,7 +110,7 @@ TEST_RESET: 116 passed, 0 errors.
 -----------------------------------[0m
 
 Simulation complete via $finish(1) at time 3746973300 NS + 0
-../tb/top.sv:22     $finish;
+../tb/top.sv:20     $finish;
 xcelium> exit
 See ./cov_work/scope/lab04example/icc.com file for message(s) on coverage constant object marking
 
@@ -123,6 +121,6 @@ coverage setup:
   testname :  lab04example
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_51fcf6b4_36760514.ucm
-  data               :  ./cov_work/scope/lab04example/icc_51fcf6b4_36760514.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 12, 2025 at 12:45:08 CET  (total: 00:00:53)
+  model(design data) :  ./cov_work/scope/icc_0a485cad_375b0fc4.ucm
+  data               :  ./cov_work/scope/lab04example/icc_0a485cad_375b0fc4.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 12, 2025 at 13:35:49 CET  (total: 00:00:51)

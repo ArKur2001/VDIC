@@ -12,7 +12,6 @@ UVM_PLI
 ../tb/../../common/simple_uart_switch.svp
 ../tb/simple_uart_switch_tb_pkg.svh
 ../tb/simple_uart_switch_bfm.sv
-../tb/coverage.sv
 ../tb/top.sv
 -INCDIR
 ../tb/tb_classes

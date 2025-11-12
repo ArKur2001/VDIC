@@ -51,7 +51,7 @@ lab04example
 +EMGRLOG
 xrun_test_lab04example.log
 -XLSTIME
-1762947855
+1762950898
 -XLKEEP
 -XLMODE
 ./INCA_libs/run.lnx8664.24.09.d
@@ -65,4 +65,4 @@ xrun
 -XLVERSION
 "TOOL:	xrun(64)	24.09-s005"
 -XLNAME
-./INCA_libs/run.lnx8664.24.09.d/cadence24_1920
+./INCA_libs/run.lnx8664.24.09.d/cadence24_26283

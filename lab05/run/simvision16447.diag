@@ -1,0 +1,86 @@
+*** Message Type: info ***
+When: Sun Nov 16 16:26:19 CET 2025
+SimVision started.
+Version: TOOL:  simvision(64)   24.09-s005
+User: akurnik
+Host: cadence29
+Platform: Linux/x86_64/3.10.0-1160.119.1.el7.x86_64
+Started: Sun Nov 16 16:26:19 CET 2025
+Command: /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools.lnx86/simvision/bin/64bit/simvision.exe -connect dc:cadence29:44117 -64BIT -nocopyright
+Work Directory: /home/student/akurnik/VDIC/lab05/run
+ 
+*** Message Type: info ***
+When: Sun Nov 16 16:26:19 CET 2025
+Create browser window: "Design Browser 1"
+ 
+*** Message Type: info ***
+When: Sun Nov 16 16:26:24 CET 2025
+Create console window: "Console"
+ 
+*** Message Type: info ***
+When: Sun Nov 16 16:26:27 CET 2025
+Exit Simulator: abnormal
+      Design: Unknown
+   Languages: Unknown
+   Simulator: Unknown
+     Version: Unknown
+        User: Unknown
+        Host: Unknown
+Time Started: Unknown
+  Process ID: Unknown
+   Directory: Unknown
+     Command: Unknown
+
+ 
+*** Message Type: error ***
+When: Sun Nov 16 16:26:27 CET 2025
+Simulator Crashed:
+      Design: Unknown
+   Languages: Unknown
+   Simulator: Unknown
+     Version: Unknown
+        User: Unknown
+        Host: Unknown
+Time Started: Unknown
+  Process ID: Unknown
+   Directory: Unknown
+     Command: Unknown
+      Design: Unknown
+   Languages: Unknown
+   Simulator: Unknown
+     Version: Unknown
+        User: Unknown
+        Host: Unknown
+Time Started: Unknown
+  Process ID: Unknown
+   Directory: Unknown
+     Command: Unknown
+
+Outstanding STRAP Requests:
+        strap::get g . -xu
+        strap::get g . -ck
+        strap::get g . -sa
+ 
+*** Message Type: info ***
+When: Sun Nov 16 16:26:27 CET 2025
+Connect to Simulator
+      Design: Unknown
+   Languages: Unknown
+   Simulator: Unknown
+     Version: Unknown
+        User: Unknown
+        Host: Unknown
+Time Started: Unknown
+  Process ID: Unknown
+   Directory: Unknown
+     Command: Unknown
+
+ 
+*** Message Type: info ***
+When: Sun Nov 16 16:26:28 CET 2025
+Create utility window: "Properties"
+ 
+*** Message Type: info ***
+When: Sun Nov 16 16:26:36 CET 2025
+SimVision Exit.
+ 

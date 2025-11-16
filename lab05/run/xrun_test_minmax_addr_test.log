@@ -1,0 +1,142 @@
+TOOL:	xrun(64)	24.09-s005: Started on Nov 16, 2025 at 18:57:14 CET
+xrun
+	-F ../tb/tb.f
+		simple_uart_switch_tb_pkg.sv
+		simple_uart_switch_bfm.sv
+		../../common/simple_uart_switch.svp
+		top.sv
+		+incdir+tb_classes
+		+incdir+.
+		+nowarn+DSEMEL
+		-uvm
+		-uvmhome /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv
+		+UVM_NO_RELNOTES
+		+UVM_VERBOSITY=MEDIUM
+		-linedebug
+		-fsmdebug
+		-uvmlinedebug
+	-v93
+	+nowarnDSEM2009
+	+nowarnDSEMEL
+	+nowarnCGDEFN
+	+nowarnCOVUTA
+	+nowarnBADPRF
+	+nowarnXCLGNOPTM
+	+nowarnRNDXCELON
+	+nowarnSAWSTP
+	-xmlibdirname INCA_libs
+	+overwrite
+	-nocopyright
+	-coverage all
+	-covoverwrite
+	-covfile xrun_covfile.txt
+	-covtest minmax_addr_test
+	+UVM_TESTNAME=minmax_addr_test
+	-l xrun_test_minmax_addr_test.log
+
+   User defined plus("+") options:
+	+UVM_NO_RELNOTES
+	+UVM_VERBOSITY=MEDIUM
+
+Loading snapshot worklib.top:sv .................... Done
+SVSEED default: 1
+xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/xcelium/files/xmsimrc
+xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/files/tcl/uvm_sim.tcl
+xcelium> run
+UVM_INFO @ 0: reporter [RNTST] Running test minmax_addr_test...
+[1;30m[103m*** Created tpgen type: minmax_addr_tpgen ***[0m
+
+UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_root.svh(605) @ 0: reporter [UVMTOP] UVM testbench topology:
+------------------------------------------------
+Name              Type               Size  Value
+------------------------------------------------
+uvm_test_top      minmax_addr_test   -     @1647
+  env_h           env                -     @1717
+    coverage_h    coverage           -     @1784
+    scoreboard_h  scoreboard         -     @1817
+    tpgen_h       minmax_addr_tpgen  -     @1751
+------------------------------------------------
+
+UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_objection.svh(1271) @ 1957232840: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+TEST_PROPER_FRAME: 0 passed, 0 errors.
+
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
+-----------------------------------[0m
+
+TEST_WRONG_START_BIT: 0 passed, 0 errors.
+
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
+-----------------------------------[0m
+
+TEST_WRONG_PARITY_BIT: 0 passed, 0 errors.
+
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
+-----------------------------------[0m
+
+TEST_WRONG_STOP_BIT: 0 passed, 0 errors.
+
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
+-----------------------------------[0m
+
+TEST_WRONG_START_PARITY_STOP_BIT: 0 passed, 0 errors.
+
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
+-----------------------------------[0m
+
+TEST_MIN_MAX_ADDR: 1000 passed, 0 errors.
+
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
+-----------------------------------[0m
+
+TEST_RESET: 0 passed, 0 errors.
+
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
+-----------------------------------[0m
+
+UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_catcher.svh(705) @ 1957232840: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_server.svh(851) @ 1957232840: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    4
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[TEST_DONE]     1
+[UVM/REPORT/CATCHER]     1
+[UVMTOP]     1
+
+Simulation complete via $finish(1) at time 1957232840 NS + 59
+/eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_root.svh:543     $finish;
+xcelium> exit
+See ./cov_work/scope/minmax_addr_test/icc.com file for message(s) on coverage constant object marking
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  top(top)
+  scope    :  scope
+  testname :  minmax_addr_test
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_4e4d194d_17df5f00.ucm (reused)
+  data               :  ./cov_work/scope/minmax_addr_test/icc_4e4d194d_17df5f00.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 16, 2025 at 18:59:10 CET  (total: 00:01:56)

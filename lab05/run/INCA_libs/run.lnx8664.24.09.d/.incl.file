@@ -44,7 +44,7 @@
 ./scoreboard.svh
 ./base_tpgen.svh
 ./random_tpgen.svh
-./add_tpgen.svh
+./minmax_addr_tpgen.svh
 ./env.svh
 ./random_test.svh
-./add_test.svh
+./minmax_addr_test.svh

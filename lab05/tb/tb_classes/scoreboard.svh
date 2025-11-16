@@ -26,6 +26,9 @@ class scoreboard extends uvm_component;
   local int wrong_start_parity_stop_ok = 0;
   local int wrong_start_parity_stop_err = 0;
 
+  local int min_max_addr_ok = 0;
+  local int min_max_addr_err = 0;
+
   local int reset_ok = 0;
   local int reset_err = 0;
 
@@ -78,6 +81,15 @@ class scoreboard extends uvm_component;
     $display("TEST_WRONG_START_PARITY_STOP_BIT: %0d passed, %0d errors.\n", wrong_start_parity_stop_ok, wrong_start_parity_stop_err);
     if(wrong_start_parity_stop_err > 0)begin
       $display("UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) \n");
+      print_test_result(TEST_FAILED);
+    end
+    else begin
+      print_test_result(TEST_PASSED);
+    end
+
+    $display("TEST_MIN_MAX_ADDR: %0d passed, %0d errors.\n", min_max_addr_ok, min_max_addr_err);
+    if(min_max_addr_err > 0)begin
+      $display("UNEXPECTED FRAMES APPERAED \n");
       print_test_result(TEST_FAILED);
     end
     else begin
@@ -149,6 +161,14 @@ class scoreboard extends uvm_component;
         end
         else begin
           wrong_start_parity_stop_ok++;
+        end
+      end
+      MIN_MAX_ADDR: begin
+        if(!match) begin
+          min_max_addr_err++;
+        end
+        else begin
+          min_max_addr_ok++;
         end
       end
       RESET: begin

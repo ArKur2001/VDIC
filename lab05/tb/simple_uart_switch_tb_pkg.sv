@@ -22,6 +22,7 @@ package simple_uart_switch_tb_pkg;
     WRONG_PARITY_BIT = 3'b010,
     WRONG_STOP_BIT = 3'b011,
     WRONG_START_PARITY_STOP = 3'b100,
+    MIN_MAX_ADDR = 3'b101,
     RESET = 3'b111
   } test_t;
 
@@ -64,14 +65,14 @@ package simple_uart_switch_tb_pkg;
 `include "scoreboard.svh"
 `include "base_tpgen.svh"
 `include "random_tpgen.svh"
-`include "add_tpgen.svh"
+`include "minmax_addr_tpgen.svh"
 `include "env.svh"
 
 //------------------------------------------------------------------------------
 // test classes
 //------------------------------------------------------------------------------
 `include "random_test.svh"
-`include "add_test.svh"
+`include "minmax_addr_test.svh"
 
 
 endpackage

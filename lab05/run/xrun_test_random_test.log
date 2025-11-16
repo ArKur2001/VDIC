@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 16, 2025 at 18:01:34 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 16, 2025 at 18:55:45 CET
 xrun
 	-F ../tb/tb.f
 		simple_uart_switch_tb_pkg.sv
@@ -57,14 +57,14 @@ uvm_test_top      random_test   -     @1647
     tpgen_h       random_tpgen  -     @1749
 -------------------------------------------
 
-UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_objection.svh(1271) @ 3747026120: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-TEST_PROPER_FRAME: 242 passed, 0 errors.
+UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_objection.svh(1271) @ 3518620360: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+TEST_PROPER_FRAME: 240 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_BIT: 141 passed, 114 errors.
+TEST_WRONG_START_BIT: 68 passed, 38 errors.
 
 UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
 
@@ -72,19 +72,19 @@ UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works 
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_WRONG_PARITY_BIT: 146 passed, 0 errors.
+TEST_WRONG_PARITY_BIT: 134 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_STOP_BIT: 116 passed, 0 errors.
+TEST_WRONG_STOP_BIT: 118 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_PARITY_STOP_BIT: 106 passed, 19 errors.
+TEST_WRONG_START_PARITY_STOP_BIT: 106 passed, 18 errors.
 
 UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
 
@@ -92,13 +92,19 @@ UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works 
 ----------- Test FAILED -----------
 -----------------------------------[0m
 
-TEST_RESET: 116 passed, 0 errors.
+TEST_MIN_MAX_ADDR: 128 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_catcher.svh(705) @ 3747026120: reporter [UVM/REPORT/CATCHER] 
+TEST_RESET: 150 passed, 0 errors.
+
+[1;30m[102m-----------------------------------
+----------- Test PASSED -----------
+-----------------------------------[0m
+
+UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_catcher.svh(705) @ 3518620360: reporter [UVM/REPORT/CATCHER] 
 --- UVM Report catcher Summary ---
 
 
@@ -109,7 +115,7 @@ Number of caught UVM_FATAL reports   :    0
 Number of caught UVM_ERROR reports   :    0
 Number of caught UVM_WARNING reports :    0
 
-UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_server.svh(851) @ 3747026120: reporter [UVM/REPORT/SERVER] 
+UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_server.svh(851) @ 3518620360: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
@@ -123,7 +129,7 @@ UVM_FATAL :    0
 [UVM/REPORT/CATCHER]     1
 [UVMTOP]     1
 
-Simulation complete via $finish(1) at time 3747026120 NS + 59
+Simulation complete via $finish(1) at time 3518620360 NS + 59
 /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_root.svh:543     $finish;
 xcelium> exit
 See ./cov_work/scope/random_test/icc.com file for message(s) on coverage constant object marking
@@ -135,6 +141,6 @@ coverage setup:
   testname :  random_test
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_3c1c0356_17d838e0.ucm
-  data               :  ./cov_work/scope/random_test/icc_3c1c0356_17d838e0.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 16, 2025 at 18:03:08 CET  (total: 00:01:34)
+  model(design data) :  ./cov_work/scope/icc_4e4d194d_17df5f00.ucm
+  data               :  ./cov_work/scope/random_test/icc_4e4d194d_17df5f00.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 16, 2025 at 18:57:14 CET  (total: 00:01:29)

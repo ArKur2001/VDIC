@@ -171,9 +171,9 @@ class random_tpgen extends base_tpgen;
             3'b010 : return WRONG_PARITY_BIT;
             3'b011 : return WRONG_STOP_BIT;
             3'b100 : return WRONG_START_PARITY_STOP;
-            3'b101 : return RESET;
-            3'b110 : return PROPER_FRAME;
-            3'b111 : return WRONG_START_BIT;
+            3'b101 : return MIN_MAX_ADDR;
+            3'b110 : return RESET;
+            3'b111 : return PROPER_FRAME;
         endcase // case (op_choice)
       endfunction : get_test  
 
@@ -226,6 +226,12 @@ class random_tpgen extends base_tpgen;
             stop_set = STOP_B_ERR; 
             reset_set = NO_RST;
           end
+          MIN_MAX_ADDR: begin
+            start_set = START_B_OK; 
+            parity_set = PARITY_B_OK; 
+            stop_set = STOP_B_OK; 
+            reset_set = NO_RST;
+          end
           RESET: begin
             start_set = START_B_OK; 
             parity_set = PARITY_B_OK; 
@@ -242,25 +248,48 @@ class random_tpgen extends base_tpgen;
     
         frame_data.delete;
 
-        for(int i = 0 ; i <= 'hFF ; i++) begin
-          addr_arr[i] = get_random() & 'b1;
-          addr_val_arr[i] = i & 'hFF;
+        if(bfm.test == MIN_MAX_ADDR) begin
+          ret0 = build_uart_msg (1, 'h00, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+          ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+
+          ret0 = build_uart_msg (1, 'hFF, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+          ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+
+          addr_arr['h00] = 'b0;
+          addr_arr['hFF] = 'b1;
+          addr_val_arr['h00] = 'h00;
+          addr_val_arr['hFF] = 'hFF;
         end
-      
-        for(int j = 0 ; j <= 'hFF ; j++) begin
-          if(addr_arr[j] == 0) begin
-            ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-            ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        else begin
+          for(int i = 0 ; i <= 'hFF ; i++) begin
+            addr_arr[i] = get_random() & 'b1;
+            addr_val_arr[i] = i & 'hFF;
           end
-          else begin
-            ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
-            ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+        
+          for(int j = 0 ; j <= 'hFF ; j++) begin
+            if(addr_arr[j] == 0) begin
+              ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+              ret1 = build_uart_msg (1, PORT_SOUT0, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+            end
+            else begin
+              ret0 = build_uart_msg (1, addr_val_arr[j], START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+              ret1 = build_uart_msg (1, PORT_SOUT1, START_B_OK, PARITY_B_OK, STOP_B_OK, NO_RST);
+            end
           end
         end
-      
+        
         for(int k = 0 ; k <= 'h0F ; k++) begin
           addr = get_random();
       
+          if(bfm.test == MIN_MAX_ADDR) begin
+            if(addr & 'b1 == 1) begin
+              addr = 'hFF;
+            end
+            else begin
+              addr = 'h00;
+            end
+          end
+
           index = -1;
           for(int l = 'hFF ; l >= 0 ; l--) begin
             if(addr_val_arr[l] == addr)begin

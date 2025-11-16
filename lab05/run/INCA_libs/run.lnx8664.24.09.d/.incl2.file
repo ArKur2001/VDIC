@@ -34,11 +34,11 @@
 /home/student/akurnik/VDIC/lab05/tb/tb_classes/base_tpgen.svh
 ../tb/tb_classes/random_tpgen.svh
 /home/student/akurnik/VDIC/lab05/tb/tb_classes/random_tpgen.svh
-../tb/tb_classes/add_tpgen.svh
-/home/student/akurnik/VDIC/lab05/tb/tb_classes/add_tpgen.svh
+../tb/tb_classes/minmax_addr_tpgen.svh
+/home/student/akurnik/VDIC/lab05/tb/tb_classes/minmax_addr_tpgen.svh
 ../tb/tb_classes/env.svh
 /home/student/akurnik/VDIC/lab05/tb/tb_classes/env.svh
 ../tb/tb_classes/random_test.svh
 /home/student/akurnik/VDIC/lab05/tb/tb_classes/random_test.svh
-../tb/tb_classes/add_test.svh
-/home/student/akurnik/VDIC/lab05/tb/tb_classes/add_test.svh
+../tb/tb_classes/minmax_addr_test.svh
+/home/student/akurnik/VDIC/lab05/tb/tb_classes/minmax_addr_test.svh

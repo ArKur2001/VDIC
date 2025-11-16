@@ -26,5 +26,5 @@ SAWSTP
 all
 -COVOVERWRITE
 -COVTEST
-add_test
+minmax_addr_test
 -UPDATE

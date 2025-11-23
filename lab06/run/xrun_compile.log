@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 23, 2025 at 20:47:45 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 23, 2025 at 21:15:24 CET
 xrun
 	-compile
 	-l xrun_compile.log
@@ -41,8 +41,11 @@ xrun
 
 Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv
 file: ../tb/simple_uart_switch_tb_pkg.sv
+package simple_uart_switch_tb_pkg;
+                                |
+xmvlog: *W,TSNSPK (../tb/simple_uart_switch_tb_pkg.sv,1|32): `timescale is not specified for the package.  The default timescale of 1ns/1ns will be assumed for this package.
 	package worklib.simple_uart_switch_tb_pkg:sv
-		errors: 0, warnings: 0
+		errors: 0, warnings: 1
 file: ../tb/simple_uart_switch_bfm.sv
 	interface worklib.simple_uart_switch_bfm:sv
 		errors: 0, warnings: 0
@@ -55,4 +58,4 @@ file: ../tb/top.sv
 xmvlog: *W,SPDUSD: Include directory ../tb/. given but not used.
 	Total errors/warnings found outside modules and primitives:
 		errors: 0, warnings: 1
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 23, 2025 at 20:47:47 CET  (total: 00:00:02)
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 23, 2025 at 21:15:26 CET  (total: 00:00:02)

@@ -76,7 +76,7 @@ interface simple_uart_switch_bfm;
 
     reset_arrays();
 
-    reset_frame_data = reset_frame_data;
+    reset_frame_data = ireset_frame_data;
     frame_data = iframe_data;
     exp_sout0_frames = iexp_sout0_frames;
     exp_sout1_frames = iexp_sout1_frames;
@@ -97,12 +97,16 @@ interface simple_uart_switch_bfm;
     repeat(16 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge clk);
     
     test_end = TEST_END;
-    
-    repeat(16 * FRAME_LENGTH * CLKS_PER_BIT)@(negedge clk);
+    @(posedge clk);
+   
   endtask
 
-  always @(posedge clk) begin : op_monitor
-    command_s command;
+initial begin : op_monitor_thread
+  command_s command;
+
+  forever begin
+    @(posedge clk);
+
     if (test_end == TEST_END) begin 
       command.reset_frame_data = reset_frame_data;
       command.frame_data = frame_data;
@@ -113,27 +117,23 @@ interface simple_uart_switch_bfm;
       command_monitor_h.write_to_monitor(command);
       
     end 
-end : op_monitor
+  end
+end : op_monitor_thread
 
 initial begin : result_monitor_thread
-  
+
   fork
     monitor_sout0();
     monitor_sout1();
-  join
+  join_none
 
   forever begin
-
-    static test_end_t test_end_prev = TEST_IN_PROGRESS;
-
     @(negedge clk) ;
       if(test_end == TEST_END) begin
           result_monitor_h.write_to_monitor(sout_data_result);
-
           sout_data_result.sout0_frames.delete;
           sout_data_result.sout1_frames.delete;
       end
-    test_end_prev = test_end;
   end
 end : result_monitor_thread
 

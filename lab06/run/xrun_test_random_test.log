@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 23, 2025 at 19:31:03 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 23, 2025 at 20:47:52 CET
 xrun
 	-F ../tb/tb.f
 		simple_uart_switch_tb_pkg.sv
@@ -78,51 +78,54 @@ uvm_test_top             random_test                 -     @1958
         put_export       uvm_put_imp                 -     @2846
 ----------------------------------------------------------------
 
-UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_objection.svh(1271) @ 29075840: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-dupa
-TEST_PROPER_FRAME: 0 passed, 0 errors.
+UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_objection.svh(1271) @ 349529770: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+TEST_PROPER_FRAME: 22 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_BIT: 0 passed, 0 errors.
+TEST_WRONG_START_BIT: 6 passed, 4 errors.
+
+UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
+
+[1;30m[101m-----------------------------------
+----------- Test FAILED -----------
+-----------------------------------[0m
+
+TEST_WRONG_PARITY_BIT: 12 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_PARITY_BIT: 0 passed, 0 errors.
+TEST_WRONG_STOP_BIT: 13 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_STOP_BIT: 0 passed, 0 errors.
+TEST_WRONG_START_PARITY_STOP_BIT: 10 passed, 2 errors.
+
+UNEXPECTED FRAMES APPERAED (This error is expected. If appear, everything works OK ) 
+
+[1;30m[101m-----------------------------------
+----------- Test FAILED -----------
+-----------------------------------[0m
+
+TEST_MIN_MAX_ADDR: 13 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_WRONG_START_PARITY_STOP_BIT: 0 passed, 0 errors.
+TEST_RESET: 15 passed, 0 errors.
 
 [1;30m[102m-----------------------------------
 ----------- Test PASSED -----------
 -----------------------------------[0m
 
-TEST_MIN_MAX_ADDR: 0 passed, 0 errors.
-
-[1;30m[102m-----------------------------------
------------ Test PASSED -----------
------------------------------------[0m
-
-TEST_RESET: 0 passed, 0 errors.
-
-[1;30m[102m-----------------------------------
------------ Test PASSED -----------
------------------------------------[0m
-
-UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_catcher.svh(705) @ 29075840: reporter [UVM/REPORT/CATCHER] 
+UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_catcher.svh(705) @ 349529770: reporter [UVM/REPORT/CATCHER] 
 --- UVM Report catcher Summary ---
 
 
@@ -133,7 +136,7 @@ Number of caught UVM_FATAL reports   :    0
 Number of caught UVM_ERROR reports   :    0
 Number of caught UVM_WARNING reports :    0
 
-UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_server.svh(851) @ 29075840: reporter [UVM/REPORT/SERVER] 
+UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_server.svh(851) @ 349529770: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
@@ -147,7 +150,7 @@ UVM_FATAL :    0
 [UVM/REPORT/CATCHER]     1
 [UVMTOP]     1
 
-Simulation complete via $finish(1) at time 29075840 NS + 59
+Simulation complete via $finish(1) at time 349529770 NS + 59
 /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_root.svh:543     $finish;
 xcelium> exit
 See ./cov_work/scope/random_test/icc.com file for message(s) on coverage constant object marking
@@ -159,6 +162,6 @@ coverage setup:
   testname :  random_test
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_2c07e969_483fd0a5.ucm
-  data               :  ./cov_work/scope/random_test/icc_2c07e969_483fd0a5.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 23, 2025 at 19:31:09 CET  (total: 00:00:06)
+  model(design data) :  ./cov_work/scope/icc_20f5683d_483fd0a5.ucm
+  data               :  ./cov_work/scope/random_test/icc_20f5683d_483fd0a5.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 23, 2025 at 20:47:58 CET  (total: 00:00:06)

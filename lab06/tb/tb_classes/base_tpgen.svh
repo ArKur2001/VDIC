@@ -49,7 +49,7 @@ virtual class base_tpgen extends uvm_component;
 
         phase.raise_objection(this);
 
-        repeat(10) begin:tpgen_main_blk
+        repeat(100) begin:tpgen_main_blk
 
             command.test = get_test();
             command.reset_frame_data = reset_routing_array();

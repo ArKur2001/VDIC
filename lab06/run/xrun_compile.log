@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 23, 2025 at 19:30:56 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 23, 2025 at 20:47:45 CET
 xrun
 	-compile
 	-l xrun_compile.log
@@ -55,4 +55,4 @@ file: ../tb/top.sv
 xmvlog: *W,SPDUSD: Include directory ../tb/. given but not used.
 	Total errors/warnings found outside modules and primitives:
 		errors: 0, warnings: 1
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 23, 2025 at 19:30:58 CET  (total: 00:00:02)
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 23, 2025 at 20:47:47 CET  (total: 00:00:02)

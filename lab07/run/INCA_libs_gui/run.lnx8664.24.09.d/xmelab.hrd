@@ -1,0 +1,13 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-timescale
+1ns/1ps
++FSMDEBUG
+-ACCESS
++r
+-COVERAGE
+all
+-COVFILE
+xrun_covfile.txt

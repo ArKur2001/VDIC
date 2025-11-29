@@ -1,0 +1,116 @@
+TOOL:	xrun(64)	24.09-s005: Started on Nov 29, 2025 at 18:44:23 CET
+xrun
+	-F ../tb/tb.f
+		simple_uart_switch_tb_pkg.sv
+		simple_uart_switch_bfm.sv
+		../../common/simple_uart_switch.svp
+		top.sv
+		-timescale 1ns/1ps
+		+incdir+tb_classes
+		+incdir+.
+		+nowarn+DSEMEL
+		+nowarnBADPRF
+		-uvm
+		-uvmhome /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv
+		+UVM_NO_RELNOTES
+		+UVM_VERBOSITY=MEDIUM
+		-linedebug
+		-fsmdebug
+		-uvmlinedebug
+	-v93
+	+nowarnDSEM2009
+	+nowarnDSEMEL
+	+nowarnCGDEFN
+	+nowarnCOVUTA
+	+nowarnBADPRF
+	+nowarnXCLGNOPTM
+	+nowarnRNDXCELON
+	+nowarnCOVEOS
+	+nowarnSAWSTP
+	-xmlibdirname INCA_libs_gui
+	+access+r
+	+gui
+	+overwrite
+	-nocopyright
+	-coverage all
+	-covoverwrite
+	-covfile xrun_covfile.txt
+	+UVM_TESTNAME=random_test
+	-l xrun_gui.log
+
+   User defined plus("+") options:
+	+UVM_NO_RELNOTES
+	+UVM_VERBOSITY=MEDIUM
+
+xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
+SVSEED default: 1
+
+-------------------------------------
+Relinquished control to SimVision...
+xcelium> 
+xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/xcelium/files/xmsimrc
+xcelium> source /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/files/tcl/uvm_sim.tcl
+xcelium> database -open waves -into waves.shm -default
+Created default SHM database waves
+xcelium> probe -create -shm top.DUT.clk top.DUT.prog top.DUT.rst_n top.DUT.sin top.DUT.sout0 top.DUT.sout1
+Created probe 1
+xcelium> run
+UVM_INFO @ 0: reporter [RNTST] Running test random_test...
+[0;34m[107m----------------------------------------------------------------
+Name                     Type                        Size  Value
+----------------------------------------------------------------
+uvm_test_top             random_test                 -     @1686
+  env_h                  env                         -     @1756
+    command_f            uvm_tlm_fifo #(T)           -     @1786
+      get_ap             uvm_analysis_port           -     @1989
+      get_peek_export    uvm_get_peek_imp            -     @1889
+      put_ap             uvm_analysis_port           -     @1939
+      put_export         uvm_put_imp                 -     @1837
+    command_monitor_h    command_monitor             -     @2247
+      ap                 uvm_analysis_port           -     @2335
+    coverage_h           coverage                    -     @2084
+      analysis_imp       uvm_analysis_imp            -     @2134
+    driver_h             driver                      -     @2053
+      command_port       uvm_get_port                -     @2389
+    result_monitor_h     result_monitor              -     @2278
+      ap                 uvm_analysis_port           -     @2440
+    scoreboard_h         scoreboard                  -     @2167
+      analysis_imp       uvm_analysis_imp            -     @2216
+      cmd_f              uvm_tlm_analysis_fifo #(T)  -     @2471
+        analysis_export  uvm_analysis_imp            -     @2720
+        get_ap           uvm_analysis_port           -     @2669
+        get_peek_export  uvm_get_peek_imp            -     @2571
+        put_ap           uvm_analysis_port           -     @2620
+        put_export       uvm_put_imp                 -     @2522
+    tpgen_h              tpgen                       -     @2022
+      command_port       uvm_put_port                -     @2777
+----------------------------------------------------------------
+[0m
+[1;30m[103mUVM_INFO ../tb/tb_classes/random_test.svh(55) @ 0: uvm_test_top [COMMAND TRANSACTION] command_transaction
+[0m
+stop -create -name Randomize -randomize
+Created stop Randomize
+
+xmsim: *E,TRNULLID: NULL pointer dereference.
+          File: ../tb/simple_uart_switch_bfm.sv, line = 111, pos = 12
+         Scope: top.bfm
+          Time: 3801690 NS + 0
+
+xcelium> ^C
+xcelium> ^C
+xcelium> ^C
+xcelium> ^C
+xcelium> ^C
+xcelium> ^C
+xcelium> See ./cov_work/scope/test/icc.com file for message(s) on coverage constant object marking
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  top(top)
+  scope    :  scope
+  testname :  test
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_20f5683d_483fd0a5.ucm
+  data               :  ./cov_work/scope/test/icc_20f5683d_483fd0a5.ucd
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 29, 2025 at 18:45:23 CET  (total: 00:01:00)

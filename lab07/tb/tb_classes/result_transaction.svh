@@ -52,13 +52,32 @@ class result_transaction extends uvm_transaction;
     function bit do_compare(uvm_object rhs, uvm_comparer comparer);
         result_transaction RHS;
         bit same;
+
         assert(rhs != null) else
             `uvm_fatal("RESULT TRANSACTION","Tried to compare null transaction");
 
         same = super.do_compare(rhs, comparer);
 
         $cast(RHS, rhs);
-        same = (result == RHS.result) && same;
+
+        if((result.sout0_frames.size() != RHS.result.sout0_frames.size()) || (result.sout1_frames.size() != RHS.result.sout1_frames.size())) begin
+            same = 0;
+            $display("dupa");
+        end
+        else begin
+            for(int i = 0 ; i < result.sout0_frames.size() ; i++) begin
+                if(result.sout0_frames[i] != RHS.result.sout0_frames[i]) begin
+                    same = 0;
+                end
+            end
+
+            for(int i = 0 ; i < result.sout1_frames.size() ; i++) begin
+                if(result.sout1_frames[i] != RHS.result.sout1_frames[i]) begin
+                    same = 0;
+                end
+            end
+        end
+        
         return same;
     endfunction : do_compare
 

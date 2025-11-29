@@ -207,27 +207,45 @@ class scoreboard extends uvm_subscriber #(result_transaction);
     cmd_f = new ("cmd_f", this);
   endfunction : build_phase
 
+
+//------------------------------------------------------------------------------
+// function to get expected result
+//------------------------------------------------------------------------------
+
+  local function result_transaction predict_result(command_transaction cmd);
+    result_transaction predicted;
+    sout_data_t exp_buf;
+
+    exp_buf.sout0_frames = cmd.exp_sout0_frames;
+    exp_buf.sout1_frames = cmd.exp_sout1_frames;
+
+    predicted = new("predicted");
+    
+      predicted.result = exp_buf;  
+
+    return predicted;
+
+endfunction : predict_result
 //------------------------------------------------------------------------------
 // subscriber write function
 //------------------------------------------------------------------------------
   function void write(result_transaction t);
     command_transaction cmd;
-    string data_str;
+    result_transaction predicted;
 
     if (!cmd_f.try_get(cmd))
       $fatal(1, "Missing command in self checker");
     
+    predicted = predict_result(cmd);
+
     get_test_result(t.result, cmd.exp_sout0_frames, cmd.exp_sout1_frames, cmd.test);
 
-    //data_str  = {
-    //" ==>  Actual " , t.convert2string(),
-    //"/Predicted ", cmd.convert2string()};
-
-    //if (!cmd.compare(t)) begin
-    //    `uvm_error("SELF CHECKER", {"FAIL: ",data_str})
-    //end
-    //else
-    //    `uvm_info ("SELF CHECKER", {"PASS: ", data_str}, UVM_HIGH)
+    if(predicted.compare(t)) begin
+      `uvm_info ("SELF CHECKER", {"PASS: ", cmd.test.name()}, UVM_HIGH);
+    end
+    else begin
+      `uvm_info("SELF CHECKER", {"FAIL: ", cmd.test.name()}, UVM_LOW);
+    end
 
     endfunction : write
 

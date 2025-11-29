@@ -1,35 +1,191 @@
 ################################################################################
 #                    DO NOT MANUALLY EDIT THIS FILE!                           #
 ################################################################################
-# This file contains the automatically generated build configuration (2025/11/07 12:50:32)
+# This file contains the automatically generated build configuration (2025/11/29 16:22:07)
 # requested at line 3 in /home/student/akurnik/VDIC/.dvt/default.build
 
 
 ################ Verilog Auto-config Directives ################
 +dvt_init
 
+-uvm
+
+### AUTOCONFIG WARNING: Multiple incdir candidates.
+# The following includes have multiple incdir candidates:
+#`include "tpgen.svh" in simple_uart_switch_tb_pkg.svh (/home/student/akurnik/VDIC/lab04/tb/simple_uart_switch_tb_pkg.svh)
+#`include "testbench.svh" in simple_uart_switch_tb_pkg.svh (/home/student/akurnik/VDIC/lab04/tb/simple_uart_switch_tb_pkg.svh)
+#`include "tpgen.svh" in tinyalu_tb_pkg.svh (/home/student/akurnik/VDIC/lab04example/tb/tinyalu_tb_pkg.svh)
+#`include "testbench.svh" in tinyalu_tb_pkg.svh (/home/student/akurnik/VDIC/lab04example/tb/tinyalu_tb_pkg.svh)
+# The list of incdir candidates is:
++incdir+lab04/tb/tb_classes
+# +incdir+lab04example/tb/tb_classes
+
++incdir+lab04part1/tb
+
+### AUTOCONFIG WARNING: Multiple incdir candidates.
+# The following includes have multiple incdir candidates:
+#`include "minmax_addr_tpgen.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab05/tb/simple_uart_switch_tb_pkg.sv)
+#`include "minmax_addr_test.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab05/tb/simple_uart_switch_tb_pkg.sv)
+#`include "minmax_addr_tpgen.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab06/tb/simple_uart_switch_tb_pkg.sv)
+#`include "minmax_addr_test.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab06/tb/simple_uart_switch_tb_pkg.sv)
+# The list of incdir candidates is:
++incdir+lab05/tb/tb_classes
+# +incdir+lab06/tb/tb_classes
+
+### AUTOCONFIG WARNING: Multiple incdir candidates.
+# The following includes have multiple incdir candidates:
+#`include "coverage.svh" in simple_uart_switch_tb_pkg.svh (/home/student/akurnik/VDIC/lab04/tb/simple_uart_switch_tb_pkg.svh)
+#`include "scoreboard.svh" in simple_uart_switch_tb_pkg.svh (/home/student/akurnik/VDIC/lab04/tb/simple_uart_switch_tb_pkg.svh)
+#`include "coverage.svh" in tinyalu_tb_pkg.svh (/home/student/akurnik/VDIC/lab04example/tb/tinyalu_tb_pkg.svh)
+#`include "scoreboard.svh" in tinyalu_tb_pkg.svh (/home/student/akurnik/VDIC/lab04example/tb/tinyalu_tb_pkg.svh)
+#`include "coverage.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab05/tb/simple_uart_switch_tb_pkg.sv)
+#`include "scoreboard.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab05/tb/simple_uart_switch_tb_pkg.sv)
+#`include "coverage.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab05example/tb/tinyalu_tb_pkg.sv)
+#`include "scoreboard.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab05example/tb/tinyalu_tb_pkg.sv)
+#`include "coverage.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab06/tb/simple_uart_switch_tb_pkg.sv)
+#`include "scoreboard.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab06/tb/simple_uart_switch_tb_pkg.sv)
+#`include "coverage.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab06example/tb/tinyalu_tb_pkg.sv)
+#`include "scoreboard.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab06example/tb/tinyalu_tb_pkg.sv)
+# The list of incdir candidates is:
++incdir+lab04/tb/tb_classes
+# +incdir+lab04example/tb/tb_classes
+# +incdir+lab05/tb/tb_classes
+# +incdir+lab05example/tb/tb_classes
+# +incdir+lab06/tb/tb_classes
+# +incdir+lab06example/tb/tb_classes
+
+### AUTOCONFIG WARNING: Multiple incdir candidates.
+# The following includes have multiple incdir candidates:
+#`include "driver.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab06/tb/simple_uart_switch_tb_pkg.sv)
+#`include "command_monitor.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab06/tb/simple_uart_switch_tb_pkg.sv)
+#`include "result_monitor.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab06/tb/simple_uart_switch_tb_pkg.sv)
+#`include "driver.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab06example/tb/tinyalu_tb_pkg.sv)
+#`include "command_monitor.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab06example/tb/tinyalu_tb_pkg.sv)
+#`include "result_monitor.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab06example/tb/tinyalu_tb_pkg.sv)
+# The list of incdir candidates is:
++incdir+lab06/tb/tb_classes
+# +incdir+lab06example/tb/tb_classes
+
+### AUTOCONFIG WARNING: Multiple incdir candidates.
+# The following includes have multiple incdir candidates:
+#`include "base_tpgen.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab05/tb/simple_uart_switch_tb_pkg.sv)
+#`include "random_tpgen.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab05/tb/simple_uart_switch_tb_pkg.sv)
+#`include "env.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab05/tb/simple_uart_switch_tb_pkg.sv)
+#`include "random_test.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab05/tb/simple_uart_switch_tb_pkg.sv)
+#`include "base_tpgen.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab05example/tb/tinyalu_tb_pkg.sv)
+#`include "random_tpgen.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab05example/tb/tinyalu_tb_pkg.sv)
+#`include "env.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab05example/tb/tinyalu_tb_pkg.sv)
+#`include "random_test.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab05example/tb/tinyalu_tb_pkg.sv)
+#`include "base_tpgen.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab06/tb/simple_uart_switch_tb_pkg.sv)
+#`include "random_tpgen.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab06/tb/simple_uart_switch_tb_pkg.sv)
+#`include "env.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab06/tb/simple_uart_switch_tb_pkg.sv)
+#`include "random_test.svh" in simple_uart_switch_tb_pkg.sv (/home/student/akurnik/VDIC/lab06/tb/simple_uart_switch_tb_pkg.sv)
+#`include "base_tpgen.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab06example/tb/tinyalu_tb_pkg.sv)
+#`include "random_tpgen.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab06example/tb/tinyalu_tb_pkg.sv)
+#`include "env.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab06example/tb/tinyalu_tb_pkg.sv)
+#`include "random_test.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab06example/tb/tinyalu_tb_pkg.sv)
+# The list of incdir candidates is:
++incdir+lab05/tb/tb_classes
+# +incdir+lab05example/tb/tb_classes
+# +incdir+lab06/tb/tb_classes
+# +incdir+lab06example/tb/tb_classes
+
+### AUTOCONFIG WARNING: Multiple incdir candidates.
+# The following includes have multiple incdir candidates:
+#`include "add_tpgen.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab05example/tb/tinyalu_tb_pkg.sv)
+#`include "add_test.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab05example/tb/tinyalu_tb_pkg.sv)
+#`include "add_tpgen.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab06example/tb/tinyalu_tb_pkg.sv)
+#`include "add_test.svh" in tinyalu_tb_pkg.sv (/home/student/akurnik/VDIC/lab06example/tb/tinyalu_tb_pkg.sv)
+# The list of incdir candidates is:
++incdir+lab05example/tb/tb_classes
+# +incdir+lab06example/tb/tb_classes
+
+### AUTOCONFIG WARNING: Multiple incdir candidates.
+# The following includes have multiple incdir candidates:
+#`include "tinyalu_macros.svh" in top.sv (/home/student/akurnik/VDIC/lab04example/tb/top.sv)
+#`include "tinyalu_macros.svh" in top.sv (/home/student/akurnik/VDIC/lab05example/tb/top.sv)
+#`include "tinyalu_macros.svh" in top.sv (/home/student/akurnik/VDIC/lab06example/tb/top.sv)
+# The list of incdir candidates is:
++incdir+lab04example/tb
+# +incdir+lab05example/tb
+# +incdir+lab06example/tb
+
 # Available `ifdef / `ifndef controls:
 # +define+DEBUG
 
+lab06/tb/simple_uart_switch_tb_pkg.sv
+lab06example/tb/tinyalu_tb_pkg.sv
+lab05/tb/simple_uart_switch_tb_pkg.sv
+lab05example/tb/tinyalu_tb_pkg.sv
+lab05example/tb/tb_classes/scoreboard.svh
+lab06example/tb/tb_classes/command_monitor.svh
+lab06example/tb/tb_classes/result_monitor.svh
+lab06example/tb/tb_classes/scoreboard.svh
+lab05/tb/tb_classes/coverage.svh
+lab05/tb/tb_classes/scoreboard.svh
+lab05example/tb/tb_classes/coverage.svh
+lab05example/tb/tb_classes/env.svh
+lab05example/tb/tb_classes/random_test.svh
+lab05example/tb/tb_classes/random_tpgen.svh
+lab06/tb/tb_classes/coverage.svh
+lab06/tb/tb_classes/env.svh
+lab06/tb/tb_classes/minmax_addr_test.svh
+lab06/tb/tb_classes/minmax_addr_tpgen.svh
+lab06/tb/tb_classes/random_test.svh
+lab06/tb/tb_classes/random_tpgen.svh
+lab06/tb/tb_classes/scoreboard.svh
+lab06example/tb/tb_classes/add_test.svh
+lab06example/tb/tb_classes/add_tpgen.svh
+lab06example/tb/tb_classes/coverage.svh
+lab06example/tb/tb_classes/driver.svh
+lab06example/tb/tb_classes/env.svh
+lab06example/tb/tb_classes/random_test.svh
+lab06example/tb/tb_classes/random_tpgen.svh
 lab01example/tb/tinyalu_tb.sv
 lab02example/tb/tinyalu_tb.sv
+lab04example/tb/tb_classes/scoreboard.svh
+lab04example/tb/tb_classes/tpgen.svh
 common/simple_uart_switch.svp
 common/tinyalu/three_cycle.sv
 lab01/tb/simple_uart_switch_tb.svp
 lab02/tb/simple_uart_switch_tb.svp
 lab03example/tb/top.sv
+lab04example/tb/tb_classes/coverage.svh
+lab04example/tb/tb_classes/testbench.svh
+lab04part1/tb/lab04part1_example_factory.sv
+lab05example/tb/tb_classes/base_tpgen.svh
+lab05example/tb/tinyalu_macros.svh
+lab06/tb/tb_classes/base_tpgen.svh
+lab06example/tb/tb_classes/base_tpgen.svh
+lab06example/tb/tinyalu_macros.svh
 common/tinyalu/tinyalu_pkg.sv
+lab05example/tb/top.sv
 common/tinyalu/tinyalu.sv
 common/tinyalu/single_cycle.sv
 lab03/tb/simple_uart_switch_tb_pkg.svh
+lab03example/tb/tinyalu_tb_pkg.svh
+lab04/tb/simple_uart_switch_tb_pkg.svh
+lab06/tb/top.sv
+lab06/tb/simple_uart_switch_bfm.sv
+lab05/tb/top.sv
+lab05/tb/simple_uart_switch_bfm.sv
+lab04/tb/top.sv
+lab04/tb/simple_uart_switch_bfm.sv
 lab03/tb/tpgen.sv
 lab03/tb/top.sv
 lab03/tb/simple_uart_switch_bfm.sv
 lab03/tb/scoreboard.sv
 lab03/tb/coverage.sv
-lab03example/tb/tinyalu_tb_pkg.svh
+lab04example/tb/tinyalu_tb_pkg.svh
+lab06example/tb/top.sv
+lab06example/tb/tinyalu_bfm.sv
+lab05example/tb/tinyalu_bfm.sv
+lab04example/tb/top.sv
+lab04example/tb/tinyalu_bfm.sv
 lab03example/tb/tpgen.sv
 lab03example/tb/tinyalu_bfm.sv
 lab03example/tb/scoreboard.sv
 lab03example/tb/coverage.sv
+lab04part1/tb/shape_pkg.svh
+lab04part1/tb/top.sv
 

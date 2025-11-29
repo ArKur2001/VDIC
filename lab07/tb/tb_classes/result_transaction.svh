@@ -45,10 +45,49 @@ class result_transaction extends uvm_transaction;
 
     function string convert2string();
         string s;
-        s = $sformatf("result: %4h",result);
+        string tmp;
+    
+        s = "RESULT TRANSACTION:\n";
+    
+        // ============================
+        // SOUT0 FRAMES
+        // ============================
+        s = {s, "SOUT0_FRAMES:\n"};
+    
+        if (result.sout0_frames.size() == 0)
+            s = {s, "  <empty>\n"};
+        else begin
+            for (int i = 0; i < result.sout0_frames.size(); i++) begin
+                tmp = $sformatf(
+                    "  [%0d] 0x%02h\n",
+                    i,
+                    result.sout0_frames[i]
+                );
+                s = {s, tmp};
+            end
+        end
+    
+        // ============================
+        // SOUT1 FRAMES
+        // ============================
+        s = {s, "\nSOUT1_FRAMES:\n"};
+    
+        if (result.sout1_frames.size() == 0)
+            s = {s, "  <empty>\n"};
+        else begin
+            for (int i = 0; i < result.sout1_frames.size(); i++) begin
+                tmp = $sformatf(
+                    "  [%0d] 0x%02h\n",
+                    i,
+                    result.sout1_frames[i]
+                );
+                s = {s, tmp};
+            end
+        end
+    
         return s;
     endfunction : convert2string
-
+    
     function bit do_compare(uvm_object rhs, uvm_comparer comparer);
         result_transaction RHS;
         bit same;
@@ -62,7 +101,6 @@ class result_transaction extends uvm_transaction;
 
         if((result.sout0_frames.size() != RHS.result.sout0_frames.size()) || (result.sout1_frames.size() != RHS.result.sout1_frames.size())) begin
             same = 0;
-            $display("dupa");
         end
         else begin
             for(int i = 0 ; i < result.sout0_frames.size() ; i++) begin

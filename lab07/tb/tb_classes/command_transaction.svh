@@ -382,10 +382,73 @@ class command_transaction extends uvm_transaction;
 
 
     function string convert2string();
-        string s;
-        s = $sformatf("Frame_data: %2h \n exp_sout0_frames: %2h \n exp_sout1_frames: %2h \n test: %s \n", frame_data, exp_sout0_frames, exp_sout1_frames, test.name());
-        return s;
-    endfunction : convert2string
+      string s;
+      string tmp;
+  
+      // ============================
+      // FRAME DATA
+      // ============================
+      s = "FRAME DATA:\n";
+  
+      if (frame_data.size() == 0)
+          s = {s, "  <empty>\n"};
+      else begin
+          for (int i = 0; i < frame_data.size(); i++) begin
+              tmp = $sformatf(
+                  "  [%0d] reset=%0b prog_mode=%0b input_message=0x%0h\n",
+                  i,
+                  frame_data[i].reset,
+                  frame_data[i].prog_mode,
+                  frame_data[i].input_message
+              );
+              s = {s, tmp};
+          end
+      end
+  
+      // ============================
+      // EXP SOUT0
+      // ============================
+      s = {s, "\nEXP_SOUT0_FRAMES:\n"};
+  
+      if (exp_sout0_frames.size() == 0)
+          s = {s, "  <empty>\n"};
+      else begin
+          for (int i = 0; i < exp_sout0_frames.size(); i++) begin
+              tmp = $sformatf(
+                  "  [%0d] 0x%02h\n",
+                  i,
+                  exp_sout0_frames[i]
+              );
+              s = {s, tmp};
+          end
+      end
+  
+      // ============================
+      // EXP SOUT1
+      // ============================
+      s = {s, "\nEXP_SOUT1_FRAMES:\n"};
+  
+      if (exp_sout1_frames.size() == 0)
+          s = {s, "  <empty>\n"};
+      else begin
+          for (int i = 0; i < exp_sout1_frames.size(); i++) begin
+              tmp = $sformatf(
+                  "  [%0d] 0x%02h\n",
+                  i,
+                  exp_sout1_frames[i]
+              );
+              s = {s, tmp};
+          end
+      end
+  
+      // ============================
+      // TEST TYPE
+      // ============================
+      s = { "\nTEST TYPE: ", s, test.name(), "\n"};
+  
+      return s;
+  endfunction
+  
 
 //------------------------------------------------------------------------------
 // constructor

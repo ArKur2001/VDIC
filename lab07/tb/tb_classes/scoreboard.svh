@@ -230,6 +230,7 @@ endfunction : predict_result
 // subscriber write function
 //------------------------------------------------------------------------------
   function void write(result_transaction t);
+    string data_str;
     command_transaction cmd;
     result_transaction predicted;
 
@@ -238,13 +239,21 @@ endfunction : predict_result
     
     predicted = predict_result(cmd);
 
+    //data_str  = {cmd.convert2string(),
+    //        " ==>  Actual " , t.convert2string(),
+    //        "/Predicted ",predicted.convert2string()};
+
+    data_str  = {cmd.test.name(),
+            " ==>  Actual: \n" , t.convert2string(),
+            "\nPredicted: \n",predicted.convert2string()};
+
     get_test_result(t.result, cmd.exp_sout0_frames, cmd.exp_sout1_frames, cmd.test);
 
     if(predicted.compare(t)) begin
-      `uvm_info ("SELF CHECKER", {"PASS: ", cmd.test.name()}, UVM_HIGH);
+      `uvm_info ("SELF CHECKER", {"PASS: ", data_str}, UVM_HIGH);
     end
     else begin
-      `uvm_info("SELF CHECKER", {"FAIL: ", cmd.test.name()}, UVM_LOW);
+      `uvm_info("SELF CHECKER", {"FAIL: ", data_str}, UVM_LOW);
     end
 
     endfunction : write

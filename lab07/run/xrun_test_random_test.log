@@ -1,4 +1,4 @@
-TOOL:	xrun(64)	24.09-s005: Started on Nov 29, 2025 at 21:25:21 CET
+TOOL:	xrun(64)	24.09-s005: Started on Nov 29, 2025 at 22:03:50 CET
 xrun
 	-F ../tb/tb.f
 		simple_uart_switch_tb_pkg.sv
@@ -79,176 +79,1497 @@ uvm_test_top             random_test                 -     @1687
 [0m
 [1;30m[103mUVM_INFO ../tb/tb_classes/random_test.svh(55) @ 0: uvm_test_top [COMMAND TRANSACTION] command_transaction
 [0m
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 28639380000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 40058500000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 43860180000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 137621060000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 154841300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 166246340000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 212091860000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 237154900000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 313864580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 329296660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 380774260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 422592740000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 443614660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 516578980000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 543218900000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 625095860000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 712844340000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 726276980000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 737682020000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 789384980000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 821826020000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 880892900000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 900140740000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 930779540000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1032833940000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1088324500000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1120793700000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1124595380000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1174482020000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1216539940000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1245179300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1313905300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1331125540000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1421084740000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1442346100000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1448161300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1482404580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1503454660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1566562660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1570364340000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1585585140000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1734385860000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1812447060000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1866121300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1873724660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1911755540000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1957615140000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 1969034260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2047363060000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2051164740000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2116074980000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2213637540000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2225042580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2261510660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2282546660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2376096260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2408551380000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2419956420000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2431586820000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2464041940000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2477474580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2507902100000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2657378900000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2680428420000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2691833460000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2695635140000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2741522900000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2749126260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2785425300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2821682100000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2835100660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2877144500000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2904206980000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2933085780000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2957923460000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 2992138580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 3047854500000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 3082520340000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 3126394580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 3130196260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 3312100020000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 3329320260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 3338937140000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 3411408500000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
-dupa
-UVM_INFO ../tb/tb_classes/scoreboard.svh(247) @ 3447890660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 28639380000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x26
+  [1] 0x50
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 40058500000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xdd
+  [1] 0xf2
+
+SOUT1_FRAMES:
+  [0] 0x3f
+  [1] 0x3e
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 43860180000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xce
+  [1] 0xe4
+
+SOUT1_FRAMES:
+  [0] 0xb7
+  [1] 0x5f
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 137621060000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xf1
+  [1] 0x53
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 154841300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x3c
+  [1] 0x7b
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 166246340000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xfb
+  [1] 0xff
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 212091860000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x79
+  [1] 0x7d
+  [2] 0xe7
+  [3] 0x61
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 237154900000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xa2
+  [1] 0x2d
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 313864580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x3c
+  [1] 0xfd
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 329296660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xfc
+  [1] 0xfe
+  [2] 0xd8
+  [3] 0xe0
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 380774260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xc5
+  [1] 0xf8
+
+SOUT1_FRAMES:
+  [0] 0xc9
+  [1] 0xef
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 422592740000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x74
+  [1] 0x79
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 443614660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xaa
+  [1] 0xf2
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 516578980000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x9d
+  [1] 0x07
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 543218900000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xef
+  [1] 0xce
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 625095860000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xad
+  [1] 0x2f
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 712844340000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xdb
+  [1] 0xe5
+
+SOUT1_FRAMES:
+  [0] 0xfa
+  [1] 0x71
+  [2] 0xfa
+  [3] 0x8e
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 726276980000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x97
+  [1] 0xe2
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 737682020000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x8d
+  [1] 0x0f
+
+SOUT1_FRAMES:
+  [0] 0xe7
+  [1] 0xfb
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 789384980000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xc8
+  [1] 0xcc
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 821826020000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xae
+  [1] 0x67
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 880892900000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x6d
+  [1] 0x74
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 900140740000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x35
+  [1] 0x1b
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 930779540000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x3a
+  [1] 0xc8
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1032833940000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xb7
+  [1] 0x46
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1088324500000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x36
+  [1] 0xd6
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1120793700000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xf6
+  [1] 0x77
+  [2] 0x62
+  [3] 0xfd
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1124595380000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xf0
+  [1] 0x38
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1174482020000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x18
+  [1] 0xdf
+
+SOUT1_FRAMES:
+  [0] 0xf7
+  [1] 0xfa
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1216539940000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x75
+  [1] 0x2d
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1245179300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x53
+  [1] 0x56
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1313905300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x39
+  [1] 0xb8
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1331125540000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x4f
+  [1] 0x16
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1421084740000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xd7
+  [1] 0x38
+  [2] 0x0c
+  [3] 0x26
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1442346100000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x73
+  [1] 0xbb
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1448161300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xce
+  [1] 0x7b
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1482404580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x9f
+  [1] 0x4d
+  [2] 0x85
+  [3] 0xe2
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1503454660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xd7
+  [1] 0xf1
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1566562660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xb3
+  [1] 0xf9
+  [2] 0xdd
+  [3] 0x7e
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1570364340000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x6f
+  [1] 0x75
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1585585140000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xcd
+  [1] 0x51
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1734385860000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xf9
+  [1] 0x78
+  [2] 0xb7
+  [3] 0xfe
+
+SOUT1_FRAMES:
+  [0] 0x9f
+  [1] 0x7d
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1812447060000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x9e
+  [1] 0x1c
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1866121300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xf8
+  [1] 0xfc
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1873724660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xb5
+  [1] 0xeb
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1911755540000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x78
+  [1] 0xff
+
+SOUT1_FRAMES:
+  [0] 0xdc
+  [1] 0x5d
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1957615140000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xb6
+  [1] 0xef
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 1969034260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x1d
+  [1] 0xdf
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2047363060000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xfd
+  [1] 0x4f
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2051164740000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x35
+  [1] 0x57
+  [2] 0xfc
+  [3] 0xca
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2116074980000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x7e
+  [1] 0xff
+  [2] 0x3f
+  [3] 0x38
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2213637540000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xed
+  [1] 0x0f
+
+SOUT1_FRAMES:
+  [0] 0xdb
+  [1] 0x7c
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2225042580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x63
+  [1] 0xba
+  [2] 0x3f
+  [3] 0x0e
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2261510660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xba
+  [1] 0x2e
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2282546660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xf5
+  [1] 0x74
+  [2] 0xd8
+  [3] 0xd6
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2376096260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xff
+  [1] 0xdb
+  [2] 0x6f
+  [3] 0xa6
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2408551380000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x7a
+  [1] 0x5b
+
+SOUT1_FRAMES:
+  [0] 0xcf
+  [1] 0xd2
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2419956420000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x15
+  [1] 0x52
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2431586820000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x38
+  [1] 0x74
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2464041940000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x6c
+  [1] 0x9e
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2477474580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x7e
+  [1] 0x73
+  [2] 0x2c
+  [3] 0xee
+
+SOUT1_FRAMES:
+  [0] 0xb3
+  [1] 0x36
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2507902100000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x51
+  [1] 0xc2
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2657378900000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xf9
+  [1] 0xfe
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2680428420000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xf1
+  [1] 0x7f
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2691833460000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x1e
+  [1] 0x1f
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2695635140000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xa1
+  [1] 0xb1
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2741522900000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xf9
+  [1] 0xbb
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2749126260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x2c
+  [1] 0xfa
+
+SOUT1_FRAMES:
+  [0] 0xbe
+  [1] 0x7c
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2785425300000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x9e
+  [1] 0xab
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2821682100000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xfd
+  [1] 0xe8
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2835100660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x77
+  [1] 0xbf
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2877144500000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xf8
+  [1] 0xfa
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2904206980000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xde
+  [1] 0xd5
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2933085780000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xd5
+  [1] 0xdb
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2957923460000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xbf
+  [1] 0x9e
+  [2] 0xbf
+  [3] 0xc0
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 2992138580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x98
+  [1] 0xff
+  [2] 0xf5
+  [3] 0xf4
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 3047854500000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_PARITY_STOP ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0x67
+  [1] 0xd1
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 3082520340000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xb0
+  [1] 0x31
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 3126394580000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xe1
+  [1] 0xe3
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 3130196260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xc4
+  [1] 0x39
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 3312100020000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x30
+  [1] 0x7e
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 3329320260000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0xf2
+  [1] 0x7c
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 3338937140000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  [0] 0x7b
+  [1] 0xd7
+
+SOUT1_FRAMES:
+  <empty>
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 3411408500000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xd0
+  [1] 0xbc
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
+UVM_INFO ../tb/tb_classes/scoreboard.svh(256) @ 3447890660000: uvm_test_top.env_h.scoreboard_h [SELF CHECKER] FAIL: WRONG_START_BIT ==>  Actual: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  [0] 0xff
+  [1] 0xb4
+  [2] 0x75
+  [3] 0x78
+
+Predicted: 
+RESULT TRANSACTION:
+SOUT0_FRAMES:
+  <empty>
+
+SOUT1_FRAMES:
+  <empty>
+
 UVM_INFO /eda/cadence/2024-25/RHELx86/XCELIUM_24.09.005/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_objection.svh(1271) @ 3503142770000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 TEST_PROPER_FRAME: 135 passed, 0 errors.
 
@@ -336,4 +1657,4 @@ coverage setup:
 coverage files:
   model(design data) :  ./cov_work/scope/icc_20f5683d_483fd0a5.ucm
   data               :  ./cov_work/scope/random_test/icc_20f5683d_483fd0a5.ucd
-TOOL:	xrun(64)	24.09-s005: Exiting on Nov 29, 2025 at 21:26:17 CET  (total: 00:00:56)
+TOOL:	xrun(64)	24.09-s005: Exiting on Nov 29, 2025 at 22:04:45 CET  (total: 00:00:55)
